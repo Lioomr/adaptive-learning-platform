@@ -2,9 +2,9 @@
 
 Backend starter for the Adaptive Learning Platform graduation project.
 
-## Agreed starting stack
+## Team-approved stack
 
-- Python 3.12
+- Python 3.14
 - Django 5.2 LTS
 - Django REST Framework
 - PostgreSQL 16
@@ -37,14 +37,15 @@ The health endpoint is `GET /api/v1/health/`. Django admin is at `/admin/`.
 
 - `config/`: project settings and root URL configuration
 - `apps/core/`: shared API endpoints and app infrastructure
-- `docs/`: architecture and API decisions (to be added)
+- `docs/`: architecture, database schema, and API decisions
 
 ## Team decisions to confirm
 
-- Confirm Django 5.2 LTS, DRF, PostgreSQL, and Python 3.12 with the team/supervisor.
 - Decide authentication approach and roles (student, instructor, administrator).
 - Approve the database schema and interaction-event contract before pilot data collection.
 - Do not add real student data or secrets to Git.
+
+The initial schema and interaction-event proposal is in [`docs/database-schema.md`](docs/database-schema.md).
 
 ## Configuration
 
