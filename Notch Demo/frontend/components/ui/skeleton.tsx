@@ -1,3 +1,9 @@
-import type { HTMLAttributes } from "react";
-export function Skeleton({ className = "", ...props }: HTMLAttributes<HTMLDivElement>) { return <div aria-hidden="true" className={`skeleton ${className}`} {...props} />; }
-export function PageSkeleton() { return <main className="loading" aria-busy="true" aria-label="Loading workspace"><Skeleton /><div className="grid stats skeleton-grid"><Skeleton className="skeleton-card"/><Skeleton className="skeleton-card"/><Skeleton className="skeleton-card"/></div><Skeleton className="large"/></main>; }
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+/** Shimmer placeholder. Decorative: wrap groups in an element with role="status" and a label. */
+function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="skeleton" aria-hidden="true" className={cn("skeleton-shimmer rounded-md", className)} {...props} />;
+}
+
+export { Skeleton };

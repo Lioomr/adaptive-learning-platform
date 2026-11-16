@@ -1,2 +1,8 @@
-import { Shell } from "@/components/demo/shell";
-export default function Page(){return <Shell/>}
+import type { Metadata } from "next";
+import { StudentOverview } from "@/features/student/student-overview";
+
+export const metadata: Metadata = { title: "Student Portal" };
+
+export default function Page() {
+  return <StudentOverview />;
+}

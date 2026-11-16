@@ -47,4 +47,4 @@ The repository already contains a separate Django backend starter and docs/datab
 
 ## Foundation status
 
-The shared foundation is incomplete; see [architecture and gaps](shared/ARCHITECTURE.md). From `frontend`, run `npm ci` and `npm run dev`. Do not start portal implementations until Integration Lead review.
+The shared foundation provides the application shell, design tokens, shared components, the shared store with validated persistence, simulated role permissions and four foundation previews (`/demo`, `/student`, `/instructor`, `/advisor`). It does not implement the 49 screens. Open gaps are listed in [architecture and gaps](shared/ARCHITECTURE.md). From `frontend`, run `npm ci` and `npm run dev`. Do not start portal implementations until Integration Lead review.

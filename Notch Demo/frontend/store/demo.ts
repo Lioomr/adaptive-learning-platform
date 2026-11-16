@@ -1,21 +1,155 @@
 "use client";
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { concepts, courses, initialStudents } from "@/data/fixtures";
-import { scoreAssessment } from "@/services/mastery";
-import type { AssessmentSubmission, Attempt, CourseId, Role, Student, SubmissionResult } from "@/types";
-type Data = { students: Student[]; attempts: Attempt[]; studentId: string; courseId: CourseId };
-type State = Data & { role: Role; setRole: (role: Role) => void; setStudent: (id: string) => void; setCourse: (id: CourseId) => void; submit: (input: AssessmentSubmission) => SubmissionResult; reset: () => void };
-const baseline = (): Data => ({ students: structuredClone(initialStudents), attempts: [], studentId: "S-NOUR", courseId: "C-PY" });
-function validData(value: unknown): value is Data {
- if (!value || typeof value !== "object") return false;
- const data = value as Data;
- if (!Array.isArray(data.students) || data.students.length !== initialStudents.length || !Array.isArray(data.attempts) || !courses.some(c => c.id === data.courseId)) return false;
- if (!data.students.every(s => s && typeof s === "object" && typeof s.id === "string")) return false;
- const ids = new Set(data.students.map(s => s.id));
- if (ids.size !== initialStudents.length || initialStudents.some(s => !ids.has(s.id))) return false;
- if (!data.students.every(s => s && typeof s.name === "string" && Array.isArray(s.enrolledCourseIds) && s.enrolledCourseIds.length > 0 && s.enrolledCourseIds.every(id => courses.some(c => c.id === id)) && typeof s.lastActiveDays === "number" && Number.isFinite(s.lastActiveDays) && s.lastActiveDays >= 0 && s.mastery && concepts.every(c => Number.isFinite(s.mastery[c.id]) && s.mastery[c.id] >= 0 && s.mastery[c.id] <= 100))) return false;
- if (!data.students.some(s => s.id === data.studentId && s.enrolledCourseIds.includes(data.courseId))) return false;
- return data.attempts.every(a => a && typeof a.submissionId === "string" && ids.has(a.studentId) && concepts.some(c => c.id === a.conceptId && c.courseId === a.courseId) && Array.isArray(a.questionIds) && a.questionIds.length > 0 && a.answers && typeof a.answers === "object" && [a.score,a.previous,a.mastery].every(n => Number.isFinite(n) && n >= 0 && n <= 100) && typeof a.createdAt === "string") && new Set(data.attempts.map(a => a.submissionId)).size === data.attempts.length;
+import { persist, type PersistStorage, type StorageValue } from "zustand/middleware";
+import { findCourse } from "@/data/fixtures";
+import { can, ROLE_DENIED_MESSAGE } from "@/lib/permissions";
+import { evaluateSubmission } from "@/services/assessment";
+import { baselineData, SCHEMA_VERSION, STORAGE_KEY, validateDemoData } from "@/services/persistence";
+import type { CourseId, DemoData, Role, SubmissionResult } from "@/types";
+
+/**
+ * The single shared client store for all portals.
+ * - Persisted data (schema v2): students, attempts, selected student and course.
+ * - Not persisted: storage status. The active role is NOT stored here; it is
+ *   derived from the route (components/layout/role-context.tsx) and passed to
+ *   each permission-checked action, so a stale role can never authorize an action.
+ * - Hydration is manual (`skipHydration`) and runs after mount, so server and
+ *   first client render always match.
+ */
+export type StorageStatus = "pending" | "fresh" | "restored" | "reset-invalid" | "reset-version" | "unavailable";
+export type ActionResult = { ok: true } | { ok: false; error: string };
+
+type State = DemoData & {
+  storageStatus: StorageStatus;
+  setStudent: (studentId: string, actor: Role) => ActionResult;
+  setCourse: (courseId: CourseId, actor: Role) => ActionResult;
+  submit: (input: unknown, actor: Role) => SubmissionResult;
+  reset: (actor: Role) => ActionResult;
+  acknowledgeStorageStatus: () => void;
+};
+
+let storageIssue: StorageStatus | null = null;
+
+/** localStorage wrapper that never throws: corrupt JSON or blocked storage fall back to memory. */
+const safeStorage: PersistStorage<DemoData> = {
+  getItem: name => {
+    try {
+      const raw = window.localStorage.getItem(name);
+      if (raw === null) return null;
+      const parsed = JSON.parse(raw) as StorageValue<DemoData>;
+      if (!parsed || typeof parsed !== "object" || typeof parsed.version !== "number" || !("state" in parsed)) {
+        storageIssue = "reset-invalid";
+        return null;
+      }
+      return parsed;
+    } catch (error) {
+      storageIssue = error instanceof SyntaxError ? "reset-invalid" : "unavailable";
+      return null;
+    }
+  },
+  setItem: (name, value) => {
+    try {
+      window.localStorage.setItem(name, JSON.stringify(value));
+    } catch {
+      storageIssue = "unavailable";
+    }
+  },
+  removeItem: name => {
+    try {
+      window.localStorage.removeItem(name);
+    } catch {
+      /* storage unavailable */
+    }
+  },
+};
+
+const RESET_VERSION = Symbol("reset-version");
+
+export const useDemo = create<State>()(
+  persist(
+    (set, get) => ({
+      ...baselineData(),
+      storageStatus: "pending",
+
+      setStudent: (studentId, actor) => {
+        if (!can(actor, "context:select-student")) return { ok: false, error: ROLE_DENIED_MESSAGE["context:select-student"] };
+        const s = get();
+        const student = s.students.find(x => x.id === studentId);
+        if (!student) return { ok: false, error: "Unknown student." };
+        set({ studentId, courseId: student.enrolledCourseIds.includes(s.courseId) ? s.courseId : student.enrolledCourseIds[0] });
+        return { ok: true };
+      },
+
+      setCourse: (courseId, actor) => {
+        if (!can(actor, "context:select-course")) return { ok: false, error: ROLE_DENIED_MESSAGE["context:select-course"] };
+        const s = get();
+        if (!findCourse(courseId)) return { ok: false, error: "Unknown course." };
+        if (!s.students.find(x => x.id === s.studentId)?.enrolledCourseIds.includes(courseId)) return { ok: false, error: "The selected student is not enrolled in that course." };
+        set({ courseId });
+        return { ok: true };
+      },
+
+      submit: (input, actor) => {
+        const s = get();
+        const result = evaluateSubmission({ students: s.students, attempts: s.attempts, studentId: s.studentId, courseId: s.courseId }, input, actor);
+        if (!result.ok) return result;
+        if (!result.duplicate) set({ students: result.data.students, attempts: result.data.attempts });
+        return { ok: true, attempt: result.attempt, duplicate: result.duplicate };
+      },
+
+      reset: actor => {
+        if (!can(actor, "demo:reset")) return { ok: false, error: ROLE_DENIED_MESSAGE["demo:reset"] };
+        set({ ...baselineData(), storageStatus: get().storageStatus === "unavailable" ? "unavailable" : "fresh" });
+        return { ok: true };
+      },
+
+      acknowledgeStorageStatus: () => set(s => (s.storageStatus === "reset-invalid" || s.storageStatus === "reset-version" ? { storageStatus: "restored" } : {})),
+    }),
+    {
+      name: STORAGE_KEY,
+      version: SCHEMA_VERSION,
+      storage: safeStorage,
+      skipHydration: true,
+      partialize: s => ({ students: s.students, attempts: s.attempts, studentId: s.studentId, courseId: s.courseId }),
+      migrate: () => RESET_VERSION as unknown as DemoData,
+      onRehydrateStorage: () => (_state, error) => {
+        if (error) console.error("[adaptlearn] Rehydration failed", error);
+      },
+      merge: (persisted, current) => {
+        if (persisted === undefined || persisted === null) {
+          const status = storageIssue ?? "fresh";
+          storageIssue = null;
+          return { ...current, ...baselineData(), storageStatus: status };
+        }
+        if ((persisted as unknown) === RESET_VERSION) return { ...current, ...baselineData(), storageStatus: "reset-version" };
+        const checked = validateDemoData(persisted);
+        if (!checked.ok) {
+          if (process.env.NODE_ENV !== "production") console.warn(`[adaptlearn] Stored demo data was reset: ${checked.reason}`);
+          return { ...current, ...baselineData(), storageStatus: "reset-invalid" };
+        }
+        return { ...current, ...checked.data, storageStatus: "restored" };
+      },
+    },
+  ),
+);
+
+/**
+ * Reads persisted state once per page load, rewrites invalid storage, and
+ * follows other tabs. Runs at client module load rather than in an effect:
+ * during React hydration `useHydrated` still reports the server snapshot
+ * (false), so markup matches, and React re-renders with stored data right after.
+ */
+let started = false;
+export function hydrateDemoStore() {
+  if (started || typeof window === "undefined") return;
+  started = true;
+  void Promise.resolve(useDemo.persist.rehydrate()).then(() => {
+    const status = useDemo.getState().storageStatus;
+    if (status === "reset-invalid" || status === "reset-version") useDemo.setState({}); // persist the clean baseline
+  });
+  window.addEventListener("storage", event => {
+    if (event.key === STORAGE_KEY) void useDemo.persist.rehydrate();
+  });
 }
-export const useDemo = create<State>()(persist((set, get) => ({ ...baseline(), role: "demo", setRole: role => set({ role }), setStudent: id => set(s => { const student = s.students.find(x => x.id === id); if (!student) return {}; return { studentId: id, courseId: student.enrolledCourseIds.includes(s.courseId) ? s.courseId : student.enrolledCourseIds[0] }; }), setCourse: courseId => set(s => s.students.find(x => x.id === s.studentId)?.enrolledCourseIds.includes(courseId) ? { courseId } : {}), submit: input => { const s = get(); if (s.role !== "student") return { ok: false, error: "Only the simulated Student role can submit an assessment." }; if (input.studentId !== s.studentId || input.courseId !== s.courseId) return { ok: false, error: "Assessment does not match the selected context." }; const existing = s.attempts.find(a => a.submissionId === input.submissionId); if (existing) { const same = existing.studentId === input.studentId && existing.courseId === input.courseId && existing.conceptId === input.conceptId && JSON.stringify(existing.questionIds) === JSON.stringify(input.questionIds) && JSON.stringify(Object.entries(existing.answers).sort()) === JSON.stringify(Object.entries(input.answers).sort()); return same ? { ok: true, attempt: existing, duplicate: true } : { ok: false, error: "Submission ID already used for a different assessment." }; } try { const student = s.students.find(x => x.id === input.studentId); const result = scoreAssessment(input, student, s.role); const attempt: Attempt = { ...input, questionIds: [...input.questionIds], answers: { ...input.answers }, ...result, createdAt: new Date().toISOString() }; set({ students: s.students.map(x => x.id === input.studentId ? { ...x, lastActiveDays: 0, mastery: { ...x.mastery, [input.conceptId]: result.mastery } } : x), attempts: [...s.attempts, attempt] }); return { ok: true, attempt, duplicate: false }; } catch (error) { return { ok: false, error: error instanceof Error ? error.message : "Unable to submit assessment." }; } }, reset: () => set(baseline()) }), { name: "adaptlearn-demo", version: 2, storage: createJSONStorage(() => localStorage), partialize: s => ({ students: s.students, attempts: s.attempts, studentId: s.studentId, courseId: s.courseId }) as State, migrate: () => baseline() as State, merge: (persisted, current) => ({ ...current, ...(validData(persisted) ? persisted : baseline()) }) }));
+
+hydrateDemoStore();

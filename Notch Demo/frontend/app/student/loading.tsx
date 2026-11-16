@@ -1,2 +1,5 @@
-import { PageSkeleton } from "@/components/ui/skeleton";
-export default function Loading() { return <PageSkeleton />; }
+import { StudentPreviewSkeleton } from "@/components/feedback/loading-skeletons";
+
+export default function Loading() {
+  return <StudentPreviewSkeleton />;
+}

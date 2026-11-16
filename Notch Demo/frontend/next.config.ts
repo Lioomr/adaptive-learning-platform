@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   cacheComponents: true,
+  // The floating dev badge overlaps the sidebar footer in screenshots and demos.
+  devIndicators: false,
   partialPrefetching: true,
   turbopack: {
     rules: {
