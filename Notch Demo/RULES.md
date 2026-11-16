@@ -50,3 +50,17 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 - Works in EN and AR where visible; mirrored layout in RTL.
 - Responsive and keyboard navigable.
 - Mock/demo state is clearly marked and no backend dependency is required.
+
+## 8. Linear Task Management and Submission Policy
+
+1. Every developer must work from an assigned Linear issue; every implementation task must have a corresponding issue.
+2. Move the issue from **Todo** (or **Backlog**) to **In Progress** when starting work. Record blockers and dependencies in the issue.
+3. Submit all work through its assigned Linear issue. Each submission must include:
+   - A GitHub branch or pull request link.
+   - Screenshots or a short demo video.
+   - The completed screen IDs and functionality.
+   - Testing notes.
+   - Known issues or unfinished requirements.
+4. Move the issue to **In Review** when the evidence is ready. Do not mark it **Done** simply because code was written. Completion requires that the deliverables meet the acceptance criteria and have been reviewed.
+5. If changes are requested, update the same issue with the revised work and evidence, and use **In Progress** and **In Review** to reflect its state.
+6. GitHub is the source of code; Linear is the source of task ownership, progress, submission evidence, and review status.

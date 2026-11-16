@@ -13,6 +13,10 @@ Build three connected role-based portals that **visually mimic the agreed user j
 | Instructor | Omar | IN1–IN19 | [Instructor tasks](Instructor-Omar/TASKS.md) |
 | Academic Advisor | Mahmoud | AD1–AD6 | [Advisor tasks](Advisor-Mahmoud/TASKS.md) |
 
+## Linear workflow
+
+Use the [Notch Demo — Phase 1 UI Prototype project](https://linear.app/adaptive-learning/project/notch-demo-phase-1-ui-prototype-0e80fac4810c) to find your assigned portal issues. Every implementation task must have an assigned Linear issue. Move it to **In Progress** when starting, record blockers and dependencies, and submit the branch or PR, screenshots or video, completed screens and functionality, testing notes, and known gaps in that issue. Move it to **In Review** for review; only mark **Done** after acceptance criteria are met and the work is reviewed. Address requested changes in the same issue. See the [mandatory policy](RULES.md#8-linear-task-management-and-submission-policy) for details. GitHub holds the code; Linear tracks ownership, progress, evidence, and review.
+
 ## Start here
 1. Everyone reads [RULES.md](RULES.md), [SCREEN-MAP.md](SCREEN-MAP.md), and [MOCK-DATA-CONTRACT.md](MOCK-DATA-CONTRACT.md).
 2. Each owner implements the first priority screens from their own TASKS.md. The rest remain documented for later phases.
