@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+/*
+ * AdaptLearn design tokens (RULES.md §3, approved visual system).
+ * Brand values are the approved hex codes. "-ink" variants are provisional
+ * darker text shades so small text on white meets WCAG AA contrast; the
+ * approved hues remain the fills. Document any change in shared/COMPONENTS.md.
+ */
+:root {
+  /* Approved brand palette */
+  --brand-indigo: #1e2b58;
+  --brand-indigo-2: #2d4485;
+  --brand-teal: #0d9488;
+  --brand-violet: #7c3aed;
+  --brand-success: #16a34a;
+  --brand-warning: #d97706;
+  --brand-error: #dc2626;
+  --brand-canvas: #f8fafc;
+  --brand-text: #0f172a;
+  --brand-muted: #475569;
+
+  /* shadcn/ui semantic tokens */
+  --background: var(--brand-canvas);
+  --foreground: var(--brand-text);
+  --card: #ffffff;
+  --card-foreground: var(--brand-text);
+  --popover: #ffffff;
+  --popover-foreground: var(--brand-text);
+  --primary: var(--brand-indigo);
+  --primary-foreground: #ffffff;
+  --secondary: #eef1f8;
+  --secondary-foreground: var(--brand-indigo);
+  --muted: #f1f5f9;
+  --muted-foreground: var(--brand-muted);
+  --accent: #eef1f8;
+  --accent-foreground: var(--brand-indigo);
+  --destructive: var(--brand-error);
+  --destructive-foreground: #ffffff;
+  --border: #e2e8f0;
+  --input: #cbd5e1;
+  --ring: var(--brand-indigo-2);
+  --radius: 0.75rem;
+
+  /* Status tones: fill / soft background / readable ink */
+  --progress: var(--brand-teal);
+  --progress-soft: #e6f6f4;
+  --progress-ink: #0f766e;
+  --ai: var(--brand-violet);
+  --ai-soft: #f3eefe;
+  --ai-ink: #6d28d9;
+  --success: var(--brand-success);
+  --success-soft: #e8f6ec;
+  --success-ink: #15803d;
+  --warning: var(--brand-warning);
+  --warning-soft: #fdf3e3;
+  --warning-ink: #b45309;
+  --danger: var(--brand-error);
+  --danger-soft: #fdecec;
+  --danger-ink: #b91c1c;
+
+  /* Sidebar */
+  --sidebar: var(--brand-indigo);
+  --sidebar-foreground: #c7d0e8;
+  --sidebar-strong: #ffffff;
+  --sidebar-muted: #8e9cc4;
+  --sidebar-accent: rgb(255 255 255 / 0.08);
+  --sidebar-active: var(--brand-indigo-2);
+  --sidebar-border: rgb(255 255 255 / 0.1);
+
+  /* Layout (RULES.md: 260px sidebar, 72px collapsed, 64px header) */
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 72px;
+  --header-height: 64px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand: var(--brand-indigo);
+  --color-brand-2: var(--brand-indigo-2);
+  --color-progress: var(--progress);
+  --color-progress-soft: var(--progress-soft);
+  --color-progress-ink: var(--progress-ink);
+  --color-ai: var(--ai);
+  --color-ai-soft: var(--ai-soft);
+  --color-ai-ink: var(--ai-ink);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-success-ink: var(--success-ink);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-ink: var(--warning-ink);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-ink: var(--danger-ink);
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-strong: var(--sidebar-strong);
+  --color-sidebar-muted: var(--sidebar-muted);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-active: var(--sidebar-active);
+  --color-sidebar-border: var(--sidebar-border);
+
+  --font-sans: var(--font-inter), var(--font-plex-arabic), ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-arabic: var(--font-plex-arabic), var(--font-inter), "Segoe UI", Tahoma, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-xl: var(--radius);
+  --radius-2xl: calc(var(--radius) + 4px);
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.03);
+  --shadow-raised: 0 8px 24px -8px rgb(30 43 88 / 0.18);
+
+  --animate-shimmer: shimmer 1.6s ease-in-out infinite;
+  --animate-fade-in: fade-in 160ms ease-out;
+  --animate-sheet-in: sheet-in 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  --animate-sheet-in-rtl: sheet-in-rtl 220ms cubic-bezier(0.32, 0.72, 0, 1);
+  --animate-dialog-in: dialog-in 160ms ease-out;
+
+  @keyframes shimmer {
+    from { background-position: 150% 0; }
+    to { background-position: -50% 0; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes sheet-in {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes sheet-in-rtl {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  @keyframes dialog-in {
+    from { opacity: 0; scale: 0.97; }
+    to { opacity: 1; scale: 1; }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  :lang(ar),
+  [dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: #dbe3f5;
+  }
+}
+
+@layer components {
+  /* Shimmer skeleton: a static block when motion is reduced. */
+  .skeleton-shimmer {
+    background-color: #e9eef4;
+    background-image: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 0.65) 45%, transparent 70%);
+    background-size: 200% 100%;
+    background-repeat: no-repeat;
+    animation: var(--animate-shimmer);
+  }
+  /* Guided tour target highlight */
+  [data-tour-active="true"] {
+    position: relative;
+    z-index: 41;
+    box-shadow: 0 0 0 3px var(--brand-teal), 0 0 0 8px rgb(13 148 136 / 0.18);
+    border-radius: var(--radius);
+    transition: box-shadow 200ms ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .skeleton-shimmer {
+    animation: none !important;
+    background-image: none;
+  }
+}

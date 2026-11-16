@@ -4,7 +4,7 @@
 **Repository:** Lioomr/adaptive-learning-platform  
 **Stage:** Phase 1 — frontend visual prototype with mock data and simulated user journeys.
 
-The [demo agreement](DEMO-AGREEMENTS.md) is the Phase 1 coordination source of truth. Both Introduction to Python and Mathematics use shared fictional students and synchronized mock outcomes across the three portals. The proposed frontend stack and role access are documented there; the existing Django backend remains separate.
+The [demo agreement](DEMO-AGREEMENTS.md) is the Phase 1 coordination source of truth. Both Introduction to Python and Mathematics use shared fictional students and synchronized mock outcomes across the three portals. The selected frontend stack and role access are documented there; the existing Django backend remains separate.
 
 ## Goal
 Build three connected role-based portals that **visually mimic the agreed user journeys**, without waiting for final database, mastery engine, or AI model decisions. The prototype must be honest about simulated outputs.
@@ -23,7 +23,7 @@ Use the [Notch Demo — Phase 1 UI Prototype project](https://linear.app/adaptiv
 1. Everyone reads [RULES.md](RULES.md), [SCREEN-MAP.md](SCREEN-MAP.md), and [MOCK-DATA-CONTRACT.md](MOCK-DATA-CONTRACT.md).
 2. Each owner implements the P0 screens from their own TASKS.md first, then completes the P1 visual coverage for Phase 1.
 3. Agree on and build a common application shell before splitting into individual pages.
-4. Use *one consistent two-course mock dataset*: all five fictional students' course progress must agree across all portals.
+4. Use *one consistent two-course mock dataset*: all ten fictional students' course progress must agree across all portals.
 5. Review mobile and desktop screens, Arabic/English layout and the handoff flow.
 
 ## Sources and precedence
@@ -44,3 +44,7 @@ The repository already contains a separate Django backend starter and docs/datab
 - [ ] Arabic/English basic flows and RTL are demonstrated.
 - [ ] No real student information or API keys are committed.
 - [ ] All owners have reviewed the integrated demo.
+
+## Foundation status
+
+The shared foundation provides the application shell, design tokens, shared components, the shared store with validated persistence, simulated role permissions and four foundation previews (`/demo`, `/student`, `/instructor`, `/advisor`). It does not implement the 49 screens. Open gaps are listed in [architecture and gaps](shared/ARCHITECTURE.md). From `frontend`, run `npm ci` and `npm run dev`. Do not start portal implementations until Integration Lead review.

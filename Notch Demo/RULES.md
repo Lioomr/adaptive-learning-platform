@@ -14,7 +14,7 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 - Progress teal: `#0D9488`; AI accent violet: `#7C3AED`.
 - Mastered green: `#16A34A`; review amber: `#D97706`; critical red: `#DC2626`.
 - Canvas `#F8FAFC`, white cards `#FFFFFF`, text `#0F172A`, muted `#475569`.
-- Inter (English), IBM Plex Sans Arabic (Arabic); Material Symbols Outlined icons as specified.
+- Inter (English), IBM Plex Sans Arabic (Arabic); Lucide React icons for the approved Phase 1 stack.
 - 260px desktop sidebar (72px collapsed), 64px header, responsive 12-column / 24px gutters.
 - Modestly rounded cards, low-contrast shadows. Keep AI suggestions visually distinct from instructor-approved content.
 - Use clear, supportive language: "Needs review", not blaming or diagnosing a student.
@@ -23,7 +23,7 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 
 ## 4. Frontend boundaries
 - Do not change existing repository backend files for this task.
-- Use the frontend framework already selected by the team when implementation begins; **this folder does not lock in a framework**.
+- Use the shared Next.js App Router application in `frontend/`.
 - Reuse components: AppShell, Sidebar, Header, Card, Status, Progress, QuestionCard, ConceptNode, Modal, TutorDrawer.
 - Keep portal-specific views and styles inside their owners' areas; reusable UI and mock contracts are shared and reviewed.
 - All interface pages should use structured mock service functions, not embed contradictory data in JSX/HTML.
@@ -39,7 +39,7 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 ## 6. Collaboration
 - Menna owns Student screens; Omar owns Instructor; Mahmoud owns Advisor.
 - Propose shared component changes in a PR and coordinate before altering a common contract.
-- Suggested branches: `notch/student-menna`, `notch/instructor-omar`, `notch/advisor-mahmoud`.
+- Use short-lived branches from latest main, e.g. `student/<linear-id>-dashboard`, and request Integration Lead review before merging.
 - Each change needs a short PR summary, affected screen IDs, screenshot or video, and manual test notes.
 - Avoid editing another owner's portal without review.
 - Use one integrated scenario and consistent data; a separate portal is not done until its links and states match the other portals.
@@ -67,3 +67,10 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 4. Move the issue to **In Review** when the evidence is ready. Do not mark it **Done** simply because code was written. Completion requires that the deliverables meet the acceptance criteria and have been reviewed.
 5. If changes are requested, update the same issue with the revised work and evidence, and use **In Progress** and **In Review** to reflect its state.
 6. GitHub is the source of code and documentation; Linear is the source of task ownership, progress, submission evidence, and review status. A submission may link a PR or commit.
+
+## 9. GitHub identities and branches
+
+- Use only approved human contributor identities. The Integration Lead is the GitHub identity explicitly confirmed by the project owner; the portal owners are Menna (Student), Omar (Instructor), and Mahmoud (Advisor). Confirm exact developer usernames before creating a branch attributed to them.
+- Do not list AI tools as contributors, co-authors, reviewers, or project team members, and do not include AI co-author trailers. Do not fabricate a human identity.
+- Branch names must use only approved human identifiers; do not include names of AI tools or agents. Use short-lived task-specific branches and the existing issue workflow.
+- PR #3's existing branch predates this rule. Prepare a compliant replacement only under the confirmed Integration Lead identity, and obtain Integration Lead approval before switching branches or closing the original PR.

@@ -1,0 +1,41 @@
+"use client";
+import { RoleProvider } from "@/components/layout/role-context";
+import { Sidebar } from "@/components/layout/sidebar";
+import { ContextStrip, Topbar } from "@/components/layout/topbar";
+import { StorageNotice } from "@/components/feedback/storage-notice";
+import { cn } from "@/lib/utils";
+import { useUi } from "@/store/ui";
+import type { Role } from "@/types";
+
+/**
+ * Shared application shell for every portal route. Each portal's layout renders
+ * <AppShell role="…">, which fixes the simulated role for everything inside it.
+ * Portal screens (ST/IN/AD) only render page content; they never duplicate the shell.
+ */
+export function AppShell({ role, children }: { role: Role; children: React.ReactNode }) {
+  const collapsed = useUi(s => s.sidebarCollapsed);
+  return (
+    <RoleProvider role={role}>
+      <a
+        href="#main-content"
+        className="sr-only z-[60] rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:start-4 focus:top-3"
+      >
+        Skip to main content
+      </a>
+      <Sidebar role={role} />
+      <div
+        className={cn(
+          "flex min-h-dvh min-w-0 flex-col md:ps-[var(--sidebar-collapsed)] motion-safe:transition-[padding] motion-safe:duration-200",
+          collapsed ? "lg:ps-[var(--sidebar-collapsed)]" : "lg:ps-[var(--sidebar-width)]",
+        )}
+      >
+        <Topbar role={role} />
+        <ContextStrip role={role} />
+        <main id="main-content" tabIndex={-1} className="mx-auto w-full min-w-0 max-w-[1280px] flex-1 px-4 pb-16 pt-6 outline-none sm:px-6 sm:pt-8 lg:px-8">
+          <StorageNotice />
+          {children}
+        </main>
+      </div>
+    </RoleProvider>
+  );
+}
