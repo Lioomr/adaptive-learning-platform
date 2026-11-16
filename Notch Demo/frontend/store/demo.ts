@@ -1,4 +1,5 @@
 "use client";
+import { validateNudge, type Nudge, type NudgeInput } from "@advisor/services/advisor";
 import { create } from "zustand";
 import { persist, type PersistStorage, type StorageValue } from "zustand/middleware";
 import { findCourse } from "@/data/fixtures";
@@ -21,6 +22,9 @@ export type ActionResult = { ok: true } | { ok: false; error: string };
 
 type State = DemoData & {
   storageStatus: StorageStatus;
+  /** Advisor demo activity is session-only; never delivered externally. */
+  nudges: Nudge[];
+  sendNudge: (input: NudgeInput, actor: Role) => ActionResult;
   setStudent: (studentId: string, actor: Role) => ActionResult;
   setCourse: (courseId: CourseId, actor: Role) => ActionResult;
   submit: (input: unknown, actor: Role) => SubmissionResult;
@@ -71,6 +75,31 @@ export const useDemo = create<State>()(
       ...baselineData(),
       storageStatus: "pending",
 
+      nudges: [],
+      sendNudge: (input, actor) => {
+        const error = validateNudge(input, actor, get().students);
+        if (error) return { ok: false, error };
+        const existing = get().nudges.find((n) => n.id === input.id);
+        if (existing)
+          return existing.studentId === input.studentId &&
+            existing.courseId === input.courseId &&
+            existing.language === input.language &&
+            existing.message === input.message.trim()
+            ? { ok: true }
+            : { ok: false, error: "id" };
+        set((s) => ({
+          nudges: [
+            ...s.nudges,
+            {
+              ...input,
+              message: input.message.trim(),
+              createdAt: new Date().toISOString(),
+            },
+          ],
+        }));
+        return { ok: true };
+      },
+
       setStudent: (studentId, actor) => {
         if (!can(actor, "context:select-student")) return { ok: false, error: ROLE_DENIED_MESSAGE["context:select-student"] };
         const s = get();
@@ -99,7 +128,7 @@ export const useDemo = create<State>()(
 
       reset: actor => {
         if (!can(actor, "demo:reset")) return { ok: false, error: ROLE_DENIED_MESSAGE["demo:reset"] };
-        set({ ...baselineData(), storageStatus: get().storageStatus === "unavailable" ? "unavailable" : "fresh" });
+        set({ ...baselineData(), nudges: [], storageStatus: get().storageStatus === "unavailable" ? "unavailable" : "fresh" });
         return { ok: true };
       },
 

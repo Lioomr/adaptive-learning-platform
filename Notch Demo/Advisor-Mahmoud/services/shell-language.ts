@@ -1,0 +1,41 @@
+export const shellArabic: Record<string, string> = {
+  "Skip to main content": "انتقل إلى المحتوى الرئيسي",
+  Primary: "الرئيسية",
+  Portals: "البوابات",
+  Workspaces: "مساحات العمل",
+  "Simulation mode": "وضع المحاكاة",
+  "Fictional students. Progress is simulated and stays in this browser.":
+    "طلاب افتراضيون. التقدم محاكاة ويبقى في هذا المتصفح.",
+  "Expand sidebar": "توسيع الشريط الجانبي",
+  "Collapse sidebar": "طي الشريط الجانبي",
+  "Demo Control Center": "مركز التحكم بالمحاكاة",
+  "Control Center": "مركز التحكم",
+  "Student Portal": "بوابة الطالب",
+  Student: "الطالب",
+  "Instructor Portal": "بوابة المدرس",
+  Instructor: "المدرس",
+  "Advisor Portal": "بوابة المرشد",
+  Advisor: "المرشد",
+  "Presenter tools": "أدوات العرض",
+  "Demo · Simulated": "عرض تجريبي · محاكاة",
+  "Caseload student": "الطالب المسند",
+  Course: "المقرر",
+  "Open navigation": "فتح التنقل",
+  Navigation: "التنقل",
+  "Switch between the demo portals.": "التبديل بين بوابات المحاكاة.",
+  Close: "إغلاق",
+  "Close navigation": "إغلاق التنقل",
+  "Demo context": "سياق المحاكاة",
+  Breadcrumb: "مسار التنقل",
+  "AdaptLearn demo home": "الرئيسية للمحاكاة",
+  "All people and outcomes are fictional and simulated":
+    "جميع الأشخاص والنتائج افتراضية ومحاكاة",
+  "Choose a fictional student and course, run the guided tour and reset the demo.":
+    "اختر طالباً ومقرراً افتراضيين وابدأ الجولة أو أعد ضبط المحاكاة.",
+  "Practice, see concept mastery and follow prerequisite recommendations.":
+    "تدرب وتابع إتقان المفاهيم وتوصيات المتطلبات.",
+  "Review course mastery, student progress and recent assessment activity.":
+    "راجع إتقان المقرر وتقدم الطلاب والتقييمات الأخيرة.",
+  "Follow cross-course progress and supportive check-in indicators.":
+    "تابع التقدم عبر المقررات ومؤشرات الدعم.",
+};

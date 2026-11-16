@@ -1,4 +1,5 @@
 "use client";
+import { useShellCopy } from "@/components/layout/shell-copy";
 import Link from "next/link";
 import { BookOpenCheck, GraduationCap, HeartHandshake, LayoutDashboard, type LucideIcon } from "lucide-react";
 import { portals } from "@/lib/routes";
@@ -24,6 +25,7 @@ type Props = {
  * drawer. Switching portal is a route change; the role follows the route layout.
  */
 export function RoleSwitcher({ active, variant = "sidebar", onNavigate }: Props) {
+  const { text } = useShellCopy();
   const rail = variant === "sidebar";
   return (
     <ul className="grid gap-1" role="list">
@@ -45,15 +47,15 @@ export function RoleSwitcher({ active, variant = "sidebar", onNavigate }: Props)
               {current ? <span aria-hidden="true" className="absolute inset-y-2 start-0 w-[3px] rounded-full bg-progress" /> : null}
               <Icon className="size-[18px] shrink-0" aria-hidden="true" />
               <span className={cn("min-w-0 flex-1", rail && "md:max-lg:sr-only lg:group-data-[collapsed=true]/sidebar:sr-only")}>
-                <span className="block truncate">{p.short}</span>
-                <span className={cn("block truncate text-[11px] font-normal", current ? "text-[#b9c5e6]" : "text-sidebar-muted")}>{p.screens}</span>
+                <span className="block truncate">{text(p.short)}</span>
+                <span className={cn("block truncate text-[11px] font-normal", current ? "text-[#b9c5e6]" : "text-sidebar-muted")}>{text(p.screens)}</span>
               </span>
               {rail ? (
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute start-full top-1/2 z-50 ms-3 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-foreground px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-raised transition-opacity group-hover/link:opacity-100 group-focus-visible/link:opacity-100 md:max-lg:block lg:group-data-[collapsed=true]/sidebar:block"
                 >
-                  {p.short}
+                  {text(p.short)}
                 </span>
               ) : null}
             </Link>

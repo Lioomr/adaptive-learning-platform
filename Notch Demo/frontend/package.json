@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
+    "lint": "eslint && npm run lint:advisor",
     "typecheck": "tsc --noEmit",
-    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./tests/setup/register.mjs --test \"tests/**/*.test.ts\""
+    "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./tests/setup/register.mjs --test \"tests/**/*.test.ts\"",
+    "test:advisor": "playwright test --config playwright.advisor.config.ts",
+    "lint:advisor": "cd ../Advisor-Mahmoud && node ../frontend/node_modules/eslint/bin/eslint.js ."
   },
   "dependencies": {
     "@xyflow/react": "^12.12.1",
@@ -24,6 +26,7 @@
     "zustand": "^5.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "@tailwindcss/turbopack": "4.3.3",
     "@types/node": "^20",
     "@types/react": "^19",
