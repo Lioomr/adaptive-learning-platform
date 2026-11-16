@@ -5,7 +5,7 @@ const raw: [CourseId,string,string,string[]][] = [
 ["C-MATH","MA-ARITH","Arithmetic Foundations",[]],["C-MATH","MA-EXPR","Algebraic Expressions",["MA-ARITH"]],["C-MATH","MA-LIN","Linear Equations",["MA-EXPR"]],["C-MATH","MA-INEQ","Inequalities",["MA-LIN"]],["C-MATH","MA-FUNC","Functions",["MA-LIN"]],["C-MATH","MA-GRAPH","Graphs",["MA-FUNC"]],["C-MATH","MA-QUAD","Quadratic Equations",["MA-EXPR","MA-LIN"]],["C-MATH","MA-LIMIT","Limits",["MA-FUNC","MA-GRAPH"]],["C-MATH","MA-DERIV","Derivatives",["MA-LIMIT","MA-FUNC"]],["C-MATH","MA-APP","Applications of Derivatives",["MA-DERIV","MA-GRAPH"]]];
 export const concepts: Concept[] = raw.map(([courseId,id,title,prerequisites])=>({courseId,id,title,prerequisites}));
 const profiles: [string,number,number,number][] = [["Nour",1,88,88],["Ahmed",2,55,90],["Salma",1,92,94],["Youssef",14,28,32],["Mariam",3,38,40],["Laila",2,75,68],["Omar",4,64,72],["Farah",1,83,86],["Karim",6,52,57],["Hana",2,78,80]];
-export const initialStudents: Student[] = profiles.map(([name,lastActiveDays,python,math])=>({id:`S-${name.toUpperCase()}`,name,lastActiveDays,mastery:Object.fromEntries(concepts.map(c=>[c.id,c.courseId==="C-PY"?python:math]))}));
+export const initialStudents: Student[] = profiles.map(([name,lastActiveDays,python,math])=>({id:`S-${name.toUpperCase()}`,name,lastActiveDays,enrolledCourseIds:["C-PY","C-MATH"],mastery:Object.fromEntries(concepts.map(c=>[c.id,c.courseId==="C-PY"?python:math]))}));
 Object.assign(initialStudents[0].mastery,{"PY-STACK":55,"PY-REC":35,"MA-DERIV":45,"MA-APP":25});
 Object.assign(initialStudents[1].mastery,{"PY-LOOP":35});
 Object.assign(initialStudents[4].mastery,{"PY-VAR":30,"MA-ARITH":30});

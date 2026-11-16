@@ -1,5 +1,7 @@
 # Architecture and current status
 
-Next.js App Router, TypeScript, Tailwind, Zustand and localStorage live in `Notch Demo/frontend`; Django is independent and untouched. Common fixture, scoring service and persisted store feed all three role landing views. These views are integration scaffolding, not completed portal screens. Package versions are recorded in the frontend lockfile.
+A single Next.js App Router application in `Notch Demo/frontend` uses TypeScript, Tailwind, Zustand and localStorage. Django is independent and untouched. Typed fixtures, route definitions, scoring service and persisted store feed the three role landing previews. The previews are shared-foundation integration scaffolding, not the 49 portal screens.
 
-Pending: shadcn/ui integration, full role layouts and permissions, complete 100-question independently reviewed bank, richer student profiles and events, scenario presets, system routes, full accessible guided tours, optional server-only AI adapter, charts, graph, bilingual content and route-specific loading states. Original journey and design documents are missing. Do not claim this branch meets Phase 1 acceptance until these are completed.
+The store checks simulated role, enrollment, selected context, question validity and idempotency before mutating state. These client-side checks are not security authorization. See [state](EVENTS-AND-STATE.md), [permissions](ROLE-PERMISSIONS.md), [components](COMPONENTS.md) and [integration checks](INTEGRATION-TESTS.md). Package versions are recorded in the frontend lockfile.
+
+Separate follow-up work: independently reviewed 100-question bank (MAH-28), system routes (MAH-29), full scenario presets, guided tours, optional AI fallback, polish and release (MAH-30). Original journey and design documents are missing. Portal owners should review the shared contracts and Integration Lead approval before implementing their screens.

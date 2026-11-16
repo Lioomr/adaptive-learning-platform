@@ -1,5 +1,7 @@
 # Basic acceptance checks
 
-Run `npm ci`, `npm run lint`, `npx tsc --noEmit`, `npm run build` in frontend. On each PR, record screen IDs, screenshots, responsive and keyboard checks, testing notes and known gaps. No additional automated test framework is mandatory.
+From frontend run `npm ci`, `npm run lint`, `npm run typecheck`, `npm run build`. On each PR record screen IDs, screenshots, responsive and keyboard checks, testing notes and known gaps.
 
-After completion: select Nour, Python, submit a reviewed Recursion assessment; verify score and `round(0.6 × old + 0.4 × score)`; inspect the same attempt and mastery in Instructor and Advisor; refresh and verify persistence; reset and verify baseline. Check both courses, ten profiles, each screen's mapped behavior, simulated permissions, errors, responsive layout and Arabic RTL against the source journey. This full acceptance is pending; the current single question is illustrative only.
+Initial shared journey: select Nour and Python; submit the illustrative Recursion question correctly; verify 35 → 61 from a 100 score; inspect the same attempt and mastery in Instructor and Advisor; refresh and verify persistence; reset and verify 35 and no attempts. In service checks exercise wrong role, unenrolled student, mismatched course or concept, unknown and duplicated question IDs, invalid answer, unanswered question, idempotent retry and conflicting reuse of a submission ID. These checks do not validate the full 100-question bank or 49 screens.
+
+Before release, complete both-course coverage, all screen behavior, role restrictions, errors, responsive layout, keyboard and Arabic RTL against the original journey.
