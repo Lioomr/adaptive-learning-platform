@@ -14,7 +14,7 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 - Progress teal: `#0D9488`; AI accent violet: `#7C3AED`.
 - Mastered green: `#16A34A`; review amber: `#D97706`; critical red: `#DC2626`.
 - Canvas `#F8FAFC`, white cards `#FFFFFF`, text `#0F172A`, muted `#475569`.
-- Inter (English), IBM Plex Sans Arabic (Arabic); Material Symbols Outlined icons as specified.
+- Inter (English), IBM Plex Sans Arabic (Arabic); Lucide React icons for the approved Phase 1 stack.
 - 260px desktop sidebar (72px collapsed), 64px header, responsive 12-column / 24px gutters.
 - Modestly rounded cards, low-contrast shadows. Keep AI suggestions visually distinct from instructor-approved content.
 - Use clear, supportive language: "Needs review", not blaming or diagnosing a student.
@@ -23,7 +23,7 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 
 ## 4. Frontend boundaries
 - Do not change existing repository backend files for this task.
-- Use the frontend framework already selected by the team when implementation begins; **this folder does not lock in a framework**.
+- Use the shared Next.js App Router application in `frontend/`.
 - Reuse components: AppShell, Sidebar, Header, Card, Status, Progress, QuestionCard, ConceptNode, Modal, TutorDrawer.
 - Keep portal-specific views and styles inside their owners' areas; reusable UI and mock contracts are shared and reviewed.
 - All interface pages should use structured mock service functions, not embed contradictory data in JSX/HTML.
@@ -39,7 +39,7 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 ## 6. Collaboration
 - Menna owns Student screens; Omar owns Instructor; Mahmoud owns Advisor.
 - Propose shared component changes in a PR and coordinate before altering a common contract.
-- Suggested branches: `notch/student-menna`, `notch/instructor-omar`, `notch/advisor-mahmoud`.
+- Use short-lived branches from latest main, e.g. `student/<linear-id>-dashboard`, and request Integration Lead review before merging.
 - Each change needs a short PR summary, affected screen IDs, screenshot or video, and manual test notes.
 - Avoid editing another owner's portal without review.
 - Use one integrated scenario and consistent data; a separate portal is not done until its links and states match the other portals.

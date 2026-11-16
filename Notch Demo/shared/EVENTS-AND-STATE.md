@@ -1,0 +1,3 @@
+# Events and state
+
+Zustand persist uses `adaptlearn-demo` version 1 in localStorage. Hydration is gated in the shared shell. Submission validates question IDs and course/concept, scores unanswered as incorrect, records an attempt and updates mastery atomically. Repeat attempts use the then-current mastery; reset restores fixtures and clears attempts and selections. Unknown persisted schema versions reset via migration. localStorage is confined to one browser and may be cleared by the browser. The current submit method is not a security boundary; enforce simulated role permissions before adding mutations to other portals. Presets and detailed activity histories are pending.

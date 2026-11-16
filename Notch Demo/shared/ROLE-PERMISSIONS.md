@@ -1,0 +1,3 @@
+# Simulated role permissions
+
+Student: submit their selected fictional student's assessment. Instructor: view their simulated course data and eventually approve demo content. Advisor: view caseload and cross-course summaries, not private tutor transcripts or content approvals. Demo control: select context, apply presets and reset. Role switching is not authentication or a security boundary. Current views provide read access to selected records and only render assessment submission in Student; course-assignment restrictions and action-level checks are not yet enforced. Do not treat this as complete permission enforcement.
