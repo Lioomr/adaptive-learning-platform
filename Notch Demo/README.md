@@ -4,6 +4,8 @@
 **Repository:** Lioomr/adaptive-learning-platform  
 **Stage:** Phase 1 — frontend visual prototype with mock data and simulated user journeys.
 
+The [demo agreement](DEMO-AGREEMENTS.md) is the Phase 1 coordination source of truth. Both Introduction to Python and Mathematics use shared fictional students and synchronized mock outcomes across the three portals. The proposed frontend stack and role access are documented there; the existing Django backend remains separate.
+
 ## Goal
 Build three connected role-based portals that **visually mimic the agreed user journeys**, without waiting for final database, mastery engine, or AI model decisions. The prototype must be honest about simulated outputs.
 
@@ -19,15 +21,16 @@ Use the [Notch Demo — Phase 1 UI Prototype project](https://linear.app/adaptiv
 
 ## Start here
 1. Everyone reads [RULES.md](RULES.md), [SCREEN-MAP.md](SCREEN-MAP.md), and [MOCK-DATA-CONTRACT.md](MOCK-DATA-CONTRACT.md).
-2. Each owner implements the first priority screens from their own TASKS.md. The rest remain documented for later phases.
+2. Each owner implements the P0 screens from their own TASKS.md first, then completes the P1 visual coverage for Phase 1.
 3. Agree on and build a common application shell before splitting into individual pages.
-4. Use *one consistent mock dataset*: Nour's course progress must agree across all portals.
+4. Use *one consistent two-course mock dataset*: all five fictional students' course progress must agree across all portals.
 5. Review mobile and desktop screens, Arabic/English layout and the handoff flow.
 
 ## Sources and precedence
 1. **Full_User_Journey_Scenarios_enhanced(1).pdf** — authoritative user journeys and screen IDs.
 2. **adaptlearn_ui_ux_design_system.md** — authoritative visual system.
-3. These coordination documents — Phase 1 scope, responsibilities, and acceptance criteria.
+3. [DEMO-AGREEMENTS.md](DEMO-AGREEMENTS.md) — Phase 1 coordination source of truth, subject to the authoritative references above.
+4. Other coordination documents — supporting scope, responsibilities, and acceptance criteria.
 If any apparent conflict exists, flag it for team review rather than silently rewriting the product journey.
 
 ## Existing code

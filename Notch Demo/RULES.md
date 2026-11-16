@@ -4,6 +4,7 @@
 Phase 1 is **UI-first**. Do not implement a real database, Django API integration, model inference, retrieval engine, BKT/DKT/IRT, or live learning analytics for the demo. A visually realistic interface and controlled interactions are sufficient. Revisit these decisions in later phases.
 
 ## 2. Source-of-truth
+- All developers must follow [DEMO-AGREEMENTS.md](DEMO-AGREEMENTS.md), the shared Phase 1 coordination agreement, subject to the original journey and approved visual system.
 - Follow the original **ST / IN / AD / SYS** screen IDs and descriptions in Full_User_Journey_Scenarios_enhanced(1).pdf.
 - Follow the approved adaptlearn_ui_ux_design_system.md, not one-off personal styling.
 - Do not invent a new requirement without documenting it as a proposal. Some flows may be visually grouped but their original IDs must remain traceable.
@@ -42,6 +43,8 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 - Each change needs a short PR summary, affected screen IDs, screenshot or video, and manual test notes.
 - Avoid editing another owner's portal without review.
 - Use one integrated scenario and consistent data; a separate portal is not done until its links and states match the other portals.
+- All portals use the same shared two-course fixtures. Do not independently invent conflicting courses, fictional student profiles, or mastery values. Coordinate every shared-data contract change and review changes affecting another portal with its developer.
+- Test all shared integration scenarios in DEMO-AGREEMENTS.md before the demo is complete.
 
 ## 7. Done means
 - Matches PDF screen behavior and approved design system.
@@ -63,4 +66,4 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
    - Known issues or unfinished requirements.
 4. Move the issue to **In Review** when the evidence is ready. Do not mark it **Done** simply because code was written. Completion requires that the deliverables meet the acceptance criteria and have been reviewed.
 5. If changes are requested, update the same issue with the revised work and evidence, and use **In Progress** and **In Review** to reflect its state.
-6. GitHub is the source of code; Linear is the source of task ownership, progress, submission evidence, and review status.
+6. GitHub is the source of code and documentation; Linear is the source of task ownership, progress, submission evidence, and review status. A submission may link a PR or commit.

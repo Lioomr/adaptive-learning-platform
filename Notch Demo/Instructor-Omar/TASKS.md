@@ -34,3 +34,12 @@ Help an instructor see their own course content, approve concepts/graph/question
 - [ ] Upload, launch, notify, approve export are explicitly described as simulated, not real operations.
 - [ ] Arabic/English screen layout and accessible table/form controls work.
 - [ ] Dashboard percentages and sample counts are labelled sample data.
+
+## Two-course integration requirements
+
+Follow [DEMO-AGREEMENTS.md](../DEMO-AGREEMENTS.md). Provide simulated role selection for fictional instructor I-PY (C-PY) or I-MATH (C-MATH), and course selection limited to that role's assignments. Across existing IN1–IN19 show course-specific material uploads and processing previews, concept graphs and approvals, bilingual questions, analytics, mastery and at-risk lists, content gaps, and course reports. A role cannot access another instructor's course; changing roles is an explicitly simulated demo action. Never process an upload or send an actual reminder.
+
+- [ ] For each identity, navigate its assigned course, review the matching graph/questions and exercise simulated upload and approval controls; the other course is inaccessible until role switch.
+- [ ] Compare fictional students' mastery within the selected course; counts and difficulty events match the common state and show sample-size/data limitations.
+- [ ] Nour's Python diagnosis and Mathematics remediation appear only for the appropriate instructor; reports use the correct course and no real data.
+- [ ] Validate the six shared scenarios, role boundaries, bilingual/RTL layout and reset; submit evidence and testing notes in Linear.

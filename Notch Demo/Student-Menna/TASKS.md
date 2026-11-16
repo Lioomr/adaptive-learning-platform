@@ -37,3 +37,13 @@ Make the student feel the learning experience is genuinely personalized while us
 - [ ] Arabic flips navigation and text flow while preserving screen/question.
 - [ ] Tutor says “demo response” and citations point to a mock approved source.
 - [ ] No graded-student claims or real account/data operations.
+
+## Two-course integration requirements
+
+Follow [DEMO-AGREEMENTS.md](../DEMO-AGREEMENTS.md) and the shared contract. Within existing ST6/ST7, let a student select C-PY or C-MATH; this is an interaction, not a new screen ID. ST4 diagnostics, ST5 maps, ST7–ST12 lessons, questions and remediation use the selected course. Keep mastery independently by student, course and concept; switching courses must not overwrite either course. ST6 shows both course progress values, and ST13–ST21 use the appropriate selected course. All five fictional profiles are shared across portals.
+
+- [ ] Complete a course-specific diagnostic, inspect its prerequisite map and navigate to an appropriate lesson for **each** course.
+- [ ] Demonstrate Nour's Recursion → Call Stack diagnosis and Mathematics Derivatives → guided practice; responses and recommendation are scripted.
+- [ ] Show baseline Nour as Python 8/10 and Mathematics 8/10, and show the specified 9/10 Python result after stack practice; Advisor and Instructor views agree.
+- [ ] Course switching preserves independent progress and session answers; English/Arabic content and RTL/LTR direction remain usable on mobile and desktop.
+- [ ] Run the six shared scenarios and reset; report evidence and review through the assigned Linear issue.
