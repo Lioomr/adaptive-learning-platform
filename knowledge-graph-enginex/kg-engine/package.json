@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "vitest": "4.1.9"
+  },
+  "name": "knowledge-graph-engine"
+}
