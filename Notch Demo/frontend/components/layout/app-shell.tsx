@@ -1,4 +1,5 @@
 "use client";
+import { useShellCopy } from "@/components/layout/shell-copy";
 import { RoleProvider } from "@/components/layout/role-context";
 import { Sidebar } from "@/components/layout/sidebar";
 import { ContextStrip, Topbar } from "@/components/layout/topbar";
@@ -13,6 +14,7 @@ import type { Role } from "@/types";
  * Portal screens (ST/IN/AD) only render page content; they never duplicate the shell.
  */
 export function AppShell({ role, children }: { role: Role; children: React.ReactNode }) {
+  const { text } = useShellCopy();
   const collapsed = useUi(s => s.sidebarCollapsed);
   return (
     <RoleProvider role={role}>
@@ -20,7 +22,7 @@ export function AppShell({ role, children }: { role: Role; children: React.React
         href="#main-content"
         className="sr-only z-[60] rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground focus:not-sr-only focus:fixed focus:start-4 focus:top-3"
       >
-        Skip to main content
+        {text("Skip to main content")}
       </a>
       <Sidebar role={role} />
       <div

@@ -1,8 +1,4 @@
-import type { Metadata } from "next";
-import { AdvisorOverview } from "@/features/advisor/advisor-overview";
-
-export const metadata: Metadata = { title: "Advisor Portal" };
-
+import { redirect } from "next/navigation";
 export default function Page() {
-  return <AdvisorOverview />;
+  redirect("/advisor/ad2");
 }

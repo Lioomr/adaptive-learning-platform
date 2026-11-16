@@ -12,6 +12,10 @@ function withExtension(path) {
 }
 
 export async function resolve(specifier, context, next) {
+  if (specifier.startsWith("@advisor/")) {
+    const file = withExtension(resolvePath(root, "../Advisor-Mahmoud", specifier.slice(9)));
+    if (file) return next(pathToFileURL(file).href, context);
+  }
   if (specifier.startsWith("@/")) {
     const file = withExtension(resolvePath(root, specifier.slice(2)));
     if (file) return next(pathToFileURL(file).href, context);

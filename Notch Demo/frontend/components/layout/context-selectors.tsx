@@ -1,4 +1,6 @@
 "use client";
+import { useShellCopy } from "@/components/layout/shell-copy";
+import { useRouter, usePathname } from "next/navigation";
 import { useId } from "react";
 import { UserRound } from "lucide-react";
 import { Label } from "@/components/ui/label";
@@ -26,6 +28,9 @@ function Field({ id, label, hideLabel, className, children }: { id: string; labe
 
 /** Selected fictional student. Advisor sees only caseload students; Student cannot change it. */
 export function StudentSelector({ className, size, hideLabel }: SelectorProps) {
+  const { text, name, direction } = useShellCopy();
+  const router = useRouter();
+  const pathname = usePathname();
   const id = useId();
   const role = useRole();
   const hydrated = useHydrated();
@@ -38,16 +43,16 @@ export function StudentSelector({ className, size, hideLabel }: SelectorProps) {
 
   if (!can(role, "context:select-student")) return null;
   return (
-    <Field id={id} label={label} hideLabel={hideLabel} className={className}>
+    <Field id={id} label={text(label)} hideLabel={hideLabel} className={className}>
       {hydrated ? (
-        <Select value={studentId} onValueChange={v => setStudent(v, role)}>
+        <Select dir={direction} value={studentId} onValueChange={v => { const result = setStudent(v, role); if (result.ok && role === "advisor") router.replace(`${pathname}?student=${encodeURIComponent(v)}`); }}>
           <SelectTrigger id={id} size={size}>
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {visible.map(s => (
-              <SelectItem key={s.id} value={s.id} description={`${courseAverage(s, courseId)}% in selected course`}>
-                {s.name}
+              <SelectItem key={s.id} value={s.id} description={direction === "rtl" ? `${courseAverage(s, courseId)}٪ في المقرر المحدد` : `${courseAverage(s, courseId)}% in selected course`}>
+                {name(s.name,s.name)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -61,6 +66,7 @@ export function StudentSelector({ className, size, hideLabel }: SelectorProps) {
 
 /** Selected course, limited to the selected student's enrollments. */
 export function CourseSelector({ className, size, hideLabel }: SelectorProps) {
+  const { text, name, direction } = useShellCopy();
   const id = useId();
   const role = useRole();
   const hydrated = useHydrated();
@@ -70,16 +76,16 @@ export function CourseSelector({ className, size, hideLabel }: SelectorProps) {
 
   if (!can(role, "context:select-course")) return null;
   return (
-    <Field id={id} label="Course" hideLabel={hideLabel} className={className}>
+    <Field id={id} label={text("Course")} hideLabel={hideLabel} className={className}>
       {hydrated ? (
-        <Select value={courseId} onValueChange={v => setCourse(v as CourseId, role)}>
+        <Select dir={direction} value={courseId} onValueChange={v => setCourse(v as CourseId, role)}>
           <SelectTrigger id={id} size={size}>
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {courses.map(c => (
               <SelectItem key={c.id} value={c.id} disabled={!enrolled.includes(c.id)}>
-                {c.title}
+                {name(c.id,c.title)}
               </SelectItem>
             ))}
           </SelectContent>
