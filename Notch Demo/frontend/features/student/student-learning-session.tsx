@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ArrowRight, BookOpen, Brain, CheckCircle2, CircleHelp, Lightbulb, Play, RotateCcw, Sparkles, Target } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, Brain, CheckCircle2, CircleHelp, Lightbulb, RotateCcw, Sparkles, Target } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,7 +33,6 @@ export function StudentLearningSession({ conceptId }: { conceptId: string }) {
   const [section, setSection] = useState(0);
   const [answer, setAnswer] = useState<number | null>(null);
   const [showHint, setShowHint] = useState(false);
-  const [completed, setCompleted] = useState(false);
 
   const mastery = concept && student ? student.mastery[concept.id] ?? 0 : 0;
   const learningPath = useMemo(() => mastery < 50 ? "guided" : mastery < 80 ? "balanced" : "challenge", [mastery]);
@@ -53,8 +52,8 @@ export function StudentLearningSession({ conceptId }: { conceptId: string }) {
   const stageIndex = ["lesson", "adaptive", "practice", "results", "recommendation"].indexOf(stage);
 
   function startPractice() { setAnswer(null); setShowHint(false); setStage("practice"); }
-  function submitPractice() { if (answer !== null) { setCompleted(true); setStage("results"); } }
-  function retry() { setAnswer(null); setShowHint(false); setCompleted(false); setStage("practice"); }
+  function submitPractice() { if (answer !== null) setStage("results"); }
+  function retry() { setAnswer(null); setShowHint(false); setStage("practice"); }
 
   return (
     <div className="mx-auto w-full max-w-6xl space-y-6 p-4 pb-12 md:p-6">
