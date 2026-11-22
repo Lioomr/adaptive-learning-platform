@@ -78,6 +78,15 @@ export const advisors: Advisor[] = [
  */
 export const questions: Question[] = [
   {
+    id: "PY-VAR-001",
+    courseId: "C-PY",
+    conceptId: "PY-VAR",
+    prompt: "Which statement correctly assigns the value 10 to a variable named age in Python?",
+    options: ["age = 10", "10 = age", "var age == 10"],
+    answer: "age = 10",
+    explanation: "In Python, assignment uses the = operator with the variable name on the left and the value on the right.",
+  },
+  {
     id: "PY-REC-001",
     courseId: "C-PY",
     conceptId: "PY-REC",
