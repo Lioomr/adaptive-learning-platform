@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { StudentLearningSession } from "@/features/student/student-learning-session";
+import { StudentLearningSession } from "@/features/student/student-lesson-v2";
 
 export const metadata: Metadata = {
   title: "Learning Session | Notch",
