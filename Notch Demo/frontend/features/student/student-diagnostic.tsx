@@ -101,6 +101,16 @@ function parsePreferences(raw: string): Preferences {
 }
 
 function getQuestionCopy(questionId: string): QuestionCopy | null {
+  if (questionId === "PY-VAR-001") {
+    return {
+      prompt:
+        "أي جملة بتعيّن القيمة ١٠ بشكل صحيح لمتغير اسمه age في Python؟",
+      options: ["age = 10", "10 = age", "var age == 10"],
+      explanation:
+        "في Python، عملية الإسناد بتستخدم علامة =، واسم المتغير بيكون على الشمال والقيمة على اليمين.",
+    };
+  }
+
   if (questionId === "PY-REC-001") {
     return {
       prompt:
