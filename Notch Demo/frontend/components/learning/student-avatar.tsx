@@ -1,6 +1,11 @@
 import { cn } from "@/lib/utils";
 
-const palette = ["bg-[#E0E7FF] text-[#2D4485]", "bg-progress-soft text-progress-ink", "bg-ai-soft text-ai-ink", "bg-[#E2E8F0] text-[#334155]"];
+const palette = [
+  "bg-secondary text-secondary-foreground",
+  "bg-muted text-foreground",
+  "bg-info-soft text-info-ink",
+  "bg-success-soft text-success-ink",
+];
 
 /** Initials avatar for fictional students (no photos in the demo). */
 export function StudentAvatar({ name, className }: { name: string; className?: string }) {

@@ -236,7 +236,7 @@ function ConceptDetail({
               const Icon = option === "approve" ? CheckCircle2 : option === "merge" ? GitMerge : Split;
               return (
                 <label key={option} className={cn("flex cursor-pointer items-center gap-3 rounded-lg border px-3 py-2 text-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring", draft.decision === option ? "border-primary bg-secondary/60" : "border-border")}>
-                  <input type="radio" name={`${uid}-decision`} value={option} checked={draft.decision === option} onChange={() => setDraft(d => ({ ...d, decision: option }))} className="accent-[var(--color-primary)]" />
+                  <input type="radio" name={`${uid}-decision`} value={option} checked={draft.decision === option} onChange={() => setDraft(d => ({ ...d, decision: option }))} className="accent-primary" />
                   <Icon className="size-4 text-muted-foreground" aria-hidden="true" />
                   <span className="font-medium">{option === "approve" ? "Approve" : option === "merge" ? "Merge into an existing concept" : "Split into separate concepts"}</span>
                   {proposal.suggestion === option ? <Badge tone="ai" className="ms-auto">AI suggestion</Badge> : null}

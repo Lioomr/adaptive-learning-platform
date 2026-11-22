@@ -334,7 +334,7 @@ export function Nudges({
                 <Badge tone="success">
                   {t("Recorded · not delivered", "مسجلة · غير مرسلة فعلياً")}
                 </Badge>
-                <p dir={n.language === "ar" ? "rtl" : "ltr"}>{n.message}</p>
+                <p lang={n.language} dir={n.language === "ar" ? "rtl" : "ltr"}>{n.message}</p>
                 <small>
                   {nameOf(n.courseId, lang)} ·{" "}
                   {new Date(n.createdAt).toLocaleString(lang)}
@@ -352,7 +352,7 @@ export function Nudges({
         )}
       </Panel>
       <AlertDialog open={dialog} onOpenChange={setDialog}>
-        <AlertDialogContent dir={lang === "ar" ? "rtl" : "ltr"}>
+        <AlertDialogContent lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
           <AlertDialogTitle>
             {t("Record this simulated nudge?", "تسجيل رسالة المحاكاة؟")}
           </AlertDialogTitle>
@@ -376,7 +376,7 @@ export function Nudges({
           if (!open) setReplace(null);
         }}
       >
-        <AlertDialogContent dir={lang === "ar" ? "rtl" : "ltr"}>
+        <AlertDialogContent lang={lang} dir={lang === "ar" ? "rtl" : "ltr"}>
           <AlertDialogTitle>
             {t("Replace your edited message?", "استبدال رسالتك المعدّلة؟")}
           </AlertDialogTitle>

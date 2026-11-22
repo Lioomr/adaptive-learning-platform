@@ -76,7 +76,7 @@ export function StudentOnboarding() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-5xl">
       <PageHeader
         eyebrow="ST1 · Student onboarding"
         title="Welcome to Notch"
@@ -226,16 +226,16 @@ export function StudentOnboarding() {
             onClick={handleDemoSignIn}
           >
             Continue with demo sign-in
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-4 rtl:-scale-x-100" />
           </Button>
 
           {signedIn && (
             <div className="space-y-3">
               <div
                 role="status"
-                className="flex items-start gap-3 rounded-xl border border-emerald-600/30 bg-emerald-600/5 p-4"
+                className="flex items-start gap-3 rounded-xl border border-success/30 bg-success-soft p-4"
               >
-                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600" />
+                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-success-ink" />
                 <div>
                   <p className="font-semibold text-foreground">
                     Demo sign-in successful
@@ -253,7 +253,7 @@ export function StudentOnboarding() {
                 onClick={handleContinue}
               >
                 Continue to consent
-                <ArrowRight className="size-4" />
+                <ArrowRight className="size-4 rtl:-scale-x-100" />
               </Button>
             </div>
           )}
@@ -345,6 +345,6 @@ export function StudentOnboarding() {
           </div>
         </aside>
       </div>
-    </main>
+    </div>
   );
 }

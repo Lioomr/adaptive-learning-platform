@@ -1,14 +1,19 @@
-import { CheckCircle2, CircleAlert, CircleDot, Sparkle } from "lucide-react";
+import { CheckCircle2, CircleAlert, CircleDot, TrendingUp } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import { MASTERY_BANDS, masteryBand, type Tone } from "@/services/mastery";
 
-const bandIcon = { danger: CircleAlert, warning: CircleDot, progress: Sparkle, success: CheckCircle2 } as const;
+const bandIcon = { danger: CircleAlert, warning: CircleDot, progress: TrendingUp, success: CheckCircle2 } as const;
 
 export const toneText: Record<Tone, string> = { danger: "text-danger-ink", warning: "text-warning-ink", progress: "text-progress-ink", success: "text-success-ink" };
 export const toneFill: Record<Tone, string> = { danger: "bg-danger", warning: "bg-warning", progress: "bg-progress", success: "bg-success" };
-export const toneHex: Record<Tone, string> = { danger: "#DC2626", warning: "#D97706", progress: "#0D9488", success: "#16A34A" };
+export const toneColor: Record<Tone, string> = {
+  danger: "var(--danger)",
+  warning: "var(--warning)",
+  progress: "var(--progress)",
+  success: "var(--success)",
+};
 
 /** Mastery band label with an icon so meaning never relies on colour alone. */
 export function MasteryBadge({ value, showValue = false, className }: { value: number; showValue?: boolean; className?: string }) {
@@ -53,8 +58,8 @@ export function MasteryRing({ value, size = 96, label }: { value: number; size?:
   return (
     <div className="relative grid shrink-0 place-items-center" style={{ width: size, height: size }} role="img" aria-label={`${label}: ${value}%, ${band.band}`}>
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="-rotate-90" aria-hidden="true">
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="#E2E8F0" strokeWidth={stroke} />
-        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={toneHex[band.tone]} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - value / 100)} className="motion-safe:transition-[stroke-dashoffset] motion-safe:duration-700" />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke="var(--border)" strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={r} fill="none" stroke={toneColor[band.tone]} strokeWidth={stroke} strokeLinecap="round" strokeDasharray={c} strokeDashoffset={c * (1 - value / 100)} className="motion-safe:transition-[stroke-dashoffset] motion-safe:duration-700" />
       </svg>
       <span className="absolute text-center">
         <span className="block text-2xl font-semibold tracking-tight tabular-nums">

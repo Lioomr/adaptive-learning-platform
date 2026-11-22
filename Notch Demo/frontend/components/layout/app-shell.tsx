@@ -33,7 +33,7 @@ export function AppShell({ role, children }: { role: Role; children: React.React
       >
         <Topbar role={role} />
         <ContextStrip role={role} />
-        <main id="main-content" tabIndex={-1} className="mx-auto w-full min-w-0 max-w-[1280px] flex-1 px-4 pb-16 pt-6 outline-none sm:px-6 sm:pt-8 lg:px-8">
+        <main id="main-content" tabIndex={-1} className="mx-auto w-full min-w-0 max-w-[var(--notch-grid-max)] flex-1 px-[var(--notch-grid-margin)] pb-16 pt-6 outline-none sm:pt-8">
           <StorageNotice />
           {children}
         </main>

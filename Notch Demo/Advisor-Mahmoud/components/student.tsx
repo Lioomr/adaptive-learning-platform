@@ -186,7 +186,7 @@ export function StudentOverview({ student }: { student: Student }) {
                 <strong>{nameOf(a.conceptId, lang)}</strong>
                 <p>
                   {t("Score", "النتيجة")} {a.score}% · {t("Mastery", "الإتقان")}{" "}
-                  {a.previous}% → {a.mastery}%
+                  <bdi dir="ltr">{a.previous}% → {a.mastery}%</bdi>
                 </p>
                 <time>{new Date(a.createdAt).toLocaleString(lang)}</time>
                 <p>
@@ -224,7 +224,7 @@ export function StudentOverview({ student }: { student: Student }) {
                 <Badge tone="success">
                   {t("Simulated · no delivery", "محاكاة · دون إرسال فعلي")}
                 </Badge>
-                <p dir={n.language === "ar" ? "rtl" : "ltr"}>{n.message}</p>
+                <p lang={n.language} dir={n.language === "ar" ? "rtl" : "ltr"}>{n.message}</p>
                 <small>
                   {nameOf(n.courseId, lang)} ·{" "}
                   {new Date(n.createdAt).toLocaleString(lang)}
@@ -382,15 +382,15 @@ export function Onboarding({ students }: { students: Student[] }) {
         )}
       />
       <div className={styles.welcome}>
-        <ShieldCheck size={40} aria-hidden="true" />
         <div>
-          <Badge tone="brand">
+          <span className={styles.welcomeLabel}>
+            <ShieldCheck size={16} aria-hidden="true" />
             {t(
               "Academic advisor · simulated role",
               "مرشد أكاديمي · دور محاكاة",
             )}
-          </Badge>
-          <h2>
+          </span>
+          <h2 className="notch-type-h2">
             {t(
               "A little context can make a meaningful difference.",
               "قد يصنع فهم السياق فرقاً مهماً.",

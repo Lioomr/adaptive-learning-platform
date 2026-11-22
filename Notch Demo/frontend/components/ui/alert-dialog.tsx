@@ -11,9 +11,9 @@ const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 function AlertDialogContent({ className, ...props }: React.ComponentProps<typeof AlertDialogPrimitive.Content>) {
   return (
     <AlertDialogPrimitive.Portal>
-      <AlertDialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[#0f172a]/50 animate-fade-in" />
+      <AlertDialogPrimitive.Overlay className="fixed inset-0 z-50 bg-[var(--notch-brand-ink)]/55 animate-fade-in" />
       <AlertDialogPrimitive.Content
-        className={cn("fixed start-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border border-border bg-card p-6 shadow-raised animate-dialog-in rtl:translate-x-1/2", className)}
+        className={cn("fixed start-1/2 top-1/2 z-50 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl border border-border bg-popover text-popover-foreground p-6 shadow-raised animate-dialog-in rtl:translate-x-1/2", className)}
         {...props}
       />
     </AlertDialogPrimitive.Portal>

@@ -229,9 +229,9 @@ function PreferencesForm({
   }
 
   return (
-    <main
-      dir={isArabic ? "rtl" : "ltr"}
-      className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8"
+    <div
+      lang={isArabic ? "ar" : "en"} dir={isArabic ? "rtl" : "ltr"}
+      className="mx-auto w-full max-w-5xl"
     >
       <PageHeader
         eyebrow={content.eyebrow}
@@ -316,7 +316,7 @@ function PreferencesForm({
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-violet-500/10 text-violet-600">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
                 <MessageSquareText className="size-5" />
               </div>
 
@@ -387,7 +387,7 @@ function PreferencesForm({
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-teal-500/10 text-teal-600">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
                 <Eye className="size-5" />
               </div>
 
@@ -402,7 +402,7 @@ function PreferencesForm({
 
           <CardContent>
             <div
-              dir={isArabic ? "rtl" : "ltr"}
+              lang={isArabic ? "ar" : "en"} dir={isArabic ? "rtl" : "ltr"}
               className="rounded-xl border border-border bg-muted/30 p-5"
             >
               <div className="mb-4 flex items-center justify-between gap-3">
@@ -422,7 +422,7 @@ function PreferencesForm({
               {(questionLanguage === "en" ||
                 questionLanguage === "both") && (
                 <div
-                  dir="ltr"
+                  lang="en" dir="ltr"
                   className="rounded-lg bg-card p-4 text-left"
                 >
                   <p className="font-semibold text-foreground">
@@ -440,7 +440,7 @@ function PreferencesForm({
               {(questionLanguage === "ar" ||
                 questionLanguage === "both") && (
                 <div
-                  dir="rtl"
+                  lang="ar" dir="rtl"
                   className="mt-3 rounded-lg bg-card p-4 text-right"
                 >
                   <p className="font-semibold text-foreground">
@@ -492,15 +492,15 @@ function PreferencesForm({
           onClick={handleSave}
         >
           {content.save}
-          <ArrowRight className="size-4" />
+          <ArrowRight className="size-4 rtl:-scale-x-100" />
         </Button>
 
         {isSaved && (
           <div
             role="status"
-            className="flex items-start gap-3 rounded-xl border border-emerald-600/30 bg-emerald-600/5 p-4"
+            className="flex items-start gap-3 rounded-xl border border-success/30 bg-success-soft p-4"
           >
-            <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600" />
+            <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-success-ink" />
 
             <div>
               <p className="font-semibold text-foreground">
@@ -526,7 +526,7 @@ function PreferencesForm({
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }
 

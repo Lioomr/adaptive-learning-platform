@@ -17,7 +17,7 @@ export function StorageNotice() {
   if (!hydrated) return null;
   if (status !== "reset-invalid" && status !== "reset-version" && status !== "unavailable") return null;
   return (
-    <div role="status" className="mb-6 flex items-start gap-3 rounded-lg border border-warning/30 bg-warning-soft px-4 py-3 text-sm text-[#78350f]">
+    <div role="status" className="mb-6 flex items-start gap-3 rounded-lg border border-warning/30 bg-warning-soft px-4 py-3 text-sm text-warning-ink">
       <Info className="mt-0.5 size-4 shrink-0 text-warning-ink" aria-hidden="true" />
       <p className="min-w-0 flex-1 leading-6">{MESSAGES[status]}</p>
       {status !== "unavailable" ? (

@@ -1,73 +1,55 @@
 @import "tailwindcss";
+@import "./notch-tokens.css";
+@import "./notch-type.css";
 
-/*
- * AdaptLearn design tokens (RULES.md §3, approved visual system).
- * Brand values are the approved hex codes. "-ink" variants are provisional
- * darker text shades so small text on white meets WCAG AA contrast; the
- * approved hues remain the fills. Document any change in shared/COMPONENTS.md.
- */
+/* Shared utility roles used by the three portals. */
 :root {
-  /* Approved brand palette */
-  --brand-indigo: #1e2b58;
-  --brand-indigo-2: #2d4485;
-  --brand-teal: #0d9488;
-  --brand-violet: #7c3aed;
-  --brand-success: #16a34a;
-  --brand-warning: #d97706;
-  --brand-error: #dc2626;
-  --brand-canvas: #f8fafc;
-  --brand-text: #0f172a;
-  --brand-muted: #475569;
+  --background: var(--notch-canvas);
+  --foreground: var(--notch-ink);
+  --card: var(--notch-surface);
+  --card-foreground: var(--notch-ink);
+  --popover: var(--notch-raised);
+  --popover-foreground: var(--notch-ink);
+  --primary: var(--notch-primary);
+  --primary-foreground: var(--notch-on-primary);
+  --secondary: var(--notch-accent-soft);
+  --secondary-foreground: var(--notch-accent-text);
+  --muted: var(--notch-subtle);
+  --muted-foreground: var(--notch-muted);
+  --accent: var(--notch-accent-soft);
+  --accent-foreground: var(--notch-accent-text);
+  --destructive: var(--notch-error);
+  --destructive-foreground: var(--notch-surface);
+  --border: var(--notch-line);
+  --input: var(--notch-control);
+  --ring: var(--notch-focus);
+  --radius: var(--notch-radius-card);
+  --progress: var(--notch-primary);
+  --progress-soft: var(--notch-accent-soft);
+  --progress-ink: var(--notch-accent-text);
+  --ai: var(--notch-brand-signature-violet);
+  --ai-soft: var(--notch-accent-soft);
+  --ai-ink: var(--notch-accent-text);
+  --success: var(--notch-success);
+  --success-soft: var(--notch-success-soft);
+  --success-ink: var(--notch-success);
+  --warning: var(--notch-warning);
+  --warning-soft: var(--notch-warning-soft);
+  --warning-ink: var(--notch-warning);
+  --danger: var(--notch-error);
+  --danger-soft: var(--notch-error-soft);
+  --danger-ink: var(--notch-error);
+  --info: var(--notch-info);
+  --info-soft: var(--notch-info-soft);
+  --info-ink: var(--notch-info);
+  --sidebar: var(--notch-surface);
+  --sidebar-foreground: var(--notch-muted);
+  --sidebar-strong: var(--notch-ink);
+  --sidebar-muted: var(--notch-muted);
+  --sidebar-accent: var(--notch-subtle);
+  --sidebar-active: var(--notch-accent-soft);
+  --sidebar-border: var(--notch-line);
 
-  /* shadcn/ui semantic tokens */
-  --background: var(--brand-canvas);
-  --foreground: var(--brand-text);
-  --card: #ffffff;
-  --card-foreground: var(--brand-text);
-  --popover: #ffffff;
-  --popover-foreground: var(--brand-text);
-  --primary: var(--brand-indigo);
-  --primary-foreground: #ffffff;
-  --secondary: #eef1f8;
-  --secondary-foreground: var(--brand-indigo);
-  --muted: #f1f5f9;
-  --muted-foreground: var(--brand-muted);
-  --accent: #eef1f8;
-  --accent-foreground: var(--brand-indigo);
-  --destructive: var(--brand-error);
-  --destructive-foreground: #ffffff;
-  --border: #e2e8f0;
-  --input: #cbd5e1;
-  --ring: var(--brand-indigo-2);
-  --radius: 0.75rem;
-
-  /* Status tones: fill / soft background / readable ink */
-  --progress: var(--brand-teal);
-  --progress-soft: #e6f6f4;
-  --progress-ink: #0f766e;
-  --ai: var(--brand-violet);
-  --ai-soft: #f3eefe;
-  --ai-ink: #6d28d9;
-  --success: var(--brand-success);
-  --success-soft: #e8f6ec;
-  --success-ink: #15803d;
-  --warning: var(--brand-warning);
-  --warning-soft: #fdf3e3;
-  --warning-ink: #b45309;
-  --danger: var(--brand-error);
-  --danger-soft: #fdecec;
-  --danger-ink: #b91c1c;
-
-  /* Sidebar */
-  --sidebar: var(--brand-indigo);
-  --sidebar-foreground: #c7d0e8;
-  --sidebar-strong: #ffffff;
-  --sidebar-muted: #8e9cc4;
-  --sidebar-accent: rgb(255 255 255 / 0.08);
-  --sidebar-active: var(--brand-indigo-2);
-  --sidebar-border: rgb(255 255 255 / 0.1);
-
-  /* Layout (RULES.md: 260px sidebar, 72px collapsed, 64px header) */
   --sidebar-width: 260px;
   --sidebar-collapsed: 72px;
   --header-height: 64px;
@@ -94,8 +76,12 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --color-brand: var(--brand-indigo);
-  --color-brand-2: var(--brand-indigo-2);
+  --color-brand: var(--notch-primary);
+  --color-brand-2: var(--notch-accent-text);
+  --color-brand-soft: var(--notch-accent-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-info-ink: var(--info-ink);
   --color-progress: var(--progress);
   --color-progress-soft: var(--progress-soft);
   --color-progress-ink: var(--progress-ink);
@@ -120,23 +106,23 @@
   --color-sidebar-active: var(--sidebar-active);
   --color-sidebar-border: var(--sidebar-border);
 
-  --font-sans: var(--font-inter), var(--font-plex-arabic), ui-sans-serif, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-arabic: var(--font-plex-arabic), var(--font-inter), "Segoe UI", Tahoma, sans-serif;
-
-  --radius-sm: calc(var(--radius) - 6px);
-  --radius-md: calc(var(--radius) - 4px);
-  --radius-lg: calc(var(--radius) - 2px);
-  --radius-xl: var(--radius);
-  --radius-2xl: calc(var(--radius) + 4px);
-
-  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 1px 3px rgb(15 23 42 / 0.03);
-  --shadow-raised: 0 8px 24px -8px rgb(30 43 88 / 0.18);
+  --font-sans: var(--notch-font-en);
+  --font-arabic: var(--notch-font-ar);
+  --radius-sm: var(--notch-radius-small);
+  --radius-md: var(--notch-radius-small);
+  --radius-lg: var(--notch-radius-control);
+  --radius-xl: var(--notch-radius-card);
+  --radius-2xl: var(--notch-radius-feature);
+  --shadow-card: var(--notch-shadow-small);
+  --shadow-raised: var(--notch-shadow-overlay);
+  --default-transition-duration: var(--notch-motion-control);
+  --default-transition-timing-function: var(--notch-ease);
 
   --animate-shimmer: shimmer 1.6s ease-in-out infinite;
-  --animate-fade-in: fade-in 160ms ease-out;
-  --animate-sheet-in: sheet-in 220ms cubic-bezier(0.32, 0.72, 0, 1);
-  --animate-sheet-in-rtl: sheet-in-rtl 220ms cubic-bezier(0.32, 0.72, 0, 1);
-  --animate-dialog-in: dialog-in 160ms ease-out;
+  --animate-fade-in: fade-in var(--notch-motion-state) var(--notch-ease);
+  --animate-sheet-in: sheet-in var(--notch-motion-panel) var(--notch-ease);
+  --animate-sheet-in-rtl: sheet-in-rtl var(--notch-motion-panel) var(--notch-ease);
+  --animate-dialog-in: dialog-in var(--notch-motion-state) var(--notch-ease);
 
   @keyframes shimmer {
     from { background-position: 150% 0; }
@@ -172,29 +158,33 @@
     background: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "cv11", "ss01";
+    line-height: 1.625;
+    font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
   :lang(ar),
   [dir="rtl"] {
-    font-family: var(--font-arabic);
+    font-family: var(--notch-font-ar);
+    line-height: 1.75;
   }
+  .lucide { stroke-width: 1.75; }
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
   ::selection {
-    background: #dbe3f5;
+    background: var(--notch-accent-soft);
+    color: var(--notch-accent-text);
   }
 }
 
 @layer components {
   /* Shimmer skeleton: a static block when motion is reduced. */
   .skeleton-shimmer {
-    background-color: #e9eef4;
-    background-image: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 0.65) 45%, transparent 70%);
+    background-color: var(--muted);
+    background-image: linear-gradient(100deg, transparent 20%, color-mix(in srgb, var(--card) 70%, transparent) 45%, transparent 70%);
     background-size: 200% 100%;
     background-repeat: no-repeat;
     animation: var(--animate-shimmer);
@@ -203,7 +193,7 @@
   [data-tour-active="true"] {
     position: relative;
     z-index: 41;
-    box-shadow: 0 0 0 3px var(--brand-teal), 0 0 0 8px rgb(13 148 136 / 0.18);
+    box-shadow: 0 0 0 3px var(--ring), 0 0 0 8px color-mix(in srgb, var(--ring) 18%, transparent);
     border-radius: var(--radius);
     transition: box-shadow 200ms ease;
   }
@@ -222,4 +212,9 @@
     animation: none !important;
     background-image: none;
   }
+}
+
+/* Tracking utilities on English navigation must not separate Arabic letterforms. */
+:where([dir="rtl"], [lang="ar"]) :is([class*="tracking-"], [class*="uppercase"]) {
+  letter-spacing: 0;
 }

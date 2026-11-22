@@ -30,8 +30,8 @@ export function StudentCourseSummary() {
     [attempts, studentId, courseId]
   );
 
-  if (!hydrated) return <main className="mx-auto max-w-5xl p-6"><div className="h-72 animate-pulse rounded-xl bg-muted" /></main>;
-  if (!course || !student) return <main className="mx-auto max-w-3xl p-6"><Card><CardContent className="space-y-4 p-6"><p>{tr("The course summary is unavailable for the current demo context.", "ملخص الكورس مش متاح في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home", "العودة للرئيسية")}</Link></Button></CardContent></Card></main>;
+  if (!hydrated) return <div className="mx-auto max-w-5xl"><div className="h-72 animate-pulse rounded-xl bg-muted" /></div>;
+  if (!course || !student) return <div className="mx-auto max-w-3xl"><Card><CardContent className="space-y-4 p-6"><p>{tr("The course summary is unavailable for the current demo context.", "ملخص الكورس مش متاح في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home", "العودة للرئيسية")}</Link></Button></CardContent></Card></div>;
 
   const rows = courseConcepts.map(concept => {
     const mastery = student.mastery[concept.id] ?? 0;
@@ -49,21 +49,21 @@ export function StudentCourseSummary() {
   const totalAttemptQuestions = courseAttempts.reduce((sum, attempt) => sum + attempt.questionIds.length, 0);
 
   return (
-    <main dir={ar ? "rtl" : "ltr"} className="mx-auto max-w-5xl space-y-5 p-4 pb-12 md:p-6">
-      <div className="flex items-center justify-between gap-3">
-        <Button variant="ghost" asChild><Link href="/student/st20"><ArrowLeft className="me-2 size-4" />{tr("Back to survey", "العودة للاستبيان")}</Link></Button>
-        <select aria-label="Language" className="rounded-md border bg-background px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}><option value="en">English</option><option value="ar">العربية</option></select>
+    <div lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"} className="mx-auto max-w-5xl space-y-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Button variant="ghost" asChild><Link href="/student/st20"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100" />{tr("Back to survey", "العودة للاستبيان")}</Link></Button>
+        <select aria-label="Language" className="rounded-xl border border-input bg-card px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}><option value="en">English</option><option value="ar">العربية</option></select>
       </div>
 
       <Card>
         <CardContent className="space-y-5 p-5">
           <div className="flex items-center gap-2 text-sm text-muted-foreground"><GraduationCap className="size-4" />ST21 · {tr("End-of-course summary", "ملخص نهاية الكورس")} · {course.title}</div>
-          <div className="flex items-start gap-3"><Award className="mt-1 size-8 text-primary" /><div><h1 className="text-2xl font-semibold">{tr("Your learning journey, at a glance", "رحلة تعلمك في ملخص واحد")}</h1><p className="mt-1 text-muted-foreground">{tr("Well done", "أحسنتِ")}، {student.name}! {tr("Here is a summary of your current course progress and the assessment activity recorded in this browser.", "ده ملخص تقدمك الحالي في الكورس والتقييمات المسجلة في المتصفح ده.")}</p></div></div>
+          <div className="flex items-start gap-3"><Award className="mt-1 size-8 text-primary" /><div><h1 className="notch-page-title">{tr("Your learning journey, at a glance", "رحلة تعلمك في ملخص واحد")}</h1><p className="mt-1 text-muted-foreground">{tr("Well done", "أحسنتِ")}، {student.name}! {tr("Here is a summary of your current course progress and the assessment activity recorded in this browser.", "ده ملخص تقدمك الحالي في الكورس والتقييمات المسجلة في المتصفح ده.")}</p></div></div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery", "متوسط الإتقان")}</p><p className="mt-1 text-3xl font-bold">{averageMastery}%</p><Progress className="mt-2" value={averageMastery} /></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Mastered concepts", "مفاهيم متقنة")}</p><p className="mt-1 text-3xl font-bold">{mastered}<span className="text-base font-normal text-muted-foreground"> / {rows.length}</span></p></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Ready concepts", "مفاهيم جاهزة")}</p><p className="mt-1 text-3xl font-bold">{proficient}<span className="text-base font-normal text-muted-foreground"> / {rows.length}</span></p></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Saved assessments", "التقييمات المسجلة")}</p><p className="mt-1 text-3xl font-bold">{courseAttempts.length}</p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery", "متوسط الإتقان")}</p><p className="mt-1 text-3xl font-semibold">{averageMastery}%</p><Progress className="mt-2" value={averageMastery} /></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Mastered concepts", "مفاهيم متقنة")}</p><p className="mt-1 text-3xl font-semibold">{mastered}<span className="text-base font-normal text-muted-foreground"> / {rows.length}</span></p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Ready concepts", "مفاهيم جاهزة")}</p><p className="mt-1 text-3xl font-semibold">{proficient}<span className="text-base font-normal text-muted-foreground"> / {rows.length}</span></p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Saved assessments", "التقييمات المسجلة")}</p><p className="mt-1 text-3xl font-semibold">{courseAttempts.length}</p></div>
           </div>
         </CardContent>
       </Card>
@@ -80,8 +80,8 @@ export function StudentCourseSummary() {
           <CardHeader><CardTitle className="flex items-center gap-2"><ClipboardList className="size-5" />{tr("Assessment summary", "ملخص التقييمات")}</CardTitle><CardDescription>{tr("Only completed attempts saved in the shared browser demo state are counted.", "المحتسب هنا هو محاولات التقييم المكتملة والمسجلة فعلًا في بيانات الديمو المشتركة بالمتصفح.")}</CardDescription></CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
-              <div className="rounded-lg bg-muted/40 p-3"><p className="text-xs text-muted-foreground">{tr("Average score", "متوسط الدرجات")}</p><p className="mt-1 text-2xl font-bold">{averageScore === null ? "—" : averageScore + "%"}</p></div>
-              <div className="rounded-lg bg-muted/40 p-3"><p className="text-xs text-muted-foreground">{tr("Questions attempted", "الأسئلة المجاب عنها")}</p><p className="mt-1 text-2xl font-bold">{totalAttemptQuestions}</p></div>
+              <div className="rounded-lg bg-muted/40 p-3"><p className="text-xs text-muted-foreground">{tr("Average score", "متوسط الدرجات")}</p><p className="mt-1 text-2xl font-semibold">{averageScore === null ? "—" : averageScore + "%"}</p></div>
+              <div className="rounded-lg bg-muted/40 p-3"><p className="text-xs text-muted-foreground">{tr("Questions attempted", "الأسئلة المجاب عنها")}</p><p className="mt-1 text-2xl font-semibold">{totalAttemptQuestions}</p></div>
             </div>
             {latestAttempts.length ? <div className="space-y-2">{latestAttempts.map(attempt => {
               const concept = courseConcepts.find(item => item.id === attempt.conceptId);
@@ -112,6 +112,6 @@ export function StudentCourseSummary() {
         <Button asChild><Link href="/student/st6"><CheckCircle2 className="me-2 size-4" />{tr("Finish and return home", "إنهاء والعودة للرئيسية")}</Link></Button>
       </div>
       <p className="text-xs text-muted-foreground">{tr("ST21 · End of the student journey. Your demo learning data remains available in this browser for the other connected screens.", "ST21 · نهاية رحلة الطالب. بيانات التعلم التجريبية هتفضل متاحة في المتصفح ده لباقي الشاشات المرتبطة.")}</p>
-    </main>
+    </div>
   );
 }

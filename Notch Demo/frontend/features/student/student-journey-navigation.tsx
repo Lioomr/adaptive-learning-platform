@@ -24,14 +24,14 @@ export function StudentJourneyNavigation() {
   const currentStep = steps[currentIndex];
 
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-3 px-4 pt-4 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-6xl space-y-3 pb-6">
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm font-medium text-foreground">
           Student journey <span className="text-muted-foreground">· Step {currentIndex + 1} of {steps.length}</span>
         </p>
         {currentIndex > 0 && (
           <Button variant="ghost" size="sm" onClick={() => router.push(steps[currentIndex - 1].path)}>
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-4 rtl:-scale-x-100" />
             Back
           </Button>
         )}

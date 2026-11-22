@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowRight, BookOpenCheck, Database, GraduationCap, HeartHandshake, PlayCircle, Sparkles, type LucideIcon } from "lucide-react";
+import { ArrowRight, BookOpenCheck, Database, GraduationCap, HeartHandshake, PlayCircle, FlaskConical, type LucideIcon } from "lucide-react";
 import { GuidedTourOverlay, type TourStep } from "@/components/demo/guided-tour";
 import { ResetDemoButton } from "@/components/demo/reset-demo-button";
 import { DemoCenterSkeleton } from "@/components/feedback/loading-skeletons";
@@ -75,7 +75,7 @@ export function DemoControlCenter() {
             const p = portalFor(r);
             return (
               <li key={r}>
-                <Card className="group relative flex h-full flex-col p-5 transition-colors hover:border-[#b6c2dc]">
+                <Card className="group relative flex h-full flex-col p-5 transition-colors hover:border-primary">
                   <div className="flex items-start justify-between gap-3">
                     <span className="grid size-10 place-items-center rounded-lg bg-secondary text-brand-2">
                       <Icon className="size-5" aria-hidden="true" />
@@ -107,7 +107,7 @@ export function DemoControlCenter() {
               <CardDescription>Deterministic and explainable — not BKT, DKT or IRT.</CardDescription>
             </div>
             <Badge tone="ai">
-              <Sparkles aria-hidden="true" />
+              <FlaskConical aria-hidden="true" />
               Simulated
             </Badge>
           </CardHeader>
@@ -129,8 +129,8 @@ export function DemoControlCenter() {
               ))}
             </ol>
             <div className="mt-5 rounded-lg border border-border bg-muted/50 px-4 py-3">
-              <p className="font-mono text-[13px] text-foreground">new mastery = round(0.60 × previous + 0.40 × score)</p>
-              <p className="mt-1 text-xs text-muted-foreground">Example: Nour, Recursion — round(0.60 × 35 + 0.40 × 100) = 61%. Unanswered questions count as incorrect.</p>
+              <p dir="ltr" className="notch-type-math text-foreground">new mastery = round(0.60 × previous + 0.40 × score)</p>
+              <p className="mt-1 text-xs text-muted-foreground">Example: Nour, Recursion — <bdi dir="ltr">round(0.60 × 35 + 0.40 × 100) = 61%</bdi>. Unanswered questions count as incorrect.</p>
             </div>
             <MasteryLegend className="mt-4" />
           </CardContent>
@@ -231,7 +231,7 @@ function ContextSection() {
                     <span aria-hidden="true" className={cn("size-2.5 shrink-0 rounded-full", { warning: "bg-warning", success: "bg-success", danger: "bg-danger" }[story.tone])} />
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm font-semibold">{story.label}</span>
-                      <span className="block truncate text-xs text-muted-foreground">{story.summary}</span>
+                      <span className="block text-xs text-muted-foreground">{story.summary}</span>
                     </span>
                     {active ? <Badge tone="brand">Selected</Badge> : <ArrowRight className="size-4 text-muted-foreground rtl:-scale-x-100" aria-hidden="true" />}
                   </button>

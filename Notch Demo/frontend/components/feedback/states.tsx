@@ -22,7 +22,7 @@ export function ErrorState({ title = "Something went wrong", description, action
       <AlertTriangle className="mt-0.5 size-4 shrink-0 text-danger-ink" aria-hidden="true" />
       <div className="min-w-0">
         <p className="font-semibold text-danger-ink">{title}</p>
-        {description ? <p className="mt-0.5 leading-6 text-[#7f1d1d]">{description}</p> : null}
+        {description ? <p className="mt-0.5 leading-6 text-danger-ink">{description}</p> : null}
         {action ? <div className="mt-2">{action}</div> : null}
       </div>
     </div>

@@ -35,7 +35,7 @@ export function StudentConsent() {
   }
 
   return (
-    <main className="mx-auto w-full max-w-4xl px-4 py-6 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-4xl">
       <PageHeader
         eyebrow="ST2 · Consent & Privacy"
         title="Your privacy matters"
@@ -85,7 +85,7 @@ export function StudentConsent() {
         <Card>
           <CardHeader>
             <div className="flex items-center gap-3">
-              <div className="flex size-11 items-center justify-center rounded-xl bg-violet-500/10 text-violet-600">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
                 <FlaskConical className="size-5" />
               </div>
               <div>
@@ -191,7 +191,7 @@ export function StudentConsent() {
             onClick={handleContinue}
           >
             Continue to preferences
-            <ArrowRight className="size-4" />
+            <ArrowRight className="size-4 rtl:-scale-x-100" />
           </Button>
 
           {!requiredConsent && (
@@ -203,9 +203,9 @@ export function StudentConsent() {
           {submitted && (
             <div
               role="status"
-              className="flex items-start gap-3 rounded-xl border border-emerald-600/30 bg-emerald-600/5 p-4"
+              className="flex items-start gap-3 rounded-xl border border-success/30 bg-success-soft p-4"
             >
-              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-emerald-600" />
+              <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-success-ink" />
 
               <div>
                 <p className="font-semibold text-foreground">
@@ -230,13 +230,13 @@ export function StudentConsent() {
                   onClick={() => router.push("/student/st3")}
                 >
                   Go to preferences
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-4 rtl:-scale-x-100" />
                 </Button>
               </div>
             </div>
           )}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

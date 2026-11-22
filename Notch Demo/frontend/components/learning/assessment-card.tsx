@@ -81,8 +81,8 @@ export function AssessmentCard({ studentId, courseId }: { studentId: string; cou
       <CardContent>
         {result ? (
           <div className="space-y-4" aria-live="polite">
-            <div className={`flex items-start gap-3 rounded-lg border px-4 py-3 ${result.attempt.score === 100 ? "border-success/25 bg-success-soft" : "border-warning/30 bg-warning-soft"}`}>
-              {result.attempt.score === 100 ? <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-success-ink" aria-hidden="true" /> : <XCircle className="mt-0.5 size-5 shrink-0 text-warning-ink" aria-hidden="true" />}
+            <div className={`flex items-start gap-3 rounded-lg border px-4 py-3 ${result.attempt.score === 100 ? "border-success/25 bg-success-soft" : "border-danger/35 bg-danger-soft"}`}>
+              {result.attempt.score === 100 ? <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-success-ink" aria-hidden="true" /> : <XCircle className="mt-0.5 size-5 shrink-0 text-danger-ink" aria-hidden="true" />}
               <div className="min-w-0 text-sm">
                 <p className="font-semibold text-foreground">{result.attempt.score === 100 ? "Correct — well done." : "Not quite this time."}</p>
                 <p className="mt-0.5 leading-6 text-muted-foreground">{question.explanation}</p>
@@ -92,13 +92,13 @@ export function AssessmentCard({ studentId, courseId }: { studentId: string; cou
               <p className="text-xs font-semibold uppercase tracking-[0.08em] text-muted-foreground">{concept.title} mastery (simulated)</p>
               <p className="mt-2 flex flex-wrap items-center gap-2 text-2xl font-semibold tracking-tight tabular-nums">
                 <span className="text-muted-foreground">{result.attempt.previous}%</span>
-                <ArrowRight className="size-5 text-[#94a3b8] rtl:-scale-x-100" aria-hidden="true" />
+                <ArrowRight className="size-5 text-muted-foreground rtl:-scale-x-100" aria-hidden="true" />
                 <span data-testid="mastery-after">{result.attempt.mastery}%</span>
                 <MasteryBadge value={result.attempt.mastery} />
               </p>
               <MasteryBar value={result.attempt.mastery} label={`${concept.title} mastery after attempt`} className="mt-3" />
               <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                Score {result.attempt.score}% → round(0.60 × {result.attempt.previous} + 0.40 × {result.attempt.score}) = {result.attempt.mastery}%.
+                Score {result.attempt.score}% · <bdi className="notch-type-math" dir="ltr">round(0.60 × {result.attempt.previous} + 0.40 × {result.attempt.score}) = {result.attempt.mastery}%</bdi>.
                 {result.duplicate ? " This was a retry of an attempt already recorded, so mastery was not applied twice." : ""}
               </p>
             </div>
@@ -110,7 +110,7 @@ export function AssessmentCard({ studentId, courseId }: { studentId: string; cou
         ) : (
           <form onSubmit={onSubmit} className="space-y-4">
             <fieldset disabled={!allowed} className="min-w-0">
-              <legend className="text-[15px] font-medium leading-6 text-foreground">{question.prompt}</legend>
+              <legend className="text-lg font-medium leading-7 text-foreground">{question.prompt}</legend>
               <RadioGroup value={answer} onValueChange={setAnswer} className="mt-3" aria-label="Answer options">
                 {question.options.map(option => (
                   <RadioOption key={option} value={option}>

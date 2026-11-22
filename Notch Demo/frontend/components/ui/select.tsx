@@ -13,7 +13,7 @@ function SelectTrigger({ className, children, size = "default", ...props }: Reac
     <SelectPrimitive.Trigger
       data-slot="select-trigger"
       className={cn(
-        "flex w-full min-w-0 items-center justify-between overflow-hidden gap-2 rounded-lg border border-input bg-card px-3 text-start text-sm font-medium text-foreground shadow-xs outline-none transition-colors hover:border-[#94a3b8] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60 data-[placeholder]:text-muted-foreground [&>span]:truncate",
+        "flex w-full min-w-0 items-center justify-between overflow-hidden gap-2 rounded-lg border border-input bg-card px-3 text-start text-sm font-medium text-foreground shadow-xs outline-none transition-colors hover:border-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-60 data-[placeholder]:text-muted-foreground [&>span]:truncate",
         size === "sm" ? "h-9" : "h-10",
         className,
       )}

@@ -39,21 +39,21 @@ export function RoleSwitcher({ active, variant = "sidebar", onNavigate }: Props)
               onClick={onNavigate}
               aria-current={current ? "page" : undefined}
               className={cn(
-                "group/link relative flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-sidebar-foreground outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-strong focus-visible:ring-2 focus-visible:ring-white/80",
-                current && "bg-sidebar-active text-sidebar-strong shadow-[inset_0_1px_0_rgb(255_255_255/0.06)]",
+                "group/link relative flex min-h-11 items-center gap-3 rounded-lg px-3 py-2 text-[15px] font-medium text-sidebar-foreground outline-none transition-colors hover:bg-sidebar-accent hover:text-sidebar-strong focus-visible:ring-2 focus-visible:ring-ring",
+                current && "bg-sidebar-active text-secondary-foreground",
                 rail && "md:max-lg:justify-center md:max-lg:px-0 lg:group-data-[collapsed=true]/sidebar:justify-center lg:group-data-[collapsed=true]/sidebar:px-0",
               )}
             >
               {current ? <span aria-hidden="true" className="absolute inset-y-2 start-0 w-[3px] rounded-full bg-progress" /> : null}
-              <Icon className="size-[18px] shrink-0" aria-hidden="true" />
+              <Icon className="size-6 shrink-0" aria-hidden="true" />
               <span className={cn("min-w-0 flex-1", rail && "md:max-lg:sr-only lg:group-data-[collapsed=true]/sidebar:sr-only")}>
                 <span className="block truncate">{text(p.short)}</span>
-                <span className={cn("block truncate text-[11px] font-normal", current ? "text-[#b9c5e6]" : "text-sidebar-muted")}>{text(p.screens)}</span>
+                <span className="block truncate text-xs font-normal text-sidebar-muted">{text(p.screens)}</span>
               </span>
               {rail ? (
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute start-full top-1/2 z-50 ms-3 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-foreground px-2.5 py-1.5 text-xs font-medium text-white opacity-0 shadow-raised transition-opacity group-hover/link:opacity-100 group-focus-visible/link:opacity-100 md:max-lg:block lg:group-data-[collapsed=true]/sidebar:block"
+                  className="pointer-events-none absolute start-full top-1/2 z-50 ms-3 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-[var(--notch-inverse)] px-2.5 py-1.5 text-xs font-medium text-[var(--notch-on-inverse)] opacity-0 shadow-raised transition-opacity group-hover/link:opacity-100 group-focus-visible/link:opacity-100 md:max-lg:block lg:group-data-[collapsed=true]/sidebar:block"
                 >
                   {text(p.short)}
                 </span>

@@ -238,9 +238,9 @@ function EdgeItem({
 
 function GraphLegend() {
   const items = [
-    { label: "Approved (course map)", line: "stroke-[#94a3b8]", dash: undefined },
+    { label: "Approved (course map)", line: "stroke-muted-foreground", dash: undefined },
     { label: "AI proposed · needs review", line: "stroke-ai", dash: "5 4" },
-    { label: "Accepted this session", line: "stroke-progress", dash: undefined },
+    { label: "Accepted this session", line: "stroke-success", dash: undefined },
     { label: "Cycle warning", line: "stroke-danger", dash: "5 4" },
   ];
   return (
@@ -264,8 +264,8 @@ const ROW_H = 72;
 const PAD = 24;
 
 type Tone = "approved" | "proposed" | "accepted" | "cycle";
-const toneClass: Record<Tone, string> = { approved: "stroke-[#94a3b8]", proposed: "stroke-ai", accepted: "stroke-progress", cycle: "stroke-danger" };
-const markerClass: Record<Tone, string> = { approved: "fill-[#94a3b8]", proposed: "fill-ai", accepted: "fill-progress", cycle: "fill-danger" };
+const toneClass: Record<Tone, string> = { approved: "stroke-muted-foreground", proposed: "stroke-ai", accepted: "stroke-success", cycle: "stroke-danger" };
+const markerClass: Record<Tone, string> = { approved: "fill-muted-foreground", proposed: "fill-ai", accepted: "fill-success", cycle: "fill-danger" };
 
 function ConceptGraph({
   concepts,

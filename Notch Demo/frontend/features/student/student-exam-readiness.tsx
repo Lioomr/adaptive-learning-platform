@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, BookOpen, CheckCircle2, ClipboardCheck, Target, TrendingUp } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ClipboardCheck, Target, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -29,8 +29,8 @@ export function StudentExamReadiness() {
     [attempts, studentId, courseId]
   );
 
-  if (!hydrated) return <main className="mx-auto max-w-5xl p-6"><div className="h-64 animate-pulse rounded-xl bg-muted" /></main>;
-  if (!course || !student) return <main className="mx-auto max-w-3xl p-6"><Card><CardContent className="space-y-4 p-6"><p>{tr("Exam readiness is unavailable for the current demo context.", "بيانات الاستعداد للامتحان مش متاحة في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home", "العودة للرئيسية")}</Link></Button></CardContent></Card></main>;
+  if (!hydrated) return <div className="mx-auto max-w-5xl"><div className="h-64 animate-pulse rounded-xl bg-muted" /></div>;
+  if (!course || !student) return <div className="mx-auto max-w-3xl"><Card><CardContent className="space-y-4 p-6"><p>{tr("Exam readiness is unavailable for the current demo context.", "بيانات الاستعداد للامتحان مش متاحة في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home", "العودة للرئيسية")}</Link></Button></CardContent></Card></div>;
 
   const rows = courseConcepts.map(concept => {
     const mastery = student.mastery[concept.id] ?? 0;
@@ -50,10 +50,10 @@ export function StudentExamReadiness() {
       : tr("More review recommended", "محتاج مراجعة أكتر");
 
   return (
-    <main className="mx-auto max-w-5xl space-y-5 p-4 pb-12 md:p-6" dir={ar ? "rtl" : "ltr"}>
-      <div className="flex items-center justify-between gap-3">
-        <Button variant="ghost" asChild><Link href="/student/st13"><ArrowLeft className="me-2 size-4" />{tr("Back to mastery overview", "العودة لنظرة الإتقان")}</Link></Button>
-        <select aria-label="Language" className="rounded-md border bg-background px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}>
+    <div className="mx-auto max-w-5xl space-y-5" lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"}>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Button variant="ghost" asChild><Link href="/student/st13"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100" />{tr("Back to mastery overview", "العودة لنظرة الإتقان")}</Link></Button>
+        <select aria-label="Language" className="rounded-xl border border-input bg-card px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}>
           <option value="en">English</option><option value="ar">العربية</option>
         </select>
       </div>
@@ -62,13 +62,13 @@ export function StudentExamReadiness() {
         <CardContent className="space-y-4 p-5">
           <div className="flex items-center gap-2 text-sm text-muted-foreground"><Target className="size-4" /> ST14 · {tr("Exam readiness", "الاستعداد للامتحان")} · {course.title}</div>
           <div>
-            <h1 className="text-2xl font-semibold">{tr("Are you ready for the exam?", "هل أنت مستعد للامتحان؟")}</h1>
+            <h1 className="notch-page-title">{tr("Are you ready for the exam?", "هل أنت مستعد للامتحان؟")}</h1>
             <p className="mt-1 text-muted-foreground">{tr("Use your current concept mastery and prerequisite progress to decide what to review next.", "استخدمي مستوى إتقانك الحالي وتقدمك في المتطلبات السابقة لتحديد ما تحتاجين إلى مراجعته.")}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Readiness coverage", "تغطية الجاهزية")}</p><p className="mt-1 text-3xl font-bold">{readiness}%</p><Progress className="mt-2" value={readiness} /><p className="mt-2 text-xs text-muted-foreground">{readyCount} / {rows.length} {tr("concepts meet the demo threshold", "مفاهيم حققت حد الديمو")}</p></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery", "متوسط الإتقان")}</p><p className="mt-1 text-3xl font-bold">{average}%</p><Progress className="mt-2" value={average} /></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Assessments completed", "التقييمات المكتملة")}</p><p className="mt-1 text-3xl font-bold">{courseAttempts.length}</p><p className="mt-2 text-xs text-muted-foreground">{tr("Saved in this browser", "المحفوظة على المتصفح ده")}</p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Readiness coverage", "تغطية الجاهزية")}</p><p className="mt-1 text-3xl font-semibold">{readiness}%</p><Progress className="mt-2" value={readiness} /><p className="mt-2 text-xs text-muted-foreground">{readyCount} / {rows.length} {tr("concepts meet the demo threshold", "مفاهيم حققت حد الديمو")}</p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery", "متوسط الإتقان")}</p><p className="mt-1 text-3xl font-semibold">{average}%</p><Progress className="mt-2" value={average} /></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Assessments completed", "التقييمات المكتملة")}</p><p className="mt-1 text-3xl font-semibold">{courseAttempts.length}</p><p className="mt-2 text-xs text-muted-foreground">{tr("Saved in this browser", "المحفوظة على المتصفح ده")}</p></div>
           </div>
           <div className="flex flex-wrap items-center gap-2"><Badge tone={readiness >= 80 ? "success" : readiness >= 50 ? "warning" : "danger"}>{readinessLabel}</Badge><span className="text-xs text-muted-foreground">{tr("A study-planning signal, not a predicted exam grade.", "مؤشر لتنظيم المذاكرة، وليس توقعًا لدرجة الامتحان.")}</span></div>
         </CardContent>
@@ -85,7 +85,7 @@ export function StudentExamReadiness() {
           {rows.map(row => <div key={row.concept.id} className="rounded-lg border p-3">
             <div className="flex flex-wrap items-center justify-between gap-2"><div><p className="font-medium">{row.concept.title}</p><p className="text-xs text-muted-foreground">{row.concept.id}{row.missingPrerequisites.length > 0 ? " · " + tr("Prerequisite review needed", "يحتاج مراجعة متطلب سابق") : ""}</p></div><span className="text-sm font-semibold">{row.mastery}% · {row.band}</span></div>
             <Progress className="mt-2" value={row.mastery} />
-            <div className="mt-2 flex justify-end"><Button size="sm" variant="ghost" asChild><Link href={`/student/st8/${row.missingPrerequisites[0] ?? row.concept.id}`}>{tr("Review", "مراجعة")}<ArrowLeft className="ms-2 size-4" /></Link></Button></div>
+            <div className="mt-2 flex justify-end"><Button size="sm" variant="ghost" asChild><Link href={`/student/st8/${row.missingPrerequisites[0] ?? row.concept.id}`}>{tr("Review", "مراجعة")}<ArrowRight className="ms-2 size-4 rtl:-scale-x-100" /></Link></Button></div>
           </div>)}
         </CardContent>
       </Card>
@@ -99,9 +99,9 @@ export function StudentExamReadiness() {
 
       <div className="flex flex-wrap gap-2">
         <Button variant="outline" asChild><Link href="/student/st13">{tr("Back to mastery overview", "العودة لنظرة الإتقان")}</Link></Button>
-        <Button asChild><Link href="/student/st15">{tr("Continue to mock quiz", "الانتقال للاختبار التجريبي")}<ArrowLeft className="ms-2 size-4" /></Link></Button>
+        <Button asChild><Link href="/student/st15">{tr("Continue to mock quiz", "الانتقال للاختبار التجريبي")}<ArrowRight className="ms-2 size-4 rtl:-scale-x-100" /></Link></Button>
       </div>
       <p className="text-xs text-muted-foreground">{tr("Readiness coverage is the share of concepts at 70% mastery or above with all prerequisites also at 70% or above. It is a deterministic demo indicator, not an exam-grade prediction or validated readiness model.", "تغطية الجاهزية هي نسبة المفاهيم التي وصلت إلى 70% إتقانًا على الأقل مع تحقيق متطلباتها السابقة للنسبة نفسها. ده مؤشر تجريبي ثابت، مش توقع لدرجة الامتحان أو نموذج جاهزية معتمد.")}</p>
-    </main>
+    </div>
   );
 }

@@ -31,8 +31,8 @@ export function StudentMasteryOverview() {
     [attempts, studentId, courseId]
   );
 
-  if (!hydrated) return <main className="mx-auto max-w-5xl p-6"><div className="h-64 animate-pulse rounded-xl bg-muted" /></main>;
-  if (!course || !student) return <main className="mx-auto max-w-3xl p-6"><Card><CardContent className="space-y-4 p-6"><p>{tr("Mastery data is unavailable for the current demo context.","بيانات الإتقان مش متاحة في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home","العودة للرئيسية")}</Link></Button></CardContent></Card></main>;
+  if (!hydrated) return <div className="mx-auto max-w-5xl"><div className="h-64 animate-pulse rounded-xl bg-muted" /></div>;
+  if (!course || !student) return <div className="mx-auto max-w-3xl"><Card><CardContent className="space-y-4 p-6"><p>{tr("Mastery data is unavailable for the current demo context.","بيانات الإتقان مش متاحة في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home","العودة للرئيسية")}</Link></Button></CardContent></Card></div>;
 
   const rows = courseConcepts.map(concept => {
     const value = student.mastery[concept.id] ?? 0;
@@ -43,19 +43,19 @@ export function StudentMasteryOverview() {
   const visibleRows = filter === "all" ? rows : rows.filter(row=>row.band===filter);
   const latest = courseAttempts.slice(0,5);
 
-  return <main className="mx-auto max-w-5xl space-y-5 p-4 pb-12 md:p-6" dir={ar ? "rtl" : "ltr"}>
-    <div className="flex items-center justify-between gap-3">
-      <Button variant="ghost" asChild><Link href="/student/st12"><ArrowLeft className="me-2 size-4"/>{tr("Back to roadmap","العودة لخريطة التعلم")}</Link></Button>
-      <select aria-label="Language" className="rounded-md border bg-background px-3 py-2 text-sm" value={language} onChange={e=>setLanguage(e.target.value as "en"|"ar")}><option value="en">English</option><option value="ar">العربية</option></select>
+  return <div className="mx-auto max-w-5xl space-y-5" lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"}>
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <Button variant="ghost" asChild><Link href="/student/st12"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100"/>{tr("Back to roadmap","العودة لخريطة التعلم")}</Link></Button>
+      <select aria-label="Language" className="rounded-xl border border-input bg-card px-3 py-2 text-sm" value={language} onChange={e=>setLanguage(e.target.value as "en"|"ar")}><option value="en">English</option><option value="ar">العربية</option></select>
     </div>
 
     <Card><CardContent className="space-y-4 p-5">
       <div className="flex items-center gap-2 text-sm text-muted-foreground"><TrendingUp className="size-4"/> ST13 · {tr("Mastery overview","نظرة عامة على الإتقان")} · {course.title}</div>
-      <div><h1 className="text-2xl font-semibold">{tr("Your mastery","مستوى إتقانك")}</h1><p className="mt-1 text-muted-foreground">{tr("A course-level view of your current concept mastery and recorded assessment attempts.","نظرة على مستوى إتقانك الحالي لمفاهيم الكورس ومحاولات التقييم المسجلة.")}</p></div>
+      <div><h1 className="notch-page-title">{tr("Your mastery","مستوى إتقانك")}</h1><p className="mt-1 text-muted-foreground">{tr("A course-level view of your current concept mastery and recorded assessment attempts.","نظرة على مستوى إتقانك الحالي لمفاهيم الكورس ومحاولات التقييم المسجلة.")}</p></div>
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery","متوسط الإتقان")}</p><p className="mt-1 text-3xl font-bold">{average}%</p><Progress className="mt-2" value={average}/></div>
-        <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Mastered concepts","مفاهيم متقنة")}</p><p className="mt-1 text-3xl font-bold">{counts.find(x=>x.band==="Mastered")?.count ?? 0}<span className="text-base font-normal text-muted-foreground"> / {rows.length}</span></p></div>
-        <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Recorded assessments","التقييمات المسجلة")}</p><p className="mt-1 text-3xl font-bold">{courseAttempts.length}</p></div>
+        <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery","متوسط الإتقان")}</p><p className="mt-1 text-3xl font-semibold">{average}%</p><Progress className="mt-2" value={average}/></div>
+        <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Mastered concepts","مفاهيم متقنة")}</p><p className="mt-1 text-3xl font-semibold">{counts.find(x=>x.band==="Mastered")?.count ?? 0}<span className="text-base font-normal text-muted-foreground"> / {rows.length}</span></p></div>
+        <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Recorded assessments","التقييمات المسجلة")}</p><p className="mt-1 text-3xl font-semibold">{courseAttempts.length}</p></div>
       </div>
     </CardContent></Card>
 
@@ -80,7 +80,7 @@ export function StudentMasteryOverview() {
       </CardContent>
     </Card>
 
-    <div className="flex flex-wrap gap-2"><Button variant="outline" asChild><Link href="/student/st14">{tr("Continue to exam readiness","كملي لاستعداد الامتحان")}</Link></Button><Button asChild><Link href="/student/st6">{tr("Back to home","العودة للرئيسية")}<ArrowLeft className="ms-2 size-4"/></Link></Button></div>
+    <div className="flex flex-wrap gap-2"><Button variant="outline" asChild><Link href="/student/st14">{tr("Continue to exam readiness","كملي لاستعداد الامتحان")}</Link></Button><Button asChild><Link href="/student/st6">{tr("Back to home","العودة للرئيسية")}<ArrowLeft className="ms-2 size-4 rtl:-scale-x-100"/></Link></Button></div>
     <p className="text-xs text-muted-foreground">{tr("Mastery bands and updates follow the agreed deterministic demo formula. They are illustrative and are not a validated learning measurement.","مستويات الإتقان والتحديثات بتتبع معادلة الديمو الثابتة المتفق عليها، وهي توضيحية وليست قياسًا تعليميًا مُعتمدًا.")}</p>
-  </main>;
+  </div>;
 }

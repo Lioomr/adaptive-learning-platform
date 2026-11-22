@@ -86,7 +86,7 @@ function OnboardingContent() {
                     aria-hidden="true"
                     className={cn(
                       "grid size-7 shrink-0 place-items-center rounded-full border text-xs font-semibold",
-                      isDone ? "border-transparent bg-success text-white" : "border-border bg-card text-muted-foreground",
+                      isDone ? "border-success/30 bg-success-soft text-success-ink" : "border-border bg-card text-muted-foreground",
                     )}
                   >
                     {isDone ? <Check className="size-3.5" /> : i + 1}
@@ -232,7 +232,7 @@ function StepCheckbox({ id, checked, onToggle, label }: { id: string; checked: b
   const inputId = `onb-confirm-${id}`;
   return (
     <div className="flex items-center gap-3 rounded-lg bg-muted/60 px-3 py-2.5">
-      <input id={inputId} type="checkbox" checked={checked} onChange={() => onToggle(id)} className="size-4 shrink-0 accent-[var(--brand-indigo-2)]" />
+      <input id={inputId} type="checkbox" checked={checked} onChange={() => onToggle(id)} className="size-4 shrink-0 accent-primary" />
       <label htmlFor={inputId} className="text-sm font-medium text-foreground">
         {label}
       </label>

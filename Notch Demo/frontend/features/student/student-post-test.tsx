@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, CheckCircle2, ClipboardCheck, GraduationCap } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardCheck, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -37,8 +37,8 @@ export function StudentPostTest() {
   const answered = courseQuestions.filter(q => !!answers[q.id]).length;
   const allAnswered = courseQuestions.length > 0 && answered === courseQuestions.length;
 
-  if (!hydrated) return <main className="mx-auto max-w-4xl p-6"><div className="h-64 animate-pulse rounded-xl bg-muted" /></main>;
-  if (!course || !student) return <main className="mx-auto max-w-3xl p-6"><Card><CardContent className="space-y-4 p-6"><p>{tr("Post-test is unavailable for the current demo context.", "الاختبار البعدي مش متاح في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st18">{tr("Back to settings", "العودة للإعدادات")}</Link></Button></CardContent></Card></main>;
+  if (!hydrated) return <div className="mx-auto max-w-4xl"><div className="h-64 animate-pulse rounded-xl bg-muted" /></div>;
+  if (!course || !student) return <div className="mx-auto max-w-3xl"><Card><CardContent className="space-y-4 p-6"><p>{tr("Post-test is unavailable for the current demo context.", "الاختبار البعدي مش متاح في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st18">{tr("Back to settings", "العودة للإعدادات")}</Link></Button></CardContent></Card></div>;
 
   const startingMastery = result?.attempts.length
     ? result.attempts.reduce((sum, attempt) => sum + attempt.previous, 0) / result.attempts.length
@@ -73,20 +73,20 @@ export function StudentPostTest() {
   }
 
   return (
-    <main className="mx-auto max-w-4xl space-y-5 p-4 pb-12 md:p-6" dir={ar ? "rtl" : "ltr"}>
-      <div className="flex items-center justify-between gap-3">
-        <Button variant="ghost" asChild><Link href="/student/st18"><ArrowLeft className="me-2 size-4" />{tr("Back to settings", "العودة للإعدادات")}</Link></Button>
-        <select aria-label="Language" className="rounded-md border bg-background px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}><option value="en">English</option><option value="ar">العربية</option></select>
+    <div className="mx-auto max-w-4xl space-y-5" lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"}>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Button variant="ghost" asChild><Link href="/student/st18"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100" />{tr("Back to settings", "العودة للإعدادات")}</Link></Button>
+        <select aria-label="Language" className="rounded-xl border border-input bg-card px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}><option value="en">English</option><option value="ar">العربية</option></select>
       </div>
 
       <Card>
         <CardContent className="space-y-4 p-5">
           <div className="flex flex-wrap items-center justify-between gap-2 text-sm text-muted-foreground"><span>ST19 · {tr("Post-test", "الاختبار البعدي")}</span><span>{course.title}</span></div>
-          <div className="flex items-start gap-3"><GraduationCap className="mt-1 size-7 text-primary" /><div><h1 className="text-2xl font-semibold">{tr("See what you've learned", "شوفي إيه اللي اتعلمتيه")}</h1><p className="mt-1 text-muted-foreground">{tr("Complete the available course questions to review your learning progress after the study journey.", "جاوبي على أسئلة الكورس المتاحة لمراجعة تقدمك بعد رحلة التعلم.")}</p></div></div>
+          <div className="flex items-start gap-3"><GraduationCap className="mt-1 size-7 text-primary" /><div><h1 className="notch-page-title">{tr("See what you've learned", "شوفي إيه اللي اتعلمتيه")}</h1><p className="mt-1 text-muted-foreground">{tr("Complete the available course questions to review your learning progress after the study journey.", "جاوبي على أسئلة الكورس المتاحة لمراجعة تقدمك بعد رحلة التعلم.")}</p></div></div>
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl border p-3"><p className="text-xs text-muted-foreground">{tr("Available questions", "الأسئلة المتاحة")}</p><p className="mt-1 text-2xl font-bold">{courseQuestions.length}</p></div>
-            <div className="rounded-xl border p-3"><p className="text-xs text-muted-foreground">{tr("Answered", "تمت الإجابة")}</p><p className="mt-1 text-2xl font-bold">{answered} / {courseQuestions.length}</p></div>
-            <div className="rounded-xl border p-3"><p className="text-xs text-muted-foreground">{tr("Concepts covered", "المفاهيم المغطاة")}</p><p className="mt-1 text-2xl font-bold">{groups.length}</p></div>
+            <div className="rounded-xl border p-3"><p className="text-xs text-muted-foreground">{tr("Available questions", "الأسئلة المتاحة")}</p><p className="mt-1 text-2xl font-semibold">{courseQuestions.length}</p></div>
+            <div className="rounded-xl border p-3"><p className="text-xs text-muted-foreground">{tr("Answered", "تمت الإجابة")}</p><p className="mt-1 text-2xl font-semibold">{answered} / {courseQuestions.length}</p></div>
+            <div className="rounded-xl border p-3"><p className="text-xs text-muted-foreground">{tr("Concepts covered", "المفاهيم المغطاة")}</p><p className="mt-1 text-2xl font-semibold">{groups.length}</p></div>
           </div>
           <Progress value={courseQuestions.length ? answered / courseQuestions.length * 100 : 0} />
         </CardContent>
@@ -113,20 +113,20 @@ export function StudentPostTest() {
           {result.error && <p role="alert" className="rounded-lg border border-destructive p-3 text-sm text-destructive">{result.error}</p>}
           {result.attempts.length > 0 && <>
             <div className="grid gap-3 sm:grid-cols-3">
-              <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average score", "متوسط النتيجة")}</p><p className="mt-1 text-3xl font-bold">{averageScore}%</p></div>
-              <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average previous mastery", "متوسط الإتقان السابق")}</p><p className="mt-1 text-3xl font-bold">{Math.round(startingMastery)}%</p></div>
-              <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average updated mastery", "متوسط الإتقان بعد التقييم")}</p><p className="mt-1 text-3xl font-bold">{Math.round(endingMastery)}%</p></div>
+              <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average score", "متوسط النتيجة")}</p><p className="mt-1 text-3xl font-semibold">{averageScore}%</p></div>
+              <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average previous mastery", "متوسط الإتقان السابق")}</p><p className="mt-1 text-3xl font-semibold">{Math.round(startingMastery)}%</p></div>
+              <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average updated mastery", "متوسط الإتقان بعد التقييم")}</p><p className="mt-1 text-3xl font-semibold">{Math.round(endingMastery)}%</p></div>
             </div>
             <div className="space-y-3">{result.attempts.map(attempt => {
               const concept = concepts.find(c => c.id === attempt.conceptId);
               return <div key={attempt.submissionId} className="rounded-xl border p-4"><div className="flex flex-wrap items-center justify-between gap-2"><p className="font-semibold">{concept?.title ?? attempt.conceptId}</p><Badge>{masteryBand(attempt.mastery).band}</Badge></div><div className="mt-3 grid grid-cols-3 gap-2 text-sm"><div><p className="text-muted-foreground">{tr("Score", "النتيجة")}</p><p className="font-semibold">{attempt.score}%</p></div><div><p className="text-muted-foreground">{tr("Before", "قبل")}</p><p className="font-semibold">{attempt.previous}%</p></div><div><p className="text-muted-foreground">{tr("After", "بعد")}</p><p className="font-semibold">{attempt.mastery}%</p></div></div><Progress className="mt-3" value={attempt.mastery} /></div>;
             })}</div>
           </>}
-          <div className="flex flex-wrap gap-2"><Button asChild><Link href="/student/st20">{tr("Continue to survey", "الانتقال للاستبيان")}<ArrowLeft className="ms-2 size-4" /></Link></Button><Button variant="outline" asChild><Link href="/student/st21">{tr("View learning summary", "عرض ملخص التعلم")}</Link></Button></div>
+          <div className="flex flex-wrap gap-2"><Button asChild><Link href="/student/st20">{tr("Continue to survey", "الانتقال للاستبيان")}<ArrowRight className="ms-2 size-4 rtl:-scale-x-100" /></Link></Button><Button variant="outline" asChild><Link href="/student/st21">{tr("View learning summary", "عرض ملخص التعلم")}</Link></Button></div>
         </CardContent>
       </Card>}
 
       <p className="text-xs text-muted-foreground">{tr("Important demo limitation: this is a post-learning check using the small illustrative fixture bank, not a validated pre/post research instrument or a statistically comparable test. It is not evidence of causal learning gain. Submitting it updates mastery through the agreed deterministic demo formula.", "مهم: ده تقييم بعد التعلم باستخدام بنك الأسئلة التوضيحي الصغير، مش أداة قياس قبل/بعد معتمدة أو اختبارين قابلين للمقارنة إحصائيًا. النتيجة مش دليل على تحسن سببه المنصة. التسليم بيحدث الإتقان بالمعادلة التجريبية المتفق عليها.")}</p>
-    </main>
+    </div>
   );
 }

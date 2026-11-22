@@ -92,5 +92,5 @@ export function ScreenLink({ href, children, className }: { href: string; childr
 export const average = (values: number[]) => (values.length ? Math.round(values.reduce((a, b) => a + b, 0) / values.length) : 0);
 
 /** Native checkbox/radio styling shared by forms on these screens. */
-export const controlClass = "size-4 shrink-0 rounded border-input accent-[#2D4485] outline-none focus-visible:ring-2 focus-visible:ring-ring";
+export const controlClass = "size-4 shrink-0 rounded border-input accent-primary outline-none focus-visible:ring-2 focus-visible:ring-ring";
 export const fieldClass = "h-10 w-full rounded-lg border border-input bg-card px-3 text-sm text-foreground shadow-xs outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60";

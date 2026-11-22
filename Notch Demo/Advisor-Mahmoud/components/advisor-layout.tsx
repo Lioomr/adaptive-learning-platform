@@ -2,6 +2,8 @@
 import {
   createContext,
   useContext,
+  useEffect,
+  useRef,
   useState,
   Link,
   usePathname,
@@ -36,8 +38,24 @@ const navigation = [
 ] as const;
 export function AdvisorLayout({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Language>("en");
+  const tabs = useRef<HTMLElement>(null);
   const path = usePathname();
   const t = (en: string, ar: string) => (lang === "ar" ? ar : en);
+  useEffect(() => {
+    const nav = tabs.current;
+    const active = nav?.querySelector('[aria-current="page"]');
+    if (!nav || !active) return;
+    const revealActive = () => {
+      const visible = nav.getBoundingClientRect();
+      const tab = active.getBoundingClientRect();
+      if (tab.left < visible.left) nav.scrollBy({ left: tab.left - visible.left });
+      else if (tab.right > visible.right) nav.scrollBy({ left: tab.right - visible.right });
+    };
+    const observer = new ResizeObserver(revealActive);
+    observer.observe(nav);
+    observer.observe(active);
+    return () => observer.disconnect();
+  }, [path, lang]);
   return (
     <Locale.Provider value={{ lang, t }}>
       <div
@@ -55,7 +73,7 @@ export function AdvisorLayout({ children }: { children: ReactNode }) {
           }}
         >
           <AppShell role="advisor">
-            <div className={styles.portal}>
+            <div className={`notch-type-body ${styles.portal}`}>
               <div className={styles.workspaceBar}>
                 <span>
                   <span className={styles.liveDot} />
@@ -67,16 +85,20 @@ export function AdvisorLayout({ children }: { children: ReactNode }) {
                   onClick={() => setLang(lang === "en" ? "ar" : "en")}
                 >
                   <Globe2 aria-hidden="true" />
-                  {lang === "en" ? "العربية" : "English"}
+                  <span lang={lang === "en" ? "ar" : "en"}>
+                    {lang === "en" ? "العربية" : "English"}
+                  </span>
                 </Button>
               </div>
               <nav
+                ref={tabs}
                 className={styles.tabs}
                 aria-label={t("Advisor screens", "شاشات المرشد")}
               >
                 {navigation.map(([id, en, ar, Icon]) => (
                   <Link
                     key={id}
+                    className="notch-type-navigation"
                     href={`/advisor/${id}`}
                     aria-current={
                       path.endsWith(id) || (id === "ad2" && path === "/advisor")
@@ -84,7 +106,7 @@ export function AdvisorLayout({ children }: { children: ReactNode }) {
                         : undefined
                     }
                   >
-                    <Icon size={16} aria-hidden="true" />
+                    <Icon size={24} aria-hidden="true" />
                     {t(en, ar)}
                   </Link>
                 ))}

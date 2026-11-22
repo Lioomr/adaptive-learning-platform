@@ -6,17 +6,15 @@ Phase 1 is **UI-first**. Do not implement a real database, Django API integratio
 ## 2. Source-of-truth
 - All developers must follow [DEMO-AGREEMENTS.md](DEMO-AGREEMENTS.md), the shared Phase 1 coordination agreement, subject to the original journey and approved visual system.
 - Follow the original **ST / IN / AD / SYS** screen IDs and descriptions in Full_User_Journey_Scenarios_enhanced(1).pdf.
-- Follow the approved adaptlearn_ui_ux_design_system.md, not one-off personal styling.
+- Use the Notch brand guidelines and the shared portal design tokens for interface styling.
 - Do not invent a new requirement without documenting it as a proposal. Some flows may be visually grouped but their original IDs must remain traceable.
 
 ## 3. Visual system (approved)
-- Primary indigo: `#1E2B58`; alternative indigo: `#2D4485`.
-- Progress teal: `#0D9488`; AI accent violet: `#7C3AED`.
-- Mastered green: `#16A34A`; review amber: `#D97706`; critical red: `#DC2626`.
-- Canvas `#F8FAFC`, white cards `#FFFFFF`, text `#0F172A`, muted `#475569`.
-- Inter (English), IBM Plex Sans Arabic (Arabic); Lucide React icons for the approved Phase 1 stack.
-- 260px desktop sidebar (72px collapsed), 64px header, responsive 12-column / 24px gutters.
-- Modestly rounded cards, low-contrast shadows. Keep AI suggestions visually distinct from instructor-approved content.
+- Use the Notch signature artwork supplied in `frontend/public/brand/`. Use the horizontal lockup at 96 CSS px or wider and the compact symbol on the collapsed rail.
+- Apply the semantic roles from `frontend/app/notch-tokens.css`. Light mode uses a chalk canvas, white panels and violet actions. Dark mode uses ink, elevated purple panels and lavender actions.
+- Success, review, error and information use separate semantic roles in both themes. Pair status colors with text or an icon.
+- Use Inter for English, IBM Plex Sans Arabic for Arabic and STIX Two Math for typeset notation. Keep Arabic tracking at zero and preserve the direction of equations and brand artwork.
+- Use 12px control radii, 16px cards and 24px feature panels. The shell uses 20px, 32px and 48px outer margins by viewport size.
 - Use clear, supportive language: "Needs review", not blaming or diagnosing a student.
 - Support Arabic RTL, English LTR, keyboard focus, labels, contrast, and responsive layouts.
 - Student should also work on mobile; instructor/advisor should work on laptop.

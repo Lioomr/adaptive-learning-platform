@@ -6,7 +6,7 @@ import { StudentJourneyNavigation } from "@/features/student/student-journey-nav
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <AppShell role="student">
-      <Suspense fallback={<div className="mx-auto max-w-6xl px-4 pt-4"><div className="h-12 animate-pulse rounded bg-muted" /></div>}>
+      <Suspense fallback={<div className="mx-auto max-w-6xl pt-4"><div className="h-12 animate-pulse rounded bg-muted" /></div>}>
         <StudentJourneyNavigation />
       </Suspense>
       {children}

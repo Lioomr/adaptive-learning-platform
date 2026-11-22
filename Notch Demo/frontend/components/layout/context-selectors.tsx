@@ -103,7 +103,7 @@ export function ActiveStudentChip({ className, hideLabel }: { className?: string
   const name = useDemo(s => s.students.find(x => x.id === s.studentId)?.name);
   return (
     <div className={cn("grid min-w-0 gap-1.5", className)}>
-      <span className={cn("text-xs font-semibold text-muted-foreground", hideLabel && "sr-only")}>Viewing as (simulated)</span>
+      <span className={cn("notch-type-label text-foreground", hideLabel && "sr-only")}>Viewing as (simulated)</span>
       {hydrated ? (
         <span className="flex h-9 min-w-0 items-center gap-2 rounded-lg border border-border bg-muted/60 px-3 text-sm font-medium">
           <UserRound className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />

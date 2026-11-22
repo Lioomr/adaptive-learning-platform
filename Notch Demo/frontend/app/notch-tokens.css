@@ -1,0 +1,113 @@
+/* Notch 1.0 brand and interface tokens. The system preference applies until a reader chooses a theme. */
+:root {
+  --notch-brand-ink: #110C24;
+  --notch-brand-white: #FFFFFF;
+  --notch-brand-signature-violet: #8B58FF;
+  --notch-brand-soft-lavender: #B79BFF;
+  --notch-brand-action-violet: #5B36C8;
+  --notch-brand-violet-hover: #4D2BAC;
+  --notch-brand-violet-active: #40228E;
+  --notch-brand-violet-light: #EEE8FF;
+  --notch-brand-violet-dark: #38246B;
+  --notch-brand-chalk: #F7F6FB;
+  --notch-brand-fog: #E3DFEC;
+  --notch-brand-graphite: #635F73;
+  --notch-brand-slate: #302A40;
+  --notch-brand-mint: #8FE2CB;
+  --notch-brand-pine: #176653;
+  --notch-space-0: 0px;
+  --notch-space-4: 4px;
+  --notch-space-8: 8px;
+  --notch-space-12: 12px;
+  --notch-space-16: 16px;
+  --notch-space-24: 24px;
+  --notch-space-32: 32px;
+  --notch-space-48: 48px;
+  --notch-space-64: 64px;
+  --notch-space-96: 96px;
+  --notch-radius-small: 8px;
+  --notch-radius-control: 12px;
+  --notch-radius-card: 16px;
+  --notch-radius-feature: 24px;
+  --notch-radius-pill: 999px;
+  --notch-icon-inline: 16px;
+  --notch-icon-control: 20px;
+  --notch-icon-navigation: 24px;
+  --notch-icon-feature: 32px;
+  --notch-motion-state: 120ms;
+  --notch-motion-control: 180ms;
+  --notch-motion-panel: 260ms;
+  --notch-ease: cubic-bezier(0.2, 0, 0, 1);
+  --notch-grid-columns: 4;
+  --notch-grid-margin: 20px;
+  --notch-grid-gutter: 12px;
+  --notch-grid-max: 1440px;
+
+  color-scheme: light dark;
+  --notch-canvas: light-dark(#F7F6FB, #110C24);
+  --notch-surface: light-dark(#FFFFFF, #1B162D);
+  --notch-raised: light-dark(#FFFFFF, #251E38);
+  --notch-subtle: light-dark(#F0EDF7, #2A233B);
+  --notch-ink: light-dark(#19152B, #F8F6FC);
+  --notch-muted: light-dark(#635F73, #BBB4CC);
+  --notch-line: light-dark(#DDD9E7, #393249);
+  --notch-control: light-dark(#817A90, #8C829E);
+  --notch-primary: light-dark(#5B36C8, #B79BFF);
+  --notch-hover: light-dark(#4D2BAC, #C9B4FF);
+  --notch-active: light-dark(#40228E, #AF92F9);
+  --notch-on-primary: light-dark(#FFFFFF, #1A102E);
+  --notch-accent-soft: light-dark(#EEE8FF, #352751);
+  --notch-accent-text: light-dark(#4D2BAC, #CFBBFF);
+  --notch-focus: light-dark(#663FD8, #C9B4FF);
+  --notch-success: light-dark(#176653, #8FE2CB);
+  --notch-success-soft: light-dark(#DFF5ED, #182F2D);
+  --notch-warning: light-dark(#795004, #F3CA79);
+  --notch-warning-soft: light-dark(#FFF2D7, #352B1D);
+  --notch-error: light-dark(#AA304F, #FFABC1);
+  --notch-error-soft: light-dark(#FCE8ED, #392330);
+  --notch-info: light-dark(#265A91, #A7CEFF);
+  --notch-info-soft: light-dark(#E6F0FC, #202D41);
+  --notch-disabled-text: light-dark(#686373, #B5ADC3);
+  --notch-disabled-bg: light-dark(#E7E4ED, #332E41);
+  --notch-inverse: light-dark(#211A34, #EFEAF6);
+  --notch-on-inverse: light-dark(#FFFFFF, #211A34);
+  --notch-shadow-base: none;
+  --notch-shadow-small: 0 2px 8px light-dark(rgb(17 12 36 / 0.07), rgb(0 0 0 / 0.18));
+  --notch-shadow-overlay: 0 16px 48px light-dark(rgb(17 12 36 / 0.15), rgb(0 0 0 / 0.36));
+  --notch-wordmark: url("/brand/notch-on-light.svg");
+}
+
+[data-notch-theme="light"] { color-scheme: light; }
+[data-notch-theme="dark"] {
+  color-scheme: dark;
+  --notch-wordmark: url("/brand/notch-on-dark.svg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-notch-theme="light"]) {
+    --notch-wordmark: url("/brand/notch-on-dark.svg");
+  }
+}
+
+@media (min-width: 600px) {
+  :root {
+    --notch-grid-columns: 8;
+    --notch-grid-margin: 32px;
+    --notch-grid-gutter: 20px;
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --notch-grid-columns: 12;
+    --notch-grid-margin: 48px;
+    --notch-grid-gutter: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --notch-motion-state: 0ms;
+    --notch-motion-control: 0ms;
+    --notch-motion-panel: 0ms;
+  }
+}

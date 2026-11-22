@@ -63,7 +63,7 @@ function RosterContent() {
             <SearchInput id="roster-search" label="Search by name" value={query} onChange={setQuery} />
           </form>
         </CardHeader>
-        <CardContent className="px-0 pb-2 sm:px-0">
+        <CardContent className="relative overflow-x-auto px-0 pb-2 sm:px-0" role="region" aria-label="Roster results" tabIndex={rows.length ? 0 : undefined}>
           <p className="sr-only" role="status" aria-live="polite">
             Showing {rows.length} of {enrolled.length} students.
           </p>

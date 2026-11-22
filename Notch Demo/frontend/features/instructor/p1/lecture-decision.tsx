@@ -128,7 +128,7 @@ function DecisionContent({ courseId, enrolled }: CourseContext) {
               <legend className="mb-1 text-xs font-semibold text-muted-foreground">Plan for this lecture</legend>
               {DECISIONS.map(d => (
                 <label key={d.id} className={cn("flex cursor-pointer items-start gap-3 rounded-lg border p-3 text-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring", choice === d.id ? "border-brand-2 bg-secondary/60" : "border-border")}>
-                  <input type="radio" name="decision" className="mt-0.5 size-4 accent-[#2D4485]" checked={choice === d.id} onChange={() => setChoice(d.id)} />
+                  <input type="radio" name="decision" className="mt-0.5 size-4 accent-primary" checked={choice === d.id} onChange={() => setChoice(d.id)} />
                   <span>
                     <span className="font-medium">{d.title}</span>
                     {d.id === suggested ? <span className="ms-2 text-xs text-ai-ink">(suggested)</span> : null}

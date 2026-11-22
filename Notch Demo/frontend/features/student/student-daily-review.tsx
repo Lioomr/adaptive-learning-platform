@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ArrowLeft, BookOpen, CalendarClock, CheckCircle2, ClipboardList, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, BookOpen, CalendarClock, CheckCircle2, ClipboardList, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -30,8 +30,8 @@ export function StudentDailyReview() {
     [attempts, studentId, courseId]
   );
 
-  if (!hydrated) return <main className="mx-auto max-w-5xl p-6"><div className="h-64 animate-pulse rounded-xl bg-muted" /></main>;
-  if (!course || !student) return <main className="mx-auto max-w-3xl p-6"><Card><CardContent className="space-y-4 p-6"><p>{tr("Daily review is unavailable for the current demo context.", "المراجعة اليومية مش متاحة في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home", "العودة للرئيسية")}</Link></Button></CardContent></Card></main>;
+  if (!hydrated) return <div className="mx-auto max-w-5xl"><div className="h-64 animate-pulse rounded-xl bg-muted" /></div>;
+  if (!course || !student) return <div className="mx-auto max-w-3xl"><Card><CardContent className="space-y-4 p-6"><p>{tr("Daily review is unavailable for the current demo context.", "المراجعة اليومية مش متاحة في سياق العرض الحالي.")}</p><Button asChild><Link href="/student/st6">{tr("Back to home", "العودة للرئيسية")}</Link></Button></CardContent></Card></div>;
 
   const rows = courseConcepts.map(concept => {
     const mastery = student.mastery[concept.id] ?? 0;
@@ -47,10 +47,10 @@ export function StudentDailyReview() {
   const recent = courseAttempts.slice(0, 5);
 
   return (
-    <main className="mx-auto max-w-5xl space-y-5 p-4 pb-12 md:p-6" dir={ar ? "rtl" : "ltr"}>
-      <div className="flex items-center justify-between gap-3">
-        <Button variant="ghost" asChild><Link href="/student/st15"><ArrowLeft className="me-2 size-4" />{tr("Back to mock quiz", "العودة للاختبار التجريبي")}</Link></Button>
-        <select aria-label="Language" className="rounded-md border bg-background px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}>
+    <div className="mx-auto max-w-5xl space-y-5" lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"}>
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Button variant="ghost" asChild><Link href="/student/st15"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100" />{tr("Back to mock quiz", "العودة للاختبار التجريبي")}</Link></Button>
+        <select aria-label="Language" className="rounded-xl border border-input bg-card px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}>
           <option value="en">English</option><option value="ar">العربية</option>
         </select>
       </div>
@@ -59,13 +59,13 @@ export function StudentDailyReview() {
         <CardContent className="space-y-4 p-5">
           <div className="flex items-center justify-between gap-2 text-sm text-muted-foreground"><span>ST16 · {tr("Daily review", "المراجعة اليومية")}</span><span>{course.title}</span></div>
           <div>
-            <h1 className="text-2xl font-semibold">{tr("A focused review for your next study session", "مراجعة مركزة لجلسة مذاكرتك الجاية")}</h1>
+            <h1 className="notch-page-title">{tr("A focused review for your next study session", "مراجعة مركزة لجلسة مذاكرتك الجاية")}</h1>
             <p className="mt-1 text-muted-foreground">{tr("Start with concepts that need support, then revisit topics from your latest assessments.", "ابدئي بالمفاهيم اللي محتاجة دعم، وبعدها راجعي الموضوعات اللي ظهرت في أحدث تقييماتك.")}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-3">
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Concepts to review", "مفاهيم للمراجعة")}</p><p className="mt-1 text-3xl font-bold">{queue.length}</p></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery", "متوسط الإتقان")}</p><p className="mt-1 text-3xl font-bold">{average}%</p><Progress className="mt-2" value={average} /></div>
-            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Mastered concepts", "مفاهيم متقنة")}</p><p className="mt-1 text-3xl font-bold">{masteredCount} / {rows.length}</p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Concepts to review", "مفاهيم للمراجعة")}</p><p className="mt-1 text-3xl font-semibold">{queue.length}</p></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Average mastery", "متوسط الإتقان")}</p><p className="mt-1 text-3xl font-semibold">{average}%</p><Progress className="mt-2" value={average} /></div>
+            <div className="rounded-xl border p-4"><p className="text-sm text-muted-foreground">{tr("Mastered concepts", "مفاهيم متقنة")}</p><p className="mt-1 text-3xl font-semibold">{masteredCount} / {rows.length}</p></div>
           </div>
         </CardContent>
       </Card>
@@ -107,9 +107,9 @@ export function StudentDailyReview() {
 
       <div className="flex flex-wrap gap-2">
         <Button variant="outline" asChild><Link href="/student/st15">{tr("Back to mock quiz", "العودة للاختبار التجريبي")}</Link></Button>
-        <Button asChild><Link href="/student/st17">{tr("Continue to AI tutor", "الانتقال للمساعد التعليمي")}<ArrowLeft className="ms-2 size-4" /></Link></Button>
+        <Button asChild><Link href="/student/st17">{tr("Continue to AI tutor", "الانتقال للمساعد التعليمي")}<ArrowRight className="ms-2 size-4 rtl:-scale-x-100" /></Link></Button>
       </div>
       <p className="text-xs text-muted-foreground">{tr("This review list is generated deterministically from the shared demo mastery and assessment history. It does not use spaced-repetition scheduling, due dates, reminders, or an AI recommendation model.", "قائمة المراجعة دي بتتحدد بشكل ثابت من مستوى الإتقان وسجل التقييمات في الديمو. مش بتستخدم جدولة مراجعة متباعدة أو مواعيد استحقاق أو تذكيرات أو نموذج توصية بالذكاء الاصطناعي.")}</p>
-    </main>
+    </div>
   );
 }

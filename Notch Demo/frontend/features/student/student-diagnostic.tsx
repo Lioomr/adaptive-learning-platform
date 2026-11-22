@@ -288,7 +288,7 @@ export function StudentDiagnostic() {
               {text.unavailable}
             </div>
             <Button variant="outline" onClick={() => router.push("/student")}>
-              <ArrowLeft aria-hidden="true" />
+              <ArrowLeft className="rtl:-scale-x-100" aria-hidden="true" />
               {text.back}
             </Button>
           </CardContent>
@@ -349,7 +349,7 @@ export function StudentDiagnostic() {
       : text.incorrectDescription;
 
   return (
-    <div dir={isArabic ? "rtl" : "ltr"} className="space-y-6">
+    <div lang={isArabic ? "ar" : "en"} dir={isArabic ? "rtl" : "ltr"} className="space-y-6">
       <PageHeader
         eyebrow={text.eyebrow}
         title={text.title}
@@ -358,7 +358,7 @@ export function StudentDiagnostic() {
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="rounded-full bg-brand-soft px-3 py-1 text-xs font-semibold text-brand-2">
+          <span className="rounded-full bg-secondary px-3 py-1 text-xs font-semibold text-brand-2">
             {text.demo}
           </span>
           <span className="text-sm text-muted-foreground">
@@ -452,7 +452,7 @@ export function StudentDiagnostic() {
               <p className="mt-2 text-sm">
                 {question.answer}
                 {showArabic && (
-                  <span className="mt-1 block" dir="rtl">
+                  <span className="mt-1 block" lang="ar" dir="rtl">
                     {questionCopy.options[question.options.indexOf(question.answer)]}
                   </span>
                 )}
@@ -467,7 +467,7 @@ export function StudentDiagnostic() {
                 </p>
               )}
               {showArabic && (
-                <p dir="rtl" className="text-sm leading-6 text-muted-foreground">
+                <p lang="ar" dir="rtl" className="text-sm leading-6 text-muted-foreground">
                   {questionCopy.explanation}
                 </p>
               )}
@@ -504,11 +504,7 @@ export function StudentDiagnostic() {
 
               <Button onClick={() => router.push("/student/st5")}>
                 {text.continue}
-                {isArabic ? (
-                  <ArrowLeft aria-hidden="true" />
-                ) : (
-                  <ArrowRight aria-hidden="true" />
-                )}
+                <ArrowRight className="rtl:-scale-x-100" aria-hidden="true" />
               </Button>
             </div>
           </CardContent>
@@ -532,7 +528,7 @@ export function StudentDiagnostic() {
             <div className="rounded-lg bg-muted/40 p-4 sm:p-5">
               {showEnglish && (
                 <p
-                  dir="ltr"
+                  lang="en" dir="ltr"
                   className="text-base font-medium leading-7 text-foreground"
                 >
                   {question.prompt}
@@ -540,7 +536,7 @@ export function StudentDiagnostic() {
               )}
               {showArabic && (
                 <p
-                  dir="rtl"
+                  lang="ar" dir="rtl"
                   className={`text-base font-medium leading-7 text-foreground ${
                     showEnglish ? "mt-3 border-t border-border pt-3" : ""
                   }`}
@@ -563,31 +559,31 @@ export function StudentDiagnostic() {
                     onClick={() => setSelectedAnswer(option.value)}
                     className={`flex w-full items-start gap-3 rounded-lg border p-4 text-start transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
                       isSelected
-                        ? "border-brand-2 bg-brand-soft"
+                        ? "border-brand-2 bg-secondary"
                         : "border-border bg-card hover:bg-muted/50"
                     }`}
                   >
                     <span
                       className={`mt-0.5 grid size-5 shrink-0 place-items-center rounded-full border ${
                         isSelected
-                          ? "border-brand-2 bg-brand-2 text-white"
+                          ? "border-primary bg-primary text-primary-foreground"
                           : "border-input"
                       }`}
                     >
                       {isSelected && (
-                        <span className="size-2 rounded-full bg-white" />
+                        <span className="size-2 rounded-full bg-primary-foreground" />
                       )}
                     </span>
 
                     <span className="min-w-0 flex-1 space-y-1">
                       {showEnglish && (
-                        <span dir="ltr" className="block text-sm font-medium">
+                        <span lang="en" dir="ltr" className="block text-sm font-medium">
                           {index + 1}. {option.english}
                         </span>
                       )}
                       {showArabic && (
                         <span
-                          dir="rtl"
+                          lang="ar" dir="rtl"
                           className="block text-sm font-medium"
                         >
                           {option.arabic}
@@ -619,11 +615,7 @@ export function StudentDiagnostic() {
                 className="sm:min-w-32"
               >
                 {text.next}
-                {isArabic ? (
-                  <ArrowLeft aria-hidden="true" />
-                ) : (
-                  <ArrowRight aria-hidden="true" />
-                )}
+                <ArrowRight className="rtl:-scale-x-100" aria-hidden="true" />
               </Button>
             </div>
           </CardContent>

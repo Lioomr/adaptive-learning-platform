@@ -16,11 +16,12 @@ import { masteryBand, recommendation } from "@/services/mastery";
 import { useDemo } from "@/store/demo";
 
 /** Shared-foundation preview of the Student portal (not ST1–ST21). */
-export function StudentOverview() {
+export function StudentOverview({ children }: { children?: React.ReactNode }) {
   const hydrated = useHydrated();
   return (
     <>
       <PageHeader eyebrow="Student portal · foundation preview" title="My learning space" description="Your simulated progress, what to review next, and an illustrative practice question." />
+      {children}
       {hydrated ? <StudentContent /> : <StudentPreviewSkeleton />}
     </>
   );

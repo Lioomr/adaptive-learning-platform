@@ -11,7 +11,6 @@ import {
   Map,
   MessageCircle,
   Settings,
-  Sparkles,
   Target,
 } from "lucide-react";
 
@@ -24,7 +23,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MasteryBadge, MasteryBar } from "@/components/learning/mastery";
+import { MasteryBar } from "@/components/learning/mastery";
 
 import {
   conceptsForCourse,
@@ -236,18 +235,13 @@ export function StudentHome() {
 
   const text = {
     eyebrow: isArabic ? "ST6 · الصفحة الرئيسية" : "ST6 · Student Home",
-    title: isArabic ? "مساحة تعلمك" : "Your learning home",
     description: isArabic
       ? "تابعي تقدمك واكتشفي الخطوة التالية في رحلتك التعليمية."
       : "Track your progress and find the next step in your learning journey.",
     greeting: isArabic ? `أهلًا ${student?.name ?? ""}` : `Welcome back, ${student?.name ?? ""}`,
-    subtitle: isArabic
-      ? "إليكِ ملخص تقدمك وما يمكنك العمل عليه بعد ذلك."
-      : "Here is a snapshot of your progress and what you can work on next.",
     course: isArabic ? "الكورس" : "Course",
     chooseCourse: isArabic ? "اختاري كورسًا" : "Choose a course",
     nextUp: isArabic ? "الخطوة التالية" : "Next up",
-    recommended: isArabic ? "اقتراح لك" : "Recommended for you",
     continue: isArabic ? "متابعة التعلم" : "Continue learning",
     thisWeek: isArabic ? "مفاهيم تحتاج إلى اهتمام" : "Concepts to focus on",
     thisWeekDescription: isArabic
@@ -283,65 +277,81 @@ export function StudentHome() {
 
   if (!hydrated) {
     return (
-      <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="animate-pulse space-y-5">
           <div className="h-8 w-56 rounded-lg bg-muted" />
           <div className="h-28 rounded-xl bg-muted" />
           <div className="h-64 rounded-xl bg-muted" />
         </div>
-      </main>
+      </div>
     );
   }
 
   if (!student || !selectedCourse) {
     return (
-      <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-5xl">
         <Card>
           <CardContent className="py-8 text-center text-sm text-muted-foreground">
             {text.noStudent}
           </CardContent>
         </Card>
-      </main>
+      </div>
     );
   }
 
   return (
-    <main
-      dir={isArabic ? "rtl" : "ltr"}
-      className="mx-auto w-full max-w-6xl space-y-6 px-4 py-6 sm:px-6 lg:px-8"
+    <div
+      lang={isArabic ? "ar" : "en"} dir={isArabic ? "rtl" : "ltr"}
+      className="mx-auto w-full max-w-6xl space-y-6"
     >
       <PageHeader
         eyebrow={text.eyebrow}
-        title={text.title}
+        title={text.greeting}
         description={text.description}
       />
 
-      <Card className="overflow-hidden">
-        <div className="bg-gradient-to-br from-primary/[0.08] via-card to-card p-5 sm:p-6">
-          <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <div className="flex items-center gap-2 text-sm font-semibold text-primary">
-                <Sparkles className="size-4" />
-                {text.greeting}
-              </div>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {text.subtitle}
-              </p>
-            </div>
-            <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-4">
-              <div className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary">
-                <Target className="size-5" />
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">{text.mastery}</p>
-                <p className="text-2xl font-semibold tabular-nums">
-                  {averageMastery}%
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,2fr)_minmax(15rem,1fr)]">
+        <Card as="section" aria-labelledby="next-activity" className="relative isolate overflow-hidden rounded-[24px] border-(--notch-brand-slate) bg-(--notch-brand-ink) p-5 text-(--notch-brand-white) sm:p-8">
+          <div className="pointer-events-none absolute inset-y-0 end-0 -z-10 w-[30%] bg-[url('/brand/adaptive-path.svg')] bg-size-[126%_auto] bg-left bg-no-repeat sm:w-[36%] rtl:bg-right" aria-hidden="true" />
+          <div className="w-[71%] space-y-3 sm:w-[62%]">
+            <p className="flex items-center gap-2 text-sm font-medium text-(--notch-brand-soft-lavender)">
+              <BookOpen className="size-4 shrink-0" aria-hidden="true" /> {text.nextUp}
+            </p>
+            <h2 id="next-activity" className="text-2xl font-semibold tracking-tight sm:text-[32px] sm:leading-tight">
+              {recommendation?.concept.title ?? text.noRecommendation}
+            </h2>
+            {recommendation && (
+              <>
+                <p className="text-sm text-(--notch-brand-fog)">
+                  {recommendation.courseTitle} · {recommendation.mastery}% {isArabic ? "إتقان" : "mastery"}
                 </p>
-              </div>
-            </div>
+                <p className="max-w-prose text-sm leading-6 text-(--notch-brand-fog)">
+                  {getConceptReason(recommendation, isArabic)}
+                </p>
+                <Button
+                  className="mt-1 max-w-full whitespace-normal bg-(--notch-brand-soft-lavender) text-(--notch-brand-ink) hover:bg-(--notch-brand-violet-light) active:bg-(--notch-brand-soft-lavender)"
+                  onClick={() => {
+                    setCourse(recommendation.courseId, "student");
+                    router.push("/student/st7");
+                  }}
+                >
+                  {text.continue}
+                  <ArrowRight aria-hidden="true" className="rtl:-scale-x-100" />
+                </Button>
+              </>
+            )}
           </div>
-        </div>
-      </Card>
+        </Card>
+
+        <Card className="flex flex-col justify-center gap-3 p-5 sm:p-6">
+          <div className="flex items-center gap-2 text-sm font-medium text-primary">
+            <Target className="size-5" aria-hidden="true" /> {text.mastery}
+          </div>
+          <p className="text-4xl font-semibold tracking-tight tabular-nums">{averageMastery}%</p>
+          <MasteryBar value={averageMastery} label={text.mastery} />
+          <p className="text-sm text-muted-foreground">{selectedCourse.title}</p>
+        </Card>
+      </div>
 
       <Card>
         <CardHeader>
@@ -375,52 +385,6 @@ export function StudentHome() {
               </button>
             );
           })}
-        </CardContent>
-      </Card>
-
-      <Card className="border-primary/20">
-        <CardHeader>
-          <div className="flex items-center gap-2 text-sm font-semibold text-primary">
-            <Sparkles className="size-4" />
-            {text.recommended}
-          </div>
-          <CardTitle>{text.nextUp}</CardTitle>
-          <CardDescription>
-            {recommendation
-              ? getConceptReason(recommendation, isArabic)
-              : text.noRecommendation}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          {recommendation ? (
-            <div className="flex flex-col gap-4 rounded-xl bg-muted/30 p-4 sm:flex-row sm:items-center sm:justify-between">
-              <div className="min-w-0">
-                <p className="text-xs font-medium text-muted-foreground">
-                  {recommendation.courseTitle}
-                </p>
-                <h3 className="mt-1 text-lg font-semibold text-foreground">
-                  {recommendation.concept.title}
-                </h3>
-                <div className="mt-2 flex items-center gap-2">
-                  <MasteryBadge value={recommendation.mastery} showValue />
-                  <span className="text-xs text-muted-foreground">
-                    {recommendation.concept.id}
-                  </span>
-                </div>
-              </div>
-              <Button
-                onClick={() => {
-                  setCourse(recommendation.courseId, "student");
-                  router.push("/student/st7");
-                }}
-              >
-                {text.continue}
-                <ArrowRight className="size-4" />
-              </Button>
-            </div>
-          ) : (
-            <p className="text-sm text-muted-foreground">{text.noRecommendation}</p>
-          )}
         </CardContent>
       </Card>
 
@@ -521,6 +485,6 @@ export function StudentHome() {
           </div>
         </CardContent>
       </Card>
-    </main>
+    </div>
   );
 }

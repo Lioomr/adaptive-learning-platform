@@ -54,15 +54,15 @@ export function StudentSettings() {
   }
 
   return (
-    <main dir={ar ? "rtl" : "ltr"} className="mx-auto max-w-5xl space-y-5 p-4 pb-12 md:p-6">
+    <div lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"} className="mx-auto max-w-5xl space-y-5">
       <div className="flex items-center justify-between gap-3">
-        <Button variant="ghost" asChild><Link href="/student/st17"><ArrowLeft className="me-2 size-4" />{tr("Back to tutor", "العودة للمساعد التعليمي")}</Link></Button>
+        <Button variant="ghost" asChild><Link href="/student/st17"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100" />{tr("Back to tutor", "العودة للمساعد التعليمي")}</Link></Button>
         <span className="text-sm text-muted-foreground">ST18 · {tr("Settings", "الإعدادات")}</span>
       </div>
 
       <header className="space-y-2">
         <div className="flex items-center gap-2 text-sm text-muted-foreground"><Settings2 className="size-4" />{tr("Your learning experience", "تجربة التعلم الخاصة بك")}</div>
-        <h1 className="text-3xl font-semibold tracking-tight">{tr("Settings", "الإعدادات")}</h1>
+        <h1 className="notch-page-title">{tr("Settings", "الإعدادات")}</h1>
         <p className="max-w-2xl text-muted-foreground">{tr("Manage your language preferences and review how privacy controls work in this demo.", "تحكمي في تفضيلات اللغة وراجعي طريقة عمل إعدادات الخصوصية في هذا العرض التجريبي.")}</p>
       </header>
 
@@ -89,7 +89,7 @@ export function StudentSettings() {
               </div>
             </fieldset>
             <Button onClick={save}>{tr("Save preferences", "حفظ التفضيلات")}</Button>
-            {saved && <p role="status" className="flex items-center gap-2 text-sm text-emerald-700"><CheckCircle2 className="size-4" />{tr("Preferences saved in this browser.", "تم حفظ التفضيلات في هذا المتصفح.")}</p>}
+            {saved && <p role="status" className="flex items-center gap-2 text-sm text-success-ink"><CheckCircle2 className="size-4" />{tr("Preferences saved in this browser.", "تم حفظ التفضيلات في هذا المتصفح.")}</p>}
             {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
           </>}
         </CardContent>
@@ -123,6 +123,6 @@ export function StudentSettings() {
         <Button asChild><Link href="/student/st19">{tr("Continue to post-test", "الانتقال للاختبار البعدي")}</Link></Button>
       </div>
       <p className="text-xs text-muted-foreground">{tr("Prototype limitation: settings are browser-local. Interface language is saved for reuse by screens that read the ST3 preference record; this screen does not force every existing screen to switch language automatically.", "حدود النموذج: الإعدادات محفوظة محليًا في المتصفح. لغة الواجهة متاحة للشاشات اللي بتقرأ سجل تفضيلات ST3؛ الشاشة دي مش بتجبر كل الشاشات الحالية على تغيير اللغة تلقائيًا.")}</p>
-    </main>
+    </div>
   );
 }

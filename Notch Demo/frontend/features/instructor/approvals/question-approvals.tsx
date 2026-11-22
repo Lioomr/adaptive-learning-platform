@@ -278,7 +278,7 @@ function QuestionEditor({ review, onSave, onCancel }: { review: Review; onSave: 
         <legend className="mb-1 w-full text-xs font-semibold text-muted-foreground">Correct answer (applies to both languages)</legend>
         {en.options.map((o, i) => (
           <label key={i} className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring">
-            <input type="radio" name={`${uid}-answer`} checked={answerIndex === i} onChange={() => setAnswerIndex(i)} className="accent-[var(--color-primary)]" />
+            <input type="radio" name={`${uid}-answer`} checked={answerIndex === i} onChange={() => setAnswerIndex(i)} className="accent-primary" />
             {String.fromCharCode(65 + i)} · {o || "…"}
           </label>
         ))}

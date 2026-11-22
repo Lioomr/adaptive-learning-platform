@@ -173,10 +173,11 @@ test("onboarding acknowledgement and warning rule details", async ({
 test("Student → Instructor → Advisor mastery, warning trends, context and reset stay consistent", async ({
   page,
 }) => {
-  await page.goto("/student");
-  await page.getByRole("radio", { name: "A base case", exact: true }).check();
-  await page.getByRole("button", { name: "Submit answer" }).click();
-  await expect(page.getByTestId("mastery-after")).toHaveText("61%");
+  // This journey follows Recursion even when another question appears first on the overview.
+  await page.goto("/student/st10?conceptId=PY-REC");
+  await page.getByRole("button", { name: /A base case$/ }).click();
+  await page.getByRole("button", { name: "Submit assessment" }).click();
+  await expect(page.getByText("61%", { exact: true })).toBeVisible();
   await page.getByRole("link", { name: /Instructor IN1/ }).click();
   await expect(page).toHaveURL(/instructor/);
   await expect(

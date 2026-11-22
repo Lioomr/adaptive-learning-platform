@@ -27,7 +27,11 @@ export const shellArabic: Record<string, string> = {
   "Close navigation": "إغلاق التنقل",
   "Demo context": "سياق المحاكاة",
   Breadcrumb: "مسار التنقل",
-  "AdaptLearn demo home": "الرئيسية للمحاكاة",
+  "Notch demo home": "الرئيسية لمحاكاة Notch",
+  Appearance: "المظهر",
+  "System appearance": "مظهر النظام",
+  Light: "فاتح",
+  Dark: "داكن",
   "All people and outcomes are fictional and simulated":
     "جميع الأشخاص والنتائج افتراضية ومحاكاة",
   "Choose a fictional student and course, run the guided tour and reset the demo.":

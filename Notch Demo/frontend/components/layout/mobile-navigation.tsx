@@ -32,7 +32,7 @@ export function MobileNavigation({ role }: { role: Role }) {
         <div className="border-t border-sidebar-border p-3">
           <div className="rounded-lg bg-sidebar-accent p-3">
             <p className="flex items-center gap-2 text-xs font-semibold text-sidebar-strong">
-              <FlaskConical className="size-3.5 text-[#5eead4]" aria-hidden="true" />
+              <FlaskConical className="size-3.5 text-primary" aria-hidden="true" />
               {text("Simulation mode")}
             </p>
             <p className="mt-1 text-xs leading-5">{text("Fictional students. Progress is simulated and stays in this browser.")}</p>

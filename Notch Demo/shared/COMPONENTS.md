@@ -4,22 +4,18 @@ Shared components live under `frontend/components`. Portal-specific views live u
 
 ## Design tokens
 
-Defined once in `app/globals.css` (`:root` + Tailwind `@theme inline`); use the Tailwind classes, not hex values.
+The first-edition Notch color roles live in `frontend/app/notch-tokens.css`. Shared Tailwind utilities in `globals.css` bind to these roles. The Appearance control follows the system by default and saves a manual light or dark choice in the browser.
 
-| Token / class | Value | Use |
-|---|---|---|
-| `primary`, `brand` | `#1E2B58` | Primary actions, sidebar |
-| `brand-2` | `#2D4485` | Active navigation, links, focus ring |
-| `progress` | `#0D9488` | Progress fills, Proficient band |
-| `ai` | `#7C3AED` | "Simulated" / AI labels only |
-| `success` / `warning` / `danger` | `#16A34A` / `#D97706` / `#DC2626` | Mastered / Developing / Needs Support |
-| `background` | `#F8FAFC` | Canvas |
-| `foreground` | `#0F172A` | Text |
-| `muted-foreground` | `#475569` | Secondary text |
-| `*-soft` | tints | Badge and alert backgrounds |
-| `*-ink` | darker shades | **Provisional**: text on white/soft backgrounds so small text meets 4.5:1 (raw teal on white is 3.7:1) |
+| Utility | Light | Dark | Role |
+|---|---|---|---|
+| `background` | `#F7F6FB` | `#110C24` | Canvas |
+| `card` / `popover` | `#FFFFFF` | `#1B162D` / `#251E38` | Work surface / raised surface |
+| `foreground` / `muted-foreground` | `#19152B` / `#635F73` | `#F8F6FC` / `#BBB4CC` | Primary and secondary text |
+| `primary` / `primary-foreground` | `#5B36C8` / `#FFFFFF` | `#B79BFF` / `#1A102E` | Filled actions and labels |
+| `progress` / `ai` | Action violet / signature violet | Lavender / signature violet | Progress measures and tutoring cues |
+| `success`, `warning`, `danger`, `info` | Pine, amber, rose, blue | Mint, gold, pink, pale blue | Feedback. Use the corresponding `*-soft` background and `*-ink` label. |
 
-Layout constants (RULES.md §3): sidebar 260px, collapsed 72px, header 64px; content max width 1280px; gutters 16/24/32px by breakpoint; 12-column grids at ≥1280px. Radius 12px for cards; shadows are low-contrast. Fonts: Inter (English) and IBM Plex Sans Arabic (Arabic) via `next/font`.
+The sidebar is 260px wide (72px collapsed). The header is 64px high. Content has a 1440px maximum width and outer margins of 20px, 32px from 600px, and 48px from 960px. Fields and buttons use a 12px radius, cards 16px, and prominent panels 24px. `notch-type.css` provides the bilingual type scale and local web fonts.
 
 Breakpoints: `<768px` mobile (top bar + drawer, context strip under the top bar), `768–1023px` tablet (72px icon rail with hover/focus labels), `≥1024px` desktop (260px sidebar, user-collapsible to 72px), `≥1280px` context selectors move into the top bar.
 

@@ -13,7 +13,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 function CardTitle({ className, as: Comp = "h2", ...props }: React.ComponentProps<"h2"> & { as?: "h2" | "h3" | "h4" }) {
-  return <Comp data-slot="card-title" className={cn("text-[15px] font-semibold leading-6 tracking-tight text-foreground", className)} {...props} />;
+  return <Comp data-slot="card-title" className={cn("notch-type-h6 text-foreground", className)} {...props} />;
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<"p">) {

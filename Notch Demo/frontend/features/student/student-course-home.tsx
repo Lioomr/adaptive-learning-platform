@@ -39,21 +39,21 @@ export function StudentCourseHome() {
 
   if (!hydrated) {
     return (
-      <div className="mx-auto max-w-6xl p-6">
-        <div className="h-40 animate-pulse rounded-2xl bg-slate-100" />
+      <div className="mx-auto max-w-6xl">
+        <div className="h-40 animate-pulse rounded-2xl bg-muted" />
       </div>
     );
   }
 
   if (!course || !student) {
     return (
-      <div className="mx-auto max-w-5xl p-6">
+      <div className="mx-auto max-w-5xl">
         <Card>
           <CardContent className="p-8 text-center">
-            <h2 className="text-xl font-semibold text-slate-900">
+            <h2 className="text-xl font-semibold text-foreground">
               Course information is unavailable
             </h2>
-            <p className="mt-2 text-sm text-slate-500">
+            <p className="mt-2 text-sm text-muted-foreground">
               Please return to your student dashboard and select a course.
             </p>
             <Button asChild className="mt-5">
@@ -65,49 +65,37 @@ export function StudentCourseHome() {
     );
   }
 
-  const displayName =
-    "name" in student
-      ? String(student.name)
-      : "Student";
-
-  const courseName =
-    "title" in course
-      ? String(course.title)
-      : "name" in course
-        ? String(course.name)
-        : "Selected Course";
-
   return (
-    <div className="mx-auto w-full max-w-6xl space-y-6 p-4 pb-10 md:p-6">
+    <div className="mx-auto w-full max-w-6xl space-y-6">
       <PageHeader
-        title={courseName}
-        description={`Welcome back, ${displayName}. Continue learning at your own pace.`}
+        title={course.title}
+        description={`Welcome back, ${student.name}. Continue learning at your own pace.`}
       />
 
-      <Card className="overflow-hidden border-0 bg-[#1E2B58] text-white shadow-sm">
+      <Card className="overflow-hidden border-0 rounded-[24px] bg-(--notch-brand-ink) text-(--notch-brand-white)">
         <CardContent className="p-6 md:p-8">
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
             <div className="max-w-2xl">
-              <div className="mb-3 flex items-center gap-2 text-sm text-indigo-200">
+              <div className="mb-3 flex items-center gap-2 text-sm text-(--notch-brand-soft-lavender)">
                 <GraduationCap className="size-4" />
                 <span>Your learning journey</span>
               </div>
 
-              <h2 className="text-2xl font-bold md:text-3xl">
+              <h2 className="text-2xl font-semibold md:text-3xl">
                 Learn step by step.
               </h2>
 
-              <p className="mt-3 text-sm leading-6 text-indigo-100 md:text-base">
+              <p className="mt-3 text-sm leading-6 text-(--notch-brand-fog) md:text-base">
                 Explore the concepts in this course, open a learning
                 session, and check your understanding as you progress.
               </p>
             </div>
 
-            <div className="flex shrink-0 items-center gap-3 rounded-xl bg-white/10 p-4">
-              <BookOpen className="size-8 text-indigo-200" />
+            <div className="flex shrink-0 items-center gap-3 rounded-xl bg-(--notch-brand-white)/10 p-4">
+              <BookOpen className="size-8 text-(--notch-brand-soft-lavender)" />
               <div>
-                <p className="text-2xl font-bold">{concepts.length}</p>
-                <p className="text-xs text-indigo-200">Course concepts</p>
+                <p className="text-2xl font-semibold">{concepts.length}</p>
+                <p className="text-xs text-(--notch-brand-soft-lavender)">Course concepts</p>
               </div>
             </div>
           </div>
@@ -117,15 +105,15 @@ export function StudentCourseHome() {
       <section className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <h2 className="text-lg font-semibold text-foreground">
               Course content
             </h2>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm text-muted-foreground">
               Select a concept to open its learning session.
             </p>
           </div>
 
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+          <span className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
             {concepts.length} concepts
           </span>
         </div>
@@ -150,22 +138,22 @@ export function StudentCourseHome() {
                 className="transition-shadow hover:shadow-md"
               >
                 <CardContent className="flex flex-col gap-4 p-4 sm:flex-row sm:items-center">
-                  <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-[#1E2B58]">
+                  <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-secondary text-secondary-foreground">
                     <BookOpen className="size-5" />
                   </div>
 
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-xs font-semibold text-slate-400">
+                      <span className="text-xs font-semibold text-muted-foreground">
                         CONCEPT {String(index + 1).padStart(2, "0")}
                       </span>
                     </div>
 
-                    <h3 className="mt-1 font-semibold text-slate-900">
+                    <h3 className="mt-1 font-semibold text-foreground">
                       {conceptName}
                     </h3>
 
-                    <p className="mt-1 line-clamp-2 text-sm text-slate-500">
+                    <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
                       {conceptDescription}
                     </p>
                   </div>
@@ -173,7 +161,7 @@ export function StudentCourseHome() {
                   <Button asChild variant="outline" className="shrink-0">
                     <Link href={`/student/st8/${concept.id}`}>
                       Open lesson
-                      <ArrowRight className="ml-2 size-4" />
+                      <ArrowRight className="ms-2 size-4 rtl:-scale-x-100" />
                     </Link>
                   </Button>
                 </CardContent>
@@ -183,18 +171,18 @@ export function StudentCourseHome() {
         </div>
       </section>
 
-      <Card className="border-slate-200">
+      <Card className="border-border">
         <CardContent className="p-5">
           <div className="flex items-start gap-3">
-            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+            <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-warning-soft text-warning-ink">
               <Clock3 className="size-5" />
             </div>
 
             <div>
-              <h3 className="font-semibold text-slate-900">
+              <h3 className="font-semibold text-foreground">
                 Learn at your own pace
               </h3>
-              <p className="mt-1 text-sm leading-6 text-slate-500">
+              <p className="mt-1 text-sm leading-6 text-muted-foreground">
                 This demo displays the course concept structure. Full
                 lecture materials and lesson completion tracking are not
                 connected yet.
@@ -209,7 +197,7 @@ export function StudentCourseHome() {
           <Button asChild>
             <Link href={`/student/st8/${firstConcept.id}`}>
               Start learning
-              <ArrowRight className="ml-2 size-4" />
+              <ArrowRight className="ms-2 size-4 rtl:-scale-x-100" />
             </Link>
           </Button>
         </div>

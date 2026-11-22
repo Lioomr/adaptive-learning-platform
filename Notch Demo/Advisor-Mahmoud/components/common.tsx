@@ -35,7 +35,7 @@ export function Heading({
         <p className={styles.eyebrow}>
           {id} <span> / </span> {t("ADVISOR WORKSPACE", "مساحة المرشد")}
         </p>
-        <h1>{title}</h1>
+        <h1 className="notch-type-h1">{title}</h1>
         <p>{description}</p>
       </div>
       {action}
@@ -59,7 +59,7 @@ export function Panel({
     <section id={id} className={styles.panel}>
       <div className={styles.panelHeading}>
         <div>
-          <h2>{title}</h2>
+          <h2 className="notch-type-h4">{title}</h2>
           {description && <p>{description}</p>}
         </div>
         {action}
@@ -114,7 +114,7 @@ export function StudentLink({
         <>
           <StudentAvatar name={student.name} />
           <span>{nameOf(student.name, lang)}</span>
-          <ArrowUpRight size={16} aria-hidden="true" />
+          <ArrowUpRight className={styles.directionalIcon} size={16} aria-hidden="true" />
         </>
       )}
     </Link>

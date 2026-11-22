@@ -1,0 +1,359 @@
+@font-face {
+  font-family: "Inter";
+  src: url("/brand/fonts/inter.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/brand/fonts/plex-arabic-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/brand/fonts/plex-arabic-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/brand/fonts/plex-arabic-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  src: url("/brand/fonts/plex-arabic-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "STIX Two Math";
+  src: url("/brand/fonts/stix-two-math.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --notch-font-en: Inter, "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --notch-font-ar: "IBM Plex Sans Arabic", Inter, system-ui, sans-serif;
+  --notch-font-code: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --notch-font-math: "STIX Two Math", math, serif;
+}
+
+.notch-type-display {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 2.75rem;
+  line-height: 1.09091;
+  letter-spacing: -0.045em;
+}
+.notch-type-display:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.40909;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-display {
+    font-size: 4.5rem;
+    line-height: 1.05556;
+  }
+  .notch-type-display:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.38889;
+  }
+}
+
+:is(.notch-type-h1, .notch-page-title) {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 2.25rem;
+  line-height: 1.22222;
+  letter-spacing: -0.04em;
+}
+:is(.notch-type-h1, .notch-page-title):is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.44444;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  :is(.notch-type-h1, .notch-page-title) {
+    font-size: 3.25rem;
+    line-height: 1.15385;
+  }
+  :is(.notch-type-h1, .notch-page-title):is(:lang(ar), :dir(rtl)) {
+    line-height: 1.38462;
+  }
+}
+
+.notch-type-h2 {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 1.875rem;
+  line-height: 1.26667;
+  letter-spacing: -0.035em;
+}
+.notch-type-h2:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.46667;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  .notch-type-h2:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.4;
+  }
+}
+
+.notch-type-h3 {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 1.625rem;
+  line-height: 1.30769;
+  letter-spacing: -0.03em;
+}
+.notch-type-h3:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.46154;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-h3 {
+    font-size: 2rem;
+    line-height: 1.25;
+  }
+  .notch-type-h3:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.4375;
+  }
+}
+
+.notch-type-h4 {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.36364;
+  letter-spacing: -0.025em;
+}
+.notch-type-h4:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.54545;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-h4 {
+    font-size: 1.625rem;
+    line-height: 1.30769;
+  }
+  .notch-type-h4:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.46154;
+  }
+}
+
+.notch-type-h5 {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+.notch-type-h5:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-h5 {
+    font-size: 1.375rem;
+    line-height: 1.36364;
+  }
+  .notch-type-h5:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.54545;
+  }
+}
+
+.notch-type-h6 {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 1.125rem;
+  line-height: 1.44444;
+  letter-spacing: -0.01em;
+}
+.notch-type-h6:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.66667;
+  letter-spacing: 0;
+}
+
+.notch-type-body-large {
+  font-family: var(--notch-font-en);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.55556;
+  letter-spacing: 0em;
+}
+.notch-type-body-large:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.77778;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-body-large {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+  .notch-type-body-large:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.8;
+  }
+}
+
+.notch-type-body {
+  font-family: var(--notch-font-en);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.625;
+  letter-spacing: 0em;
+}
+.notch-type-body:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+.notch-type-body-small {
+  font-family: var(--notch-font-en);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.57143;
+  letter-spacing: 0em;
+}
+.notch-type-body-small:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.71429;
+  letter-spacing: 0;
+}
+
+.notch-type-caption {
+  font-family: var(--notch-font-en);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+.notch-type-caption:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.75;
+  letter-spacing: 0;
+}
+
+.notch-type-button {
+  font-family: var(--notch-font-en);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.46667;
+  letter-spacing: 0em;
+}
+.notch-type-button:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.73333;
+  letter-spacing: 0;
+}
+
+.notch-type-label {
+  font-family: var(--notch-font-en);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.42857;
+  letter-spacing: 0em;
+}
+.notch-type-label:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.71429;
+  letter-spacing: 0;
+}
+
+.notch-type-navigation {
+  font-family: var(--notch-font-en);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.46667;
+  letter-spacing: 0em;
+}
+.notch-type-navigation:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.73333;
+  letter-spacing: 0;
+}
+
+.notch-type-lesson {
+  font-family: var(--notch-font-en);
+  font-weight: 400;
+  font-size: 1.0625rem;
+  line-height: 1.70588;
+  letter-spacing: 0em;
+}
+.notch-type-lesson:is(:lang(ar), :dir(rtl)) {
+  font-family: var(--notch-font-ar);
+  line-height: 1.82353;
+  letter-spacing: 0;
+}
+@media (min-width: 900px) {
+  .notch-type-lesson {
+    font-size: 1.125rem;
+    line-height: 1.66667;
+  }
+  .notch-type-lesson:is(:lang(ar), :dir(rtl)) {
+    line-height: 1.83333;
+  }
+}
+
+.notch-type-math {
+  font-family: var(--notch-font-math);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.66667;
+  letter-spacing: 0em;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+@media (min-width: 900px) {
+  .notch-type-math {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+}
+
+.notch-type-code {
+  font-family: var(--notch-font-code);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.57143;
+  letter-spacing: 0em;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+@media (min-width: 900px) {
+  .notch-type-code {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+}
+
+/* Keep notation stable in both writing directions, including Emotion RTL roots. */
+code, pre, kbd, math {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

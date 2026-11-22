@@ -49,13 +49,13 @@ export function GuidedTourOverlay({ steps, step, onStepChange, onClose }: { step
   const last = step === steps.length - 1;
   return (
     <>
-      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-40 bg-[#0f172a]/25 animate-fade-in" />
+      <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-40 bg-[var(--notch-brand-ink)]/30 animate-fade-in" />
       <div
         role="dialog"
         aria-modal="false"
         aria-labelledby={titleId}
         aria-describedby={bodyId}
-        className="fixed inset-x-4 bottom-4 z-50 rounded-xl border border-border bg-card p-5 shadow-raised animate-fade-in sm:inset-x-auto sm:end-6 sm:bottom-6 sm:w-[380px]"
+        className="fixed inset-x-4 bottom-4 z-50 rounded-xl border border-border bg-popover p-5 shadow-raised animate-fade-in sm:inset-x-auto sm:end-6 sm:bottom-6 sm:w-[380px]"
       >
         <div className="flex items-start justify-between gap-3">
           <p className="text-xs font-semibold uppercase tracking-[0.1em] text-progress-ink">

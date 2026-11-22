@@ -62,7 +62,7 @@ export function Caseload({ students }: { students: Student[] }) {
           <Button asChild>
             <Link href="/advisor/ad5">
               {t("Review warnings", "مراجعة التنبيهات")}
-              <ArrowRight aria-hidden="true" />
+              <ArrowRight className={styles.directionalIcon} aria-hidden="true" />
             </Link>
           </Button>
         }

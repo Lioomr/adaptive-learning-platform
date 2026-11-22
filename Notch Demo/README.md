@@ -1,6 +1,6 @@
 # Notch Demo — Phase 1 UI Prototype
 
-**Project:** AdaptLearn (Adaptive Learning Platform)  
+**Project:** Notch (Adaptive Learning Platform)<br>
 **Repository:** Lioomr/adaptive-learning-platform  
 **Stage:** Phase 1 — frontend visual prototype with mock data and simulated user journeys.
 
@@ -28,7 +28,7 @@ Use the [Notch Demo — Phase 1 UI Prototype project](https://linear.app/adaptiv
 
 ## Sources and precedence
 1. **Full_User_Journey_Scenarios_enhanced(1).pdf** — authoritative user journeys and screen IDs.
-2. **adaptlearn_ui_ux_design_system.md** — authoritative visual system.
+2. [Notch Brand Guidelines and design kit](https://drive.google.com/drive/folders/1wCfqQ-K9QPmLwK5Cbq9_5BFats_mh7jA) — current visual identity and interface standards.
 3. [DEMO-AGREEMENTS.md](DEMO-AGREEMENTS.md) — Phase 1 coordination source of truth, subject to the authoritative references above.
 4. Other coordination documents — supporting scope, responsibilities, and acceptance criteria.
 If any apparent conflict exists, flag it for team review rather than silently rewriting the product journey.

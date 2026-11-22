@@ -53,12 +53,15 @@ function InstructorContent() {
 
   return (
     <div className="space-y-6">
-      <p className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
-        <Badge tone="brand">{course.title}</Badge>
-        <span>
-          Viewing as <span className="font-medium text-foreground">{instructor.name}</span> (simulated assignment)
-        </span>
-      </p>
+      <Card as="section" aria-label="Assigned course" className="relative isolate overflow-hidden rounded-[24px] border-(--notch-brand-slate) bg-(--notch-brand-ink) p-5 text-(--notch-brand-white) sm:p-8">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 end-0 -z-10 w-[28%] bg-[url('/brand/knowledge-layers.svg')] bg-size-[auto_118%] bg-center bg-no-repeat" />
+        <div className="max-w-[70%] space-y-2">
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-[32px] sm:leading-tight">{course.title}</h2>
+          <p className="text-sm leading-6 text-(--notch-brand-fog)">
+            Viewing as <span className="font-medium text-(--notch-brand-white)">{instructor.name}</span> (simulated assignment)
+          </p>
+        </div>
+      </Card>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Enrolled students" value={enrolled.length} icon={Users} hint="Fictional students in this course" />

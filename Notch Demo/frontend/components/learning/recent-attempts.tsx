@@ -30,7 +30,7 @@ export function RecentAttempts({ attempts, students, showStudent = false, showCo
               </p>
               <p className="mt-1.5 flex flex-wrap items-center gap-1.5 text-xs font-medium text-foreground">
                 <span className="tabular-nums text-muted-foreground">{a.previous}%</span>
-                <ArrowRight className="size-3 text-[#94a3b8] rtl:-scale-x-100" aria-hidden="true" />
+                <ArrowRight className="size-3 text-muted-foreground rtl:-scale-x-100" aria-hidden="true" />
                 <span className="tabular-nums">{a.mastery}%</span>
                 <span className={delta >= 0 ? "text-success-ink" : "text-danger-ink"}>
                   ({delta >= 0 ? "+" : ""}

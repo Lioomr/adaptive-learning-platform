@@ -1,6 +1,6 @@
 # Notch Demo frontend
 
-Shared Next.js application for the AdaptLearn Phase 1 demo. Everything is fictional and simulated; see [shared architecture](../shared/ARCHITECTURE.md) and the [demo agreement](../DEMO-AGREEMENTS.md).
+Shared Next.js application for the Notch Phase 1 demo. Everything is fictional and simulated; see [shared architecture](../shared/ARCHITECTURE.md) and the [demo agreement](../DEMO-AGREEMENTS.md).
 
 Requires Node 22.18 or later (for `npm test`).
 

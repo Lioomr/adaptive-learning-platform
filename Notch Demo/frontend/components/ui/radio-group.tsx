@@ -14,7 +14,7 @@ function RadioOption({ className, children, ...props }: React.ComponentProps<typ
     <RadioGroupPrimitive.Item
       data-slot="radio-option"
       className={cn(
-        "group flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 text-start text-sm font-medium text-foreground outline-none transition-colors hover:border-[#94a3b8] hover:bg-muted/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-60 data-[state=checked]:border-brand-2 data-[state=checked]:bg-secondary",
+        "group flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-card px-4 py-3 text-start text-sm font-medium text-foreground outline-none transition-colors hover:border-primary hover:bg-muted/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-60 data-[state=checked]:border-brand-2 data-[state=checked]:bg-secondary",
         className,
       )}
       {...props}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ArrowLeft, CheckCircle2, ClipboardList, MessageSquareText, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ClipboardList, MessageSquareText, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -44,16 +44,16 @@ export function StudentSurvey() {
   }
 
   return (
-    <main dir={ar ? "rtl" : "ltr"} className="mx-auto max-w-4xl space-y-5 p-4 pb-12 md:p-6">
-      <div className="flex items-center justify-between gap-3">
-        <Button variant="ghost" asChild><Link href="/student/st19"><ArrowLeft className="me-2 size-4" />{tr("Back to post-test", "العودة للاختبار البعدي")}</Link></Button>
-        <select aria-label="Language" className="rounded-md border bg-background px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}><option value="en">English</option><option value="ar">العربية</option></select>
+    <div lang={ar ? "ar" : "en"} dir={ar ? "rtl" : "ltr"} className="mx-auto max-w-4xl space-y-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <Button variant="ghost" asChild><Link href="/student/st19"><ArrowLeft className="me-2 size-4 rtl:-scale-x-100" />{tr("Back to post-test", "العودة للاختبار البعدي")}</Link></Button>
+        <select aria-label="Language" className="rounded-xl border border-input bg-card px-3 py-2 text-sm" value={language} onChange={e => setLanguage(e.target.value as "en" | "ar")}><option value="en">English</option><option value="ar">العربية</option></select>
       </div>
 
       <Card>
         <CardContent className="space-y-4 p-5">
           <div className="flex items-center gap-2 text-sm text-muted-foreground"><ClipboardList className="size-4" />ST20 · {tr("Learning experience survey", "استبيان تجربة التعلم")}</div>
-          <div className="flex items-start gap-3"><MessageSquareText className="mt-1 size-7 text-primary" /><div><h1 className="text-2xl font-semibold">{tr("Help us improve your learning experience", "ساعدينا نحسّن تجربة التعلم")}</h1><p className="mt-1 text-muted-foreground">{tr("Share a little feedback about the course and the learning journey you just completed. There are no right or wrong answers.", "شاركينا رأيك في الكورس ورحلة التعلم اللي خلصتيها. مفيش إجابات صح أو غلط.")}</p></div></div>
+          <div className="flex items-start gap-3"><MessageSquareText className="mt-1 size-7 text-primary" /><div><h1 className="notch-page-title">{tr("Help us improve your learning experience", "ساعدينا نحسّن تجربة التعلم")}</h1><p className="mt-1 text-muted-foreground">{tr("Share a little feedback about the course and the learning journey you just completed. There are no right or wrong answers.", "شاركينا رأيك في الكورس ورحلة التعلم اللي خلصتيها. مفيش إجابات صح أو غلط.")}</p></div></div>
           <div className="rounded-lg bg-muted/50 p-3 text-sm text-muted-foreground">{tr("Your feedback is optional in a real learning service. In this demo, required ratings are used only to demonstrate the survey flow.", "رأيك اختياري في الخدمة التعليمية الحقيقية. في الديمو، التقييمات المطلوبة هدفها توضيح خطوات الاستبيان فقط.")}</div>
         </CardContent>
       </Card>
@@ -110,11 +110,11 @@ export function StudentSurvey() {
               [tr("Confidence", "الثقة في الفهم"), confidence],
             ].map(([label, score]) => <div key={String(label)} className="rounded-lg border p-3"><p className="text-sm text-muted-foreground">{label}</p><p className="mt-1 text-xl font-semibold">{score}/5</p></div>)}
           </div>
-          <div className="flex flex-wrap gap-2"><Button asChild><Link href="/student/st21">{tr("View course summary", "عرض ملخص الكورس")}<ArrowLeft className="ms-2 size-4" /></Link></Button><Button variant="outline" asChild><Link href="/student/st19">{tr("Review post-test", "مراجعة الاختبار البعدي")}</Link></Button></div>
+          <div className="flex flex-wrap gap-2"><Button asChild><Link href="/student/st21">{tr("View course summary", "عرض ملخص الكورس")}<ArrowRight className="ms-2 size-4 rtl:-scale-x-100" /></Link></Button><Button variant="outline" asChild><Link href="/student/st19">{tr("Review post-test", "مراجعة الاختبار البعدي")}</Link></Button></div>
         </CardContent>
       </Card>}
 
       <p className="text-xs text-muted-foreground">{tr("Demo limitation: survey answers remain in this page session only. They are not saved to the shared learning store, sent to a server, or used for analytics. The survey is an illustrative prototype, not a validated research questionnaire.", "حدود الديمو: إجابات الاستبيان موجودة خلال جلسة الصفحة فقط، ومش بتتحفظ في سجل التعلم المشترك أو بتتبعت لسيرفر أو بتستخدم في تحليلات. ده نموذج توضيحي مش استبيان بحثي معتمد.")}</p>
-    </main>
+    </div>
   );
 }

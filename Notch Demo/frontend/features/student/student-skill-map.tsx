@@ -11,7 +11,7 @@ import {
   Info,
   Map as MapIcon,
   RotateCcw,
-  Sparkles,
+  Compass,
   Target,
 } from "lucide-react";
 
@@ -255,19 +255,19 @@ export function StudentSkillMap() {
 
   if (!hydrated) {
     return (
-      <main className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-6xl">
         <div className="animate-pulse space-y-5">
           <div className="h-8 w-56 rounded-lg bg-muted" />
           <div className="h-24 rounded-xl bg-muted" />
           <div className="h-64 rounded-xl bg-muted" />
         </div>
-      </main>
+      </div>
     );
   }
 
   if (!student || !course || items.length === 0) {
     return (
-      <main className="mx-auto w-full max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-5xl">
         <Card>
           <CardContent className="py-8 text-center">
             <Info className="mx-auto size-8 text-muted-foreground" />
@@ -281,7 +281,7 @@ export function StudentSkillMap() {
             </p>
           </CardContent>
         </Card>
-      </main>
+      </div>
     );
   }
 
@@ -435,9 +435,9 @@ export function StudentSkillMap() {
   }
 
   return (
-    <main
-      dir={isArabic ? "rtl" : "ltr"}
-      className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 lg:px-8"
+    <div
+      lang={isArabic ? "ar" : "en"} dir={isArabic ? "rtl" : "ltr"}
+      className="mx-auto w-full max-w-6xl"
     >
       <PageHeader
         eyebrow={content.eyebrow}
@@ -448,11 +448,11 @@ export function StudentSkillMap() {
       <div className="space-y-6">
         {/* Personalized starting recommendation */}
         <Card className="overflow-hidden">
-          <div className="bg-gradient-to-br from-primary/[0.07] via-card to-card p-5 sm:p-6">
+          <div className="bg-card p-5 sm:p-6">
             <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="min-w-0">
                 <div className="flex items-center gap-2 text-sm font-semibold text-primary">
-                  <Sparkles className="size-4" />
+                  <Compass className="size-4" />
                   {content.summaryTitle}
                 </div>
 
@@ -865,7 +865,7 @@ export function StudentSkillMap() {
                       {(questionLanguage === "en" ||
                         questionLanguage === "both") && (
                         <p
-                          dir="ltr"
+                          lang="en" dir="ltr"
                           className="mt-2 text-sm font-semibold leading-6 text-foreground"
                         >
                           {challengeQuestion.prompt}
@@ -875,7 +875,7 @@ export function StudentSkillMap() {
                       {(questionLanguage === "ar" ||
                         questionLanguage === "both") && (
                         <p
-                          dir="rtl"
+                          lang="ar" dir="rtl"
                           className="mt-2 text-sm font-semibold leading-6 text-foreground"
                         >
                           {translatedQuestion.prompt}
@@ -909,14 +909,14 @@ export function StudentSkillMap() {
                             <span className="min-w-0">
                               {(questionLanguage === "en" ||
                                 questionLanguage === "both") && (
-                                <span dir="ltr" className="block">
+                                <span lang="en" dir="ltr" className="block">
                                   {option}
                                 </span>
                               )}
 
                               {(questionLanguage === "ar" ||
                                 questionLanguage === "both") && (
-                                <span dir="rtl" className="mt-1 block">
+                                <span lang="ar" dir="rtl" className="mt-1 block">
                                   {translatedOption}
                                 </span>
                               )}
@@ -938,7 +938,7 @@ export function StudentSkillMap() {
                         onClick={handleChallengeSubmit}
                       >
                         {content.checkAnswer}
-                        <ArrowRight className="size-4" />
+                        <ArrowRight className="size-4 rtl:-scale-x-100" />
                       </Button>
                     ) : (
                       <div
@@ -971,7 +971,7 @@ export function StudentSkillMap() {
                           {(questionLanguage === "en" ||
                             questionLanguage === "both") && (
                             <p
-                              dir="ltr"
+                              lang="en" dir="ltr"
                               className="mt-1 text-sm leading-6 text-foreground"
                             >
                               {challengeQuestion.explanation}
@@ -981,7 +981,7 @@ export function StudentSkillMap() {
                           {(questionLanguage === "ar" ||
                             questionLanguage === "both") && (
                             <p
-                              dir="rtl"
+                              lang="ar" dir="rtl"
                               className="mt-1 text-sm leading-6 text-foreground"
                             >
                               {translatedQuestion.explanation}
@@ -1045,7 +1045,7 @@ export function StudentSkillMap() {
         <div className="flex flex-col gap-3 rounded-xl border border-border bg-card p-5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-start gap-3">
             <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-              <Sparkles className="size-5" />
+              <Compass className="size-5" />
             </span>
 
             <div>
@@ -1076,6 +1076,6 @@ export function StudentSkillMap() {
           {content.simulatedNote}
         </p>
       </div>
-    </main>
+    </div>
   );
 }

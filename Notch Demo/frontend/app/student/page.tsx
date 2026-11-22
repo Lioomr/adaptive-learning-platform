@@ -1,39 +1,26 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { StudentOverview } from "@/features/student/student-overview";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { ArrowRight, Sparkles } from "lucide-react";
 
 export const metadata: Metadata = { title: "Student Portal" };
 
 export default function Page() {
   return (
-    <>
-      <div className="mx-auto w-full max-w-6xl px-4 pt-5 sm:px-6 lg:px-8">
-        <Card className="border-primary/20 bg-primary/[0.03]">
-          <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-start gap-3">
-              <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">
-                <Sparkles className="size-5" />
-              </span>
-              <div>
-                <h2 className="font-semibold">Start your student journey</h2>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  Set up your profile, preferences, complete a diagnostic, and explore your personalized learning space.
-                </p>
-              </div>
-            </div>
-            <Button asChild className="shrink-0">
-              <Link href="/student/st1">
-                Start journey
-                <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-      <StudentOverview />
-    </>
+    <StudentOverview>
+      <section aria-labelledby="journey-heading" className="relative isolate mb-8 overflow-hidden rounded-2xl border border-[var(--notch-brand-violet-dark)] bg-[var(--notch-brand-ink)] p-6 text-white sm:p-8">
+        <div aria-hidden="true" className="pointer-events-none absolute bottom-0 end-0 -z-10 h-20 w-28 bg-[url('/brand/adaptive-path.svg')] bg-contain bg-center bg-no-repeat min-[360px]:w-36 sm:inset-y-0 sm:h-auto sm:w-2/5" />
+        <div className="sm:max-w-[58%]">
+          <h2 id="journey-heading" className="notch-type-h4">Start your student journey</h2>
+          <p className="mt-2 max-w-xl text-[var(--notch-brand-fog)]">
+            Set up your profile, choose your preferences, and take a diagnostic to find your starting point.
+          </p>
+          <Button asChild className="mt-4 bg-[var(--notch-brand-soft-lavender)] text-[var(--notch-brand-ink)] hover:bg-[var(--notch-brand-violet-light)] active:bg-[var(--notch-brand-soft-lavender)]">
+            <Link href="/student/st1">Start journey <ArrowRight className="rtl:-scale-x-100" aria-hidden="true" /></Link>
+          </Button>
+        </div>
+      </section>
+    </StudentOverview>
   );
 }

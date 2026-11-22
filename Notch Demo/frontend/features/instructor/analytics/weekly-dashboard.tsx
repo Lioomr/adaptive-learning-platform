@@ -211,7 +211,7 @@ function Heatmap({ students, courseId }: { students: Student[]; courseId: Course
             <EmptyState title="No enrolled students" description="Students appear here once enrolled in this course." />
           </div>
         ) : (
-          <div className="overflow-x-auto px-5 sm:px-6" tabIndex={0} role="region" aria-labelledby="heatmap-heading">
+          <div className="relative overflow-x-auto px-5 sm:px-6" tabIndex={0} role="region" aria-labelledby="heatmap-heading">
             <table className="w-full min-w-[760px] border-separate border-spacing-1 text-xs">
               <caption className="sr-only">Sample mastery per student and concept in {course?.title}, in percent with band</caption>
               <thead>

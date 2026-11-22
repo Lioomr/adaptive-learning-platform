@@ -9,7 +9,7 @@ import type { Concept, CourseId, Student } from "@/types";
 export function ConceptProgress({ student, courseId, highlightId, columns = 2 }: { student: Student; courseId: CourseId; highlightId?: string; columns?: 1 | 2 }) {
   const items = conceptsForCourse(courseId);
   return (
-    <ul className={cn("grid gap-x-6", columns === 2 && "sm:grid-cols-2")} role="list">
+    <ul className={cn("grid grid-cols-1 gap-x-6", columns === 2 && "sm:grid-cols-2")} role="list">
       {items.map(c => {
         const value = student.mastery[c.id];
         const rec = recommendation(student, c.id);
@@ -47,7 +47,7 @@ export function PrerequisitePath({ student, concept }: { student: Student; conce
               {findConcept(id)?.title} <span className="tabular-nums">{value}%</span>
               <span className="sr-only">{ready ? "(ready)" : "(review first)"}</span>
             </span>
-            <ArrowRight className="size-3.5 text-[#94a3b8] rtl:-scale-x-100" aria-hidden="true" />
+            <ArrowRight className="size-3.5 text-muted-foreground rtl:-scale-x-100" aria-hidden="true" />
           </li>
         );
       })}
