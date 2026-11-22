@@ -5,7 +5,6 @@ import { useState } from "react";
 import { ArrowLeft, CheckCircle2, ClipboardList, MessageSquareText, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 
 type Rating = 1 | 2 | 3 | 4 | 5;
 
@@ -92,7 +91,7 @@ export function StudentSurvey() {
 
           <div className="space-y-2">
             <label htmlFor="survey-feedback" className="font-medium">{tr("7. Anything else you'd like us to know? (Optional)", "7. في أي ملاحظات أو اقتراحات تانية؟ (اختياري)")}</label>
-            <Textarea id="survey-feedback" value={feedback} onChange={e => setFeedback(e.target.value)} placeholder={tr("Tell us what worked well or what could be better…", "اكتبي إيه اللي كان مفيد وإيه اللي ممكن يتحسن...")} rows={4} />
+            <textarea id="survey-feedback" value={feedback} onChange={e => setFeedback(e.target.value)} placeholder={tr("Tell us what worked well or what could be better…", "اكتبي إيه اللي كان مفيد وإيه اللي ممكن يتحسن...")} rows={4} className="w-full resize-y rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm outline-none placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-ring" />
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-4">
