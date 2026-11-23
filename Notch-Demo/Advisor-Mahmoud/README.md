@@ -15,7 +15,7 @@ Phase 1 implementation for MAH-20 and MAH-23–27, coordinated by MAH-6. This is
 3. From this workspace:
 
    ```sh
-   cd "/Users/mahmoudusama/Desktop/advisor portal/Notch Demo/frontend"
+   cd "/Users/mahmoudusama/Desktop/advisor portal/Notch-Demo/frontend"
    npm ci
    npm run dev
    ```
@@ -67,7 +67,7 @@ Use **العربية** / **English** to switch advisor content and shared chrome
 
 ## Checks
 
-From `Notch Demo/frontend` with Node 24:
+From `Notch-Demo/frontend` with Node 24:
 
 ```sh
 npm run lint
@@ -93,7 +93,7 @@ Browser tests start the production server on port 3000 (or reuse an existing one
 ## Troubleshooting
 
 - **`node: bad option` or TypeScript test errors:** run `nvm use 24`, then retry.
-- **Missing modules:** run `npm ci` inside `Notch Demo/frontend`, not in the owner directory.
+- **Missing modules:** run `npm ci` inside `Notch-Demo/frontend`, not in the owner directory.
 - **Browser executable missing:** run `npx playwright install chromium`.
 - **Port 3000 occupied:** stop the other terminal with Control+C, or use `npm run dev -- --port 3001` and open the URL printed in that terminal. The browser tests expect port 3000.
 - **Old mastery values:** use the Demo Control Center reset. Browser storage is local to this browser; corrupt stored demo data is validated and reset by the existing foundation.

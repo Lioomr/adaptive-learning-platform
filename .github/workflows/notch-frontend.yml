@@ -2,25 +2,25 @@ name: Notch frontend checks
 on:
   pull_request:
     paths:
-      - "Notch Demo/frontend/**"
+      - "Notch-Demo/frontend/**"
       - ".github/workflows/notch-frontend.yml"
   push:
     branches: [main]
     paths:
-      - "Notch Demo/frontend/**"
+      - "Notch-Demo/frontend/**"
 jobs:
   checks:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: Notch Demo/frontend
+        working-directory: Notch-Demo/frontend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: Notch Demo/frontend/package-lock.json
+          cache-dependency-path: Notch-Demo/frontend/package-lock.json
       - run: npm ci
       - run: npm run lint
       - run: npx tsc --noEmit

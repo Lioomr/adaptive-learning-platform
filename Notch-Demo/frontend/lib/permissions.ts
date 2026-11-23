@@ -4,7 +4,7 @@ import type { CourseId, Role } from "@/types";
 /**
  * Simulated, client-side permission model for the Phase 1 demo.
  * This prevents accidental UI misuse; it is NOT authentication or security
- * authorization. See Notch Demo/shared/ROLE-PERMISSIONS.md.
+ * authorization. See Notch-Demo/shared/ROLE-PERMISSIONS.md.
  */
 export type Permission =
   | "assessment:submit" // record an assessment for the selected fictional student

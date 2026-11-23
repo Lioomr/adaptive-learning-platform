@@ -1,6 +1,6 @@
 # Architecture and current status
 
-One Next.js 16 App Router application in `Notch Demo/frontend` (React 19, TypeScript, Tailwind CSS 4, shadcn/ui on Radix primitives, Lucide, Zustand, Recharts; React Flow is installed for later skill-map screens). Django is independent and untouched. There is no database, real authentication, AI model or network API: everything is a client-side, fictional simulation.
+One Next.js 16 App Router application in `Notch-Demo/frontend` (React 19, TypeScript, Tailwind CSS 4, shadcn/ui on Radix primitives, Lucide, Zustand, Recharts; React Flow is installed for later skill-map screens). Django is independent and untouched. There is no database, real authentication, AI model or network API: everything is a client-side, fictional simulation.
 
 The four routes are **shared-foundation previews**, not the 49 portal screens (ST1–ST21, IN1–IN19, AD1–AD6, SYS1–SYS3).
 

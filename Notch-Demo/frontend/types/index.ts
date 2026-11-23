@@ -1,6 +1,6 @@
 /**
  * Shared Phase 1 data contract. Every portal reads these shapes from the single
- * shared store; see Notch Demo/shared/DATA-CONTRACT.md.
+ * shared store; see Notch-Demo/shared/DATA-CONTRACT.md.
  */
 export type CourseId = "C-PY" | "C-MATH";
 

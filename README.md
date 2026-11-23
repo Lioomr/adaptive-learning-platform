@@ -2,13 +2,13 @@
 
 Backend starter for the Adaptive Learning Platform graduation project.
 
-## Start Here — Notch Demo
+## Start Here — Notch-Demo
 
-AdaptLearn's Phase 1 Notch Demo is a frontend-only, interactive simulation of two courses: **Introduction to Python** and **Mathematics**. It connects the Student portal (Menna), Instructor portal (Omar), and Academic Advisor portal (Mahmoud) using fictional shared data and simulated behavior. It does not require a real AI engine or backend.
+AdaptLearn's Phase 1 Notch-Demo is a frontend-only, interactive simulation of two courses: **Introduction to Python** and **Mathematics**. It connects the Student portal (Menna), Instructor portal (Omar), and Academic Advisor portal (Mahmoud) using fictional shared data and simulated behavior. It does not require a real AI engine or backend.
 
-The shared foundation uses Next.js App Router, TypeScript, Tailwind CSS and Zustand in `Notch Demo/frontend`; it is incomplete and subject to Integration Lead review. Start with the [demo agreement](Notch%20Demo/DEMO-AGREEMENTS.md), [screen map](Notch%20Demo/SCREEN-MAP.md), [mock-data contract](Notch%20Demo/MOCK-DATA-CONTRACT.md), and [collaboration rules](Notch%20Demo/RULES.md). Portal tasks: [Menna](Notch%20Demo/Student-Menna/TASKS.md), [Omar](Notch%20Demo/Instructor-Omar/TASKS.md), [Mahmoud](Notch%20Demo/Advisor-Mahmoud/TASKS.md).
+The shared foundation uses Next.js App Router, TypeScript, Tailwind CSS and Zustand in `Notch-Demo/frontend`; it is incomplete and subject to Integration Lead review. Start with the [demo agreement](Notch%20Demo/DEMO-AGREEMENTS.md), [screen map](Notch%20Demo/SCREEN-MAP.md), [mock-data contract](Notch%20Demo/MOCK-DATA-CONTRACT.md), and [collaboration rules](Notch%20Demo/RULES.md). Portal tasks: [Menna](Notch%20Demo/Student-Menna/TASKS.md), [Omar](Notch%20Demo/Instructor-Omar/TASKS.md), [Mahmoud](Notch%20Demo/Advisor-Mahmoud/TASKS.md).
 
-Use the [Linear project](https://linear.app/adaptive-learning/project/notch-demo-phase-1-ui-prototype-0e80fac4810c) for assigned work, progress, submission evidence and review; GitHub is the source of code and documentation. Submit a PR or commit link, screenshots or video, completed screens, testing notes and known gaps on the assigned issue. Done requires acceptance and review. See the [Notch Demo guide](Notch%20Demo/README.md).
+Use the [Linear project](https://linear.app/adaptive-learning/project/notch-demo-phase-1-ui-prototype-0e80fac4810c) for assigned work, progress, submission evidence and review; GitHub is the source of code and documentation. Submit a PR or commit link, screenshots or video, completed screens, testing notes and known gaps on the assigned issue. Done requires acceptance and review. See the [Notch-Demo guide](Notch%20Demo/README.md).
 
 ## Existing Django backend
 

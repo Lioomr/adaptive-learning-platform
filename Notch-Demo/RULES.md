@@ -1,4 +1,4 @@
-# Shared development rules — Notch Demo
+# Shared development rules — Notch-Demo
 
 ## 1. Scope
 Phase 1 is **UI-first**. Do not implement a real database, Django API integration, model inference, retrieval engine, BKT/DKT/IRT, or live learning analytics for the demo. A visually realistic interface and controlled interactions are sufficient. Revisit these decisions in later phases.
