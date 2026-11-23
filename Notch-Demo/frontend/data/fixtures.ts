@@ -73,7 +73,7 @@ export const advisors: Advisor[] = [
 ];
 
 /**
- * Small illustrative bank only (2 of the required 100 questions).
+ * Small illustrative bank only; this is not the required 100-question bank.
  * The independently reviewed bank is tracked in MAH-28 and is a release blocker.
  */
 export const questions: Question[] = [
@@ -103,6 +103,15 @@ export const questions: Question[] = [
     options: ["3", "6", "9"],
     answer: "6",
     explanation: "The derivative is 2x, which equals 6 at x = 3.",
+  },
+  {
+    id: "MA-ARITH-001",
+    courseId: "C-MATH",
+    conceptId: "MA-ARITH",
+    prompt: "What is the value of 8 + 4 × 2?",
+    options: ["16", "24", "20"],
+    answer: "16",
+    explanation: "Multiply before adding: 4 × 2 = 8, then 8 + 8 = 16.",
   },
 ];
 

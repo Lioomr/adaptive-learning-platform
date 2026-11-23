@@ -78,6 +78,39 @@ test("unanswered questions count as incorrect", () => {
   assert.equal(r.attempt.mastery, 21);
 });
 
+const arithmeticExamples: { name: string; answers: Record<string, string>; score: number; mastery: number }[] = [
+  { name: "correct", answers: { "MA-ARITH-001": "16" }, score: 100, mastery: 93 },
+  { name: "unanswered", answers: {}, score: 0, mastery: 53 },
+];
+
+for (const example of arithmeticExamples) {
+  test(`Arithmetic Foundations ${example.name} answer scores and persists`, () => {
+    const base: DemoData = { ...baselineData(), courseId: "C-MATH" };
+    const input = nour({
+      courseId: "C-MATH",
+      conceptId: "MA-ARITH",
+      questionIds: ["MA-ARITH-001"],
+      answers: example.answers,
+    });
+
+    const result = apply(base, input);
+    assert.ok(result.ok);
+    assert.equal(result.attempt.previous, 88);
+    assert.equal(result.attempt.score, example.score);
+    assert.equal(result.attempt.mastery, example.mastery);
+    assert.equal(result.data.students.find(s => s.id === "S-NOUR")!.mastery["MA-ARITH"], example.mastery);
+    assert.deepEqual(result.data.attempts, [result.attempt]);
+
+    const restored = validateDemoData(JSON.parse(JSON.stringify(result.data)));
+    assert.ok(restored.ok, "the arithmetic attempt must survive persisted-state validation");
+    assert.equal(restored.data.courseId, "C-MATH");
+    assert.deepEqual(restored.data.attempts[0].questionIds, ["MA-ARITH-001"]);
+    assert.deepEqual(restored.data.attempts[0].answers, example.answers);
+    assert.equal(restored.data.attempts[0].score, example.score);
+    assert.equal(restored.data.students.find(s => s.id === "S-NOUR")!.mastery["MA-ARITH"], example.mastery);
+  });
+}
+
 test("idempotent retry, conflicting reuse and separate attempts", () => {
   const first = apply(baselineData(), nour());
   assert.ok(first.ok);
