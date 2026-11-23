@@ -101,6 +101,15 @@ function parsePreferences(raw: string): Preferences {
 }
 
 function getQuestionCopy(questionId: string): QuestionCopy | null {
+  if (questionId === "PY-VAR-001") {
+    return {
+      prompt: "أي عبارة تسند القيمة 10 بشكل صحيح إلى متغير اسمه age في بايثون؟",
+      options: ["age = 10", "10 = age", "var age == 10"],
+      explanation:
+        "في بايثون، نستخدم العامل = لإسناد قيمة، مع اسم المتغير على اليسار والقيمة على اليمين.",
+    };
+  }
+
   if (questionId === "PY-REC-001") {
     return {
       prompt:
@@ -275,7 +284,7 @@ export function StudentDiagnostic() {
 
   if (!course || !question || !concept || !student || !questionCopy) {
     return (
-      <>
+      <div lang={isArabic ? "ar" : "en"} dir={isArabic ? "rtl" : "ltr"} className="space-y-6">
         <PageHeader
           eyebrow={text.eyebrow}
           title={text.title}
@@ -287,13 +296,21 @@ export function StudentDiagnostic() {
               <AlertCircle className="size-5 text-warning-ink" aria-hidden="true" />
               {text.unavailable}
             </div>
-            <Button variant="outline" onClick={() => router.push("/student")}>
-              <ArrowLeft className="rtl:-scale-x-100" aria-hidden="true" />
-              {text.back}
-            </Button>
+            <div className="flex flex-wrap gap-3">
+              {course && student && (
+                <Button onClick={() => router.push("/student/st5")}>
+                  {text.continue}
+                  <ArrowRight className="rtl:-scale-x-100" aria-hidden="true" />
+                </Button>
+              )}
+              <Button variant="outline" onClick={() => router.push("/student")}>
+                <ArrowLeft className="rtl:-scale-x-100" aria-hidden="true" />
+                {text.back}
+              </Button>
+            </div>
           </CardContent>
         </Card>
-      </>
+      </div>
     );
   }
 
