@@ -260,7 +260,16 @@ export function StudentDiagnostic() {
   const [isPaused, setIsPaused] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
 
-  const questionCopy = question ? getQuestionCopy(question.id) : null;
+  // Keep ST4 usable whenever the selected course has a question.
+  // Prefer a curated Arabic translation, but fall back to the fixture's English
+  // content instead of rendering the unavailable-question state.
+  const questionCopy = question
+    ? getQuestionCopy(question.id) ?? {
+        prompt: question.prompt,
+        options: question.options,
+        explanation: question.explanation,
+      }
+    : null;
   const concept = question
     ? concepts.find((item) => item.id === question.conceptId)
     : undefined;
