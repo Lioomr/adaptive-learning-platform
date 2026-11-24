@@ -1,4 +1,5 @@
 "use client";
+import { LanguageControl } from "@/features/student/portal/language-control";
 import { useShellCopy } from "@/components/layout/shell-copy";
 import Link from "next/link";
 import { ChevronRight, FlaskConical } from "lucide-react";
@@ -11,7 +12,7 @@ import { portalFor, routes } from "@/lib/routes";
 import type { Role } from "@/types";
 
 /** 64px sticky top bar: navigation trigger (mobile), breadcrumb, context (≥1280px) and demo status. */
-export function Topbar({ role }: { role: Role }) {
+export function Topbar({ role, studentWorkspace = false }: { role: Role; studentWorkspace?: boolean }) {
   const { text } = useShellCopy();
   const portal = portalFor(role);
   return (
@@ -33,7 +34,8 @@ export function Topbar({ role }: { role: Role }) {
           </ol>
         </nav>
         {/* The Control Center has its own large context selectors. */}
-        {role !== "demo" ? <ContextControls hideLabel className="hidden w-[420px] shrink-0 xl:grid" /> : null}
+        {role !== "demo" && !studentWorkspace ? <ContextControls hideLabel className="hidden w-[420px] shrink-0 xl:grid" /> : null}
+        {role === "student" && <LanguageControl />}
         <AppearanceControl />
         <Badge tone="ai" className="hidden sm:inline-flex" title={text("All people and outcomes are fictional and simulated")}>
           <FlaskConical aria-hidden="true" />
@@ -45,9 +47,9 @@ export function Topbar({ role }: { role: Role }) {
 }
 
 /** Context strip below the top bar on screens narrower than 1280px. */
-export function ContextStrip({ role }: { role: Role }) {
+export function ContextStrip({ role, studentWorkspace = false }: { role: Role; studentWorkspace?: boolean }) {
   const { text } = useShellCopy();
-  if (role === "demo") return null;
+  if (role === "demo" || studentWorkspace) return null;
   return (
     <section aria-label={text("Demo context")} className="border-b border-border bg-card px-[var(--notch-grid-margin)] py-3 xl:hidden">
       <ContextControls className="mx-auto max-w-[1280px] sm:max-w-md sm:ms-0" />

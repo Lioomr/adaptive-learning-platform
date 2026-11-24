@@ -26,7 +26,7 @@ export function MobileNavigation({ role }: { role: Role }) {
         <SheetTitle className="sr-only">{text("Navigation")}</SheetTitle>
         <SheetDescription id="mobile-nav-description" className="sr-only">{text("Switch between the demo portals.")}</SheetDescription>
         <nav aria-label={text("Portals")} className="flex-1 overflow-y-auto px-3 py-5">
-          <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sidebar-muted">{text("Workspaces")}</p>
+          <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sidebar-muted">{text(role === "student" ? "Student" : "Workspaces")}</p>
           <RoleSwitcher active={role} variant="drawer" onNavigate={() => setOpen(false)} />
         </nav>
         <div className="border-t border-sidebar-border p-3">

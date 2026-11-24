@@ -1,15 +1,15 @@
 import { Suspense } from "react";
-import { AppShell } from "@/components/layout/app-shell";
-import { StudentJourneyNavigation } from "@/features/student/student-journey-navigation";
-
-/** Fixes the simulated role for every screen under /student. */
+import { StudentPortalLayout } from "@/features/student/portal/context";
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <AppShell role="student">
-      <Suspense fallback={<div className="mx-auto max-w-6xl pt-4"><div className="h-12 animate-pulse rounded bg-muted" /></div>}>
-        <StudentJourneyNavigation />
-      </Suspense>
-      {children}
-    </AppShell>
+    <Suspense
+      fallback={
+        <div className="min-h-dvh bg-background p-8">
+          <div className="h-12 w-48 animate-pulse rounded-xl bg-muted" />
+        </div>
+      }
+    >
+      <StudentPortalLayout>{children}</StudentPortalLayout>
+    </Suspense>
   );
 }

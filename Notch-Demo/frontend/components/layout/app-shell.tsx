@@ -13,7 +13,7 @@ import type { Role } from "@/types";
  * <AppShell role="…">, which fixes the simulated role for everything inside it.
  * Portal screens (ST/IN/AD) only render page content; they never duplicate the shell.
  */
-export function AppShell({ role, children }: { role: Role; children: React.ReactNode }) {
+export function AppShell({ role, children, studentWorkspace = false }: { role: Role; children: React.ReactNode; studentWorkspace?: boolean }) {
   const { text } = useShellCopy();
   const collapsed = useUi(s => s.sidebarCollapsed);
   return (
@@ -31,8 +31,8 @@ export function AppShell({ role, children }: { role: Role; children: React.React
           collapsed ? "lg:ps-[var(--sidebar-collapsed)]" : "lg:ps-[var(--sidebar-width)]",
         )}
       >
-        <Topbar role={role} />
-        <ContextStrip role={role} />
+        <Topbar role={role} studentWorkspace={studentWorkspace} />
+        <ContextStrip role={role} studentWorkspace={studentWorkspace} />
         <main id="main-content" tabIndex={-1} className="mx-auto w-full min-w-0 max-w-[var(--notch-grid-max)] flex-1 px-[var(--notch-grid-margin)] pb-16 pt-6 outline-none sm:pt-8">
           <StorageNotice />
           {children}

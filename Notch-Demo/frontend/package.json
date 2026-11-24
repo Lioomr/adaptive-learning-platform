@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./tests/setup/register.mjs --test \"tests/**/*.test.ts\"",
     "test:advisor": "playwright test --config playwright.advisor.config.ts",
-    "lint:advisor": "cd ../Advisor-Mahmoud && node ../frontend/node_modules/eslint/bin/eslint.js ."
+    "lint:advisor": "cd ../Advisor-Mahmoud && node ../frontend/node_modules/eslint/bin/eslint.js .",
+    "test:student": "playwright test --config playwright.student.config.ts"
   },
   "dependencies": {
     "@xyflow/react": "^12.12.1",

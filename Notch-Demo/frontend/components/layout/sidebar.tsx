@@ -31,7 +31,7 @@ export function Sidebar({ role }: { role: Role }) {
       </div>
 
       <nav aria-label={text("Portals")} className="flex-1 px-3 py-5">
-        <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sidebar-muted md:max-lg:sr-only lg:group-data-[collapsed=true]/sidebar:sr-only">{text("Workspaces")}</p>
+        <p className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sidebar-muted md:max-lg:sr-only lg:group-data-[collapsed=true]/sidebar:sr-only">{text(role === "student" ? "Student" : "Workspaces")}</p>
         <RoleSwitcher active={role} />
       </nav>
 
