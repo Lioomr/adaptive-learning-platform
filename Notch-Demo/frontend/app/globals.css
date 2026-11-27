@@ -218,3 +218,9 @@
 :where([dir="rtl"], [lang="ar"]) :is([class*="tracking-"], [class*="uppercase"]) {
   letter-spacing: 0;
 }
+
+/* Instructor accessibility preferences (Settings → Language & Accessibility). */
+html[data-reduce-motion="true"] *,
+html[data-reduce-motion="true"] *::before,
+html[data-reduce-motion="true"] *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+html[data-underline-links="true"] a:not([role="button"]) { text-decoration: underline; text-underline-offset: 3px; }

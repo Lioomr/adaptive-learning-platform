@@ -46,3 +46,31 @@ all 35 course sections, draft restoration, completion, tutor conversations, cale
 downloads, invalid routes, Arabic RTL, and desktop/tablet/mobile layouts. The suite
 uses `localhost` to match Next's dev origin and saves visual evidence under the
 ignored `test-results/student/` directory. `npm test` requires Node 22.18+.
+
+## Instructor workspace
+
+The Instructor sidebar (`features/instructor/portal/navigation.tsx`) opens a bilingual (EN/AR, RTL) workspace built on mock data and a fixed demo clock (25 November 2026, Cairo time).
+
+| Route | Code | What it does |
+|---|---|---|
+| `/instructor` | `features/instructor/dashboard/` | Dashboard: week status, roadblocks, out-of-bound tutor questions |
+| `/instructor/courses` | `features/instructor/portal/` | My Courses: lessons, materials, announcements, grades, progress, submissions |
+| `/instructor/semester` | `features/instructor/semester/` | Semester Preparation |
+| `/instructor/question-bank` | `features/instructor/qbank/` | Question Bank with review states |
+| `/instructor/approvals`, `/student-management`, `/assessments`, `/chatbot`, `/calendar`, `/out-of-bound`, `/content-issues` | `features/instructor/portal/` | Approvals, students, assessments, tutor chatbot, calendar, unanswerable tutor questions, content issues |
+| `/instructor/analytics` | `features/instructor/analytics/` | Learning Analytics: mastery heatmap, concepts, prerequisites, progress, engagement, at-risk, export |
+| `/instructor/reports` | `features/instructor/reports/` | Course Reports and exam preparation: readiness, revision plans, mock exams from approved questions, four report types (CSV, print to PDF) |
+| `/instructor/coursework` | `features/instructor/coursework/` | Assignments, attendance and communication |
+| `/instructor/preferences` | `features/instructor/settings/` | Settings & Permissions: six sections, role-gated, save/discard/reset |
+
+The older IN-numbered screens (`/instructor/settings`, `/instructor/students`, and so on) are unchanged.
+
+Rules that apply across these pages:
+
+- Estimated mastery is shown separately from official grades and never changes a grade. Attendance never penalises a student unless a course policy says so.
+- Missing evidence (fewer than 3 attempts) shows as "Insufficient evidence", never zero. Scale: Low under 50, Developing 50-74, High 75 and above.
+- Readiness is an estimate. Mock exams use approved Question Bank items only.
+- Settings are role-gated (Course Instructor, TA, Coordinator, Dept Admin) with a request-access flow; administrator rights cannot be self-granted. The tutor stays grounded in permitted materials and no setting claims to remove errors.
+- State: the portal store and the settings store (`notch-instructor-settings-v1`) persist in the browser; coursework, reports, dashboard and question-bank extension stores are session-only.
+- Not yet wired: mastery threshold, strictness and tutor settings are stored but do not change analytics, reports or the tutor.
+- Testing: these pages are covered by typecheck, lint and manual browser runs. The Playwright suites cover only student and advisor flows.

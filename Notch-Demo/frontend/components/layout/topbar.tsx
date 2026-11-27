@@ -1,5 +1,7 @@
 "use client";
 import { LanguageControl } from "@/features/student/portal/language-control";
+import { InstructorLanguageControl } from "@/features/instructor/portal/language-control";
+import { InstructorTopbarExtras } from "@/features/instructor/dashboard/topbar-extras";
 import { useShellCopy } from "@/components/layout/shell-copy";
 import Link from "next/link";
 import { ChevronRight, FlaskConical } from "lucide-react";
@@ -36,6 +38,7 @@ export function Topbar({ role, studentWorkspace = false }: { role: Role; student
         {/* The Control Center has its own large context selectors. */}
         {role !== "demo" && !studentWorkspace ? <ContextControls hideLabel className="hidden w-[420px] shrink-0 xl:grid" /> : null}
         {role === "student" && <LanguageControl />}
+        {role === "instructor" && studentWorkspace && <><InstructorLanguageControl /><InstructorTopbarExtras /></>}
         <AppearanceControl />
         <Badge tone="ai" className="hidden sm:inline-flex" title={text("All people and outcomes are fictional and simulated")}>
           <FlaskConical aria-hidden="true" />

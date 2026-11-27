@@ -1,5 +1,6 @@
 "use client";
 import { StudentNavigation } from "@/features/student/portal/navigation";
+import { InstructorNavigation } from "@/features/instructor/portal/navigation";
 import { useShellCopy } from "@/components/layout/shell-copy";
 import Link from "next/link";
 import { BookOpenCheck, GraduationCap, HeartHandshake, LayoutDashboard, type LucideIcon } from "lucide-react";
@@ -29,6 +30,7 @@ export function RoleSwitcher({ active, variant = "sidebar", onNavigate }: Props)
   const { text } = useShellCopy();
   const rail = variant === "sidebar";
   if (active === "student") return <StudentNavigation drawer={!rail} onNavigate={onNavigate} />;
+  if (active === "instructor") return <InstructorNavigation drawer={!rail} onNavigate={onNavigate} />;
   return (
     <ul className="grid gap-1" role="list">
       {portals.map(p => {

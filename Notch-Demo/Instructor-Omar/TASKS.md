@@ -39,3 +39,7 @@ Help an instructor see their own course content, approve concepts/graph/question
 ## Current shared contract
 
 Follow [DEMO-AGREEMENTS.md](../DEMO-AGREEMENTS.md) and the shared contracts. Ten fictional students and numeric mastery replace the earlier five-student scripted 8/10 and 9/10 examples. Begin portal implementation after foundation review. Preserve all assigned screen IDs and submit evidence through Linear.
+
+## Workspace pages added after the IN list
+
+Built as frontend-only, bilingual pages on mock data: Instructor Courses, Semester Preparation, Question Bank, Dashboard with out-of-bound tutor questions, Learning Analytics, Course Reports and Exam Preparation, Assignments / Attendance / Communication, and Settings & Permissions. They are not IN-numbered; details and known gaps are in the [frontend README](../frontend/README.md#instructor-workspace). Overlap with IN8, IN13, IN16 and IN18 should be reconciled at integration review.

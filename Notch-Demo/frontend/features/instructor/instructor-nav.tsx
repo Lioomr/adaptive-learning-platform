@@ -36,8 +36,8 @@ export function InstructorNav() {
     <nav aria-label="Instructor screens" className="mb-6 overflow-x-auto border-b py-2">
       <ul className="flex min-w-max items-center gap-4">
         <li>
-          <Link href={base} aria-current={pathname === base ? "page" : undefined}
-            className={cn("inline-flex min-h-9 items-center rounded-lg px-3 text-sm hover:bg-muted", pathname === base && "bg-secondary font-semibold text-secondary-foreground")}>Overview</Link>
+          <Link href={`${base}/overview`} aria-current={pathname === `${base}/overview` ? "page" : undefined}
+            className={cn("inline-flex min-h-9 items-center rounded-lg px-3 text-sm hover:bg-muted", pathname === `${base}/overview` && "bg-secondary font-semibold text-secondary-foreground")}>Overview</Link>
         </li>
         {groups.map(g => (
           <li key={g.label} className="flex items-center gap-1 border-s ps-4">

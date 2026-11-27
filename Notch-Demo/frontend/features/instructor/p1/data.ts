@@ -9,7 +9,7 @@ import type { CourseId } from "@/types";
 
 /** Routes owned by other Instructor work items. Linked to, never edited here. */
 export const instructorLinks = {
-  overview: "/instructor",
+  overview: "/instructor/overview",
   onboarding: "/instructor/onboarding",
   materials: "/instructor/materials",
   concepts: "/instructor/concepts",

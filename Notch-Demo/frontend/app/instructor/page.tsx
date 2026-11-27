@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { InstructorOverview } from "@/features/instructor/instructor-overview";
+import { InstructorDashboard } from "@/features/instructor/dashboard/dashboard";
 
-export const metadata: Metadata = { title: "Instructor Portal" };
+export const metadata: Metadata = { title: "Instructor Dashboard" };
 
 export default function Page() {
-  return <InstructorOverview />;
+  return <InstructorDashboard />;
 }
